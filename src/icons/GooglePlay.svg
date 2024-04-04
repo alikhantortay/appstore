@@ -1,0 +1,14 @@
+<svg width="32.000000" height="32.000000" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<clipPath id="clip8_10969">
+			<rect id="Icon=google-play 1" width="32.000000" height="32.000000" transform="translate(0.000000 -0.500000)" fill="white" fill-opacity="0"/>
+		</clipPath>
+	</defs>
+	<rect id="Icon=google-play 1" width="32.000000" height="32.000000" transform="translate(0.000000 -0.500000)" fill="#FFFFFF" fill-opacity="0"/>
+	<g clip-path="url(#clip8_10969)">
+		<path id="Vector" d="M20.08 14.81L6.29 0.97L23.84 11.05L20.08 14.81ZM2.69 0.16C1.87 0.59 1.33 1.36 1.33 2.37L1.33 29.95C1.33 30.96 1.87 31.74 2.69 32.16L18.73 16.16L2.69 0.16ZM29.27 14.26L25.58 12.13L21.48 16.16L25.58 20.2L29.34 18.07C30.47 17.17 30.47 15.16 29.27 14.26ZM6.29 31.35L23.84 21.28L20.08 17.52L6.29 31.35Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="nonzero"/>
+	</g>
+</svg>
