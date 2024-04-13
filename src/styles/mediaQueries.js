@@ -1,12 +1,11 @@
 const breakpoints = {
-  desktop: 1280,
-  tablet: 768,
-  mobile: 375,
+  tablet: 1319,
+  mobile: 767,
 };
 
 export const mediaQueries = (key) => {
   return (style) =>
-    `@media screen and (min-width: ${breakpoints[key]}px) {${style}}`;
+    `@media screen and (max-width: ${breakpoints[key]}px) {${style}}`;
 };
 
 /////////example
