@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
 
 ${variables}
 
-body {color: var(--text);
+body {
   font-family: 'Public Sans', sans-serif;
   line-height: 1.5;
 }
@@ -16,7 +16,6 @@ h2,
 h3,
 p {
   margin: 0;
-  color: var(--text);
 }
 
 ul,

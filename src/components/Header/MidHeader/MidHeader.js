@@ -1,6 +1,9 @@
+import { useWindowWidth } from "../../../hooks/useWindowWidth";
 import { useDispatch, useSelector } from "react-redux";
 import { changeCurrency } from "../../../redux/shop/currencySlice";
 import { selectCurrency } from "../../../redux/shop/selectors";
+
+import { ReactComponent as Logo } from "../../../icons/header/logo.svg";
 
 import { ReactComponent as TwitterIcon } from "../../../icons/socials/Twitter.svg";
 import { ReactComponent as FacebookIcon } from "../../../icons/socials/Facebook.svg";
@@ -18,53 +21,65 @@ import {
   WelcomeTextStyled,
 } from "./MidHeader.styled";
 import { HeadSelectStyled } from "./HeadSelect.styled";
+import { HeadLogoStyled } from "../LowerHeader/LowerHeader.styled";
 
 export const MidHeader = () => {
+  const width = useWindowWidth();
+
   const dispatch = useDispatch();
   const currency = useSelector(selectCurrency);
 
   return (
     <MidHeaderStyled>
       <Container>
-        <WelcomeTextStyled>
-          Welcome to Clicon online eCommerce store.
-        </WelcomeTextStyled>
+        {width > 767 ? (
+          <>
+            <WelcomeTextStyled>
+              Welcome to Clicon online eCommerce store.
+            </WelcomeTextStyled>
 
-        <FollowUsStyled>
-          <p>Follow us:</p>
-          <ul>
-            <li>
-              <a href="https://twitter.com/">
-                <TwitterIcon />
-              </a>
-            </li>
-            <li>
-              <a href="https://www.facebook.com/">
-                <FacebookIcon />
-              </a>
-            </li>
-            <li>
-              <a href="https://www.pinterest.com/">
-                <PinterestIcon />
-              </a>
-            </li>
-            <li>
-              <a href="https://www.reddit.com/">
-                <RedditIcon />
-              </a>
-            </li>
-            <li>
-              <a href="https://www.youtube.com/">
-                <YoutubeIcon />
-              </a>
-            </li>
-            <li>
-              <a href="https://www.instagram.com/">
-                <InstagramIcon />
-              </a>
-            </li>
-          </ul>
-        </FollowUsStyled>
+            <FollowUsStyled>
+              <p>Follow us:</p>
+              <ul>
+                <li>
+                  <a href="https://twitter.com/">
+                    <TwitterIcon />
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.facebook.com/">
+                    <FacebookIcon />
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.pinterest.com/">
+                    <PinterestIcon />
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.reddit.com/">
+                    <RedditIcon />
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.youtube.com/">
+                    <YoutubeIcon />
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.instagram.com/">
+                    <InstagramIcon />
+                  </a>
+                </li>
+              </ul>
+            </FollowUsStyled>
+          </>
+        ) : (
+          <HeadLogoStyled>
+            <Logo />
+            <span>CLICON</span>
+          </HeadLogoStyled>
+        )}
 
         <HeadSelectStyled
           defaultValue={{ value: "USA", label: "Eng (UK)" }}

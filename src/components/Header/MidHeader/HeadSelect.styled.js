@@ -69,6 +69,7 @@ export const HeadSelectStyled = styled(Select)`
   .Select__menu {
     width: 180px;
     padding: 8px 0;
+    right: 0;
     border: 1px solid rgb(228, 231, 233);
     border-radius: 3px;
     box-shadow: 0px 8px 40px 0px rgba(0, 0, 0, 0.12);

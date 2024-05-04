@@ -10,11 +10,6 @@ export const UpperHeaderStyled = styled.div`
     justify-content: space-between;
     align-items: center;
   }
-
-  a:hover,
-  :focus {
-    background-color: var(--textSecondary);
-  }
 `;
 
 export const FridayStyled = styled.p`
@@ -50,7 +45,7 @@ export const HeadSaleStyled = styled.p`
 
     font-size: 40px;
     line-height: 1.2;
-    color: #ebc80c;
+    color: var(--warning);
   }
 `;
 
@@ -64,8 +59,12 @@ export const ShopLinkStyled = styled(Link)`
   line-height: 3.43;
   letter-spacing: 1.2%;
   color: var(--title);
-  background-color: #ebc80c;
+  background-color: var(--warning);
   transition: background-color 250ms ease;
+  &:hover,
+  &:focus {
+    background-color: var(--textSecondary);
+  }
 
   svg {
     margin-left: 8px;

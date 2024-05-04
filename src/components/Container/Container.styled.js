@@ -7,7 +7,11 @@ export const ContainerStyled = styled.div`
   margin-right: auto;
   max-width: 1320px;
 
-  ${mediaQueries("tablet")`max-width: 1319px;`}
+  ${mediaQueries("tablet")`
+  max-width: 1319px;
+  padding: 0 30px;`}
 
-  ${mediaQueries("mobile")`max-width: 767px;`}
+  ${mediaQueries("mobile")`
+  max-width: 767px;
+  padding: 0 20px;`}
 `;

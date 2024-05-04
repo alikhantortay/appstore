@@ -27,18 +27,18 @@ export const FollowUsStyled = styled.div`
   align-items: center;
   gap: 8px;
 
-  ul::after {
-    content: "";
-    margin-left: 16px;
-    width: 1px;
-    height: 28px;
-    background-color: #ffffff29;
-  }
-
   ul {
     display: flex;
     align-items: center;
     gap: 8px;
+
+    &::after {
+      content: "";
+      margin-left: 16px;
+      width: 1px;
+      height: 28px;
+      background-color: #ffffff29;
+    }
 
     a {
       display: flex;
@@ -47,24 +47,12 @@ export const FollowUsStyled = styled.div`
       align-items: center;
       justify-content: center;
       color: var(--textSecondary);
+      transition: color 250ms ease;
 
-      svg {
-        transition: color 250ms ease;
-      }
-
-      :hover,
-      :focus {
-        color: #ebc80c;
-        transition: color 250ms ease;
+      &:hover,
+      &:focus {
+        color: var(--warning);
       }
     }
-  }
-
-  ul::after {
-    content: "";
-    margin-left: 16px;
-    width: 1px;
-    height: 28px;
-    background-color: #ffffff29;
   }
 `;
