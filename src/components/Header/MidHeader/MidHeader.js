@@ -21,7 +21,7 @@ import {
   WelcomeTextStyled,
 } from "./MidHeader.styled";
 import { HeadSelectStyled } from "./HeadSelect.styled";
-import { HeadLogoStyled } from "../LowerHeader/LowerHeader.styled";
+import { HeadLogoLinkStyled } from "../LowerHeader/LowerHeader.styled";
 
 export const MidHeader = () => {
   const width = useWindowWidth();
@@ -75,10 +75,10 @@ export const MidHeader = () => {
             </FollowUsStyled>
           </>
         ) : (
-          <HeadLogoStyled>
+          <HeadLogoLinkStyled>
             <Logo />
             <span>CLICON</span>
-          </HeadLogoStyled>
+          </HeadLogoLinkStyled>
         )}
 
         <HeadSelectStyled

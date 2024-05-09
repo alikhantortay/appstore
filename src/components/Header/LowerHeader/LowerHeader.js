@@ -6,7 +6,7 @@ import { WishlistMenu } from "./Menu/WishlistMenu";
 
 import { Container } from "../../Container/Container";
 import {
-  HeadLogoStyled,
+  HeadLogoLinkStyled,
   LowerHeaderStyled,
   MenuWrapper,
 } from "./LowerHeader.styled";
@@ -20,10 +20,10 @@ export const LowerHeader = () => {
     <LowerHeaderStyled>
       <Container>
         {width > 767 && (
-          <HeadLogoStyled>
+          <HeadLogoLinkStyled>
             <Logo />
             <span>CLICON</span>
-          </HeadLogoStyled>
+          </HeadLogoLinkStyled>
         )}
         <SearchForm />
         <MenuWrapper>

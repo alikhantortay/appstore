@@ -29,10 +29,10 @@ export const SearchForm = () => {
         setLoading(true);
         if (q.trim() !== "") {
           const responce = await fetch(
-            `products/?title=${q}&offset=0&limit=5`,
+            `products?q=${q}&skip=0&limit=5`,
           );
-          responce.data.length > 0
-            ? setItems(responce.data)
+          responce.data.products.length > 0
+            ? setItems(responce.data.products)
             : setItems([]);
         }
       } catch (error) {
@@ -54,7 +54,7 @@ export const SearchForm = () => {
     if (value.trim() === "") {
       Notify.failure("Type something!");
     } else {
-      navigate(`/shop?query=${value}`, {
+      navigate(`/shop?q=${value}`, {
         replace: true,
       });
       setQ("");

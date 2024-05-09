@@ -6,6 +6,7 @@ import { SharedLayout } from "./components/SharedLayout/SharedLayout";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import { useDispatch } from "react-redux";
 import { checkIsUserLoggedIn } from "./firebase";
+import ScrollToTop from "./ScrollToTop";
 
 const HomePage = lazy(() => import("./pages/Home/Home"));
 const SignInPage = lazy(() =>
@@ -22,6 +23,7 @@ const WishlistPage = lazy(() =>
 const DetailsPage = lazy(() =>
   import("./pages/Details/Details"),
 );
+const AboutPage = lazy(() => import("./pages/About/About"));
 const NotFoundPage = lazy(() =>
   import("./pages/NotFound/NotFound"),
 );
@@ -47,6 +49,7 @@ const App = () => {
 
   useEffect(() => {
     checkIsUserLoggedIn(dispatch);
+    window.scrollTo(0, 0);
   }, [dispatch]);
 
   return (
@@ -55,7 +58,10 @@ const App = () => {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
           <Route path="/signin" element={<SignInPage />} />
-          <Route path="/shop" element={<ShopPage />} />
+          <Route
+            path="/shop/:category?/:id?"
+            element={<ShopPage />}
+          />
           <Route
             path="/compare"
             element={<ComparePage />}
@@ -66,13 +72,15 @@ const App = () => {
             element={<WishlistPage />}
           />
           <Route
-            path="details/:id"
+            path="/details/:id"
             element={<DetailsPage />}
           />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
       <GlobalStyle />
+      <ScrollToTop />
     </>
   );
 };

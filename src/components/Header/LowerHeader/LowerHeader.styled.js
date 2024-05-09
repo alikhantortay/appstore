@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { mediaQueries } from "../../../styles/mediaQueries";
+import { Link } from "react-router-dom";
 
 export const LowerHeaderStyled = styled.div`
   padding: 20px 0;
@@ -12,10 +13,11 @@ export const LowerHeaderStyled = styled.div`
   }
 `;
 
-export const HeadLogoStyled = styled.div`
+export const HeadLogoLinkStyled = styled(Link)`
   display: flex;
   align-items: center;
   gap: 8px;
+  color: var(--primary);
   ${mediaQueries("mobile")`margin-right: auto;`}
 
   span {

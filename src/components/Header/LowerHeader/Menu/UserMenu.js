@@ -6,7 +6,7 @@ import { UserModal } from "./Modal/UserModal/UserModal";
 
 export const UserMenu = () => {
   const [isUserModalOpen, setIsUserModalOpen] =
-    useState(true);
+    useState(false);
 
   useEffect(() => {
     document.addEventListener("mousedown", (e) => {

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mediaQueries } from "../../../../../../styles/mediaQueries";
 
 export const UserModalStyled = styled.div`
   position: absolute;
@@ -9,6 +10,8 @@ export const UserModalStyled = styled.div`
   border-radius: 4px;
   box-shadow: 0px 8px 40px 0px rgba(0, 0, 0, 0.12);
   background-color: #fff;
+
+  ${mediaQueries("mobile")`padding: 24px 16px;`}
 `;
 
 export const UserModalTitleStyled = styled.h2`
@@ -23,10 +26,6 @@ export const UserModalTitleStyled = styled.h2`
 `;
 
 export const UserModalFormStyled = styled.form`
-  label:first-child {
-    margin-bottom: 16px;
-  }
-
   label {
     display: block;
     position: relative;
@@ -36,6 +35,9 @@ export const UserModalFormStyled = styled.form`
     line-height: 1.43;
     letter-spacing: 0%;
     color: var(--title);
+    &:first-child {
+      margin-bottom: 16px;
+    }
 
     input {
       width: 360px;
@@ -47,6 +49,9 @@ export const UserModalFormStyled = styled.form`
       background-color: transparent;
 
       font-size: 18px;
+
+      ${mediaQueries("tablet")`width: 300px;`}
+      ${mediaQueries("mobile")`width: 248px;`}
 
       &:focus {
         outline-color: var(--primary);

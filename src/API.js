@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = `https://api.escuelajs.co/api/v1/`;
+axios.defaults.baseURL = `https://dummyjson.com/`;
 
 export const fetch = async (endpoint) => {
   try {

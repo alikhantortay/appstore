@@ -52,7 +52,7 @@ export const WishlistModal = () => {
   }, [wishlistItems]);
 
   return (
-    <ModalStyled name="wishlist">
+    <ModalStyled name="wishlist" $wishlist>
       <ModalTitleStyled>
         Wishlist{" "}
         {items.length > 0 && (

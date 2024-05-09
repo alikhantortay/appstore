@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { mediaQueries } from "../../../../../styles/mediaQueries";
 
 export const ModalStyled = styled.div`
   position: absolute;
@@ -9,6 +10,11 @@ export const ModalStyled = styled.div`
   border-radius: 4px;
   box-shadow: 0px 8px 40px 0px rgba(0, 0, 0, 0.12);
   background-color: #fff;
+
+  @media screen and (max-width: 767px) {
+    right: ${(props) =>
+      props.$wishlist ? "-55px" : "-99px"};
+  }
 `;
 
 export const ModalTitleStyled = styled.h2`
@@ -25,29 +31,34 @@ export const ModalTitleStyled = styled.h2`
 `;
 
 export const ModalListStyled = styled.ul`
+  width: 376px;
   padding: 20px 24px;
 
   border-top: 1px solid rgb(228, 231, 233);
   border-bottom: 1px solid rgb(228, 231, 233);
+
+  ${mediaQueries("tablet")`width: 373px;`}
+  ${mediaQueries("mobile")`width: 300px;`}
 
   li:not(:last-child) {
     margin-bottom: 16px;
   }
 
   li {
-    width: 328px;
     display: flex;
+
     align-items: center;
-    gap: 16px;
 
     img {
+      margin-right: 16px;
       border: 1px solid rgb(228, 231, 233);
     }
 
     button {
-      padding: 2px;
+      margin-left: auto;
       width: 20px;
       height: 20px;
+      padding: 2px;
       border: none;
       border-radius: 2px;
       color: var(--disabled);
