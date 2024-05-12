@@ -7,6 +7,7 @@ import { GlobalStyle } from "./styles/GlobalStyle";
 import { useDispatch } from "react-redux";
 import { checkIsUserLoggedIn } from "./firebase";
 import ScrollToTop from "./ScrollToTop";
+import { fetchCategories } from "./redux/shop/categoriesSlice";
 
 const HomePage = lazy(() => import("./pages/Home/Home"));
 const SignInPage = lazy(() =>
@@ -24,6 +25,9 @@ const DetailsPage = lazy(() =>
   import("./pages/Details/Details"),
 );
 const AboutPage = lazy(() => import("./pages/About/About"));
+const SupportPage = lazy(() =>
+  import("./pages/Support/Support"),
+);
 const NotFoundPage = lazy(() =>
   import("./pages/NotFound/NotFound"),
 );
@@ -50,6 +54,7 @@ const App = () => {
   useEffect(() => {
     checkIsUserLoggedIn(dispatch);
     window.scrollTo(0, 0);
+    dispatch(fetchCategories());
   }, [dispatch]);
 
   return (
@@ -76,6 +81,10 @@ const App = () => {
             element={<DetailsPage />}
           />
           <Route path="/about" element={<AboutPage />} />
+          <Route
+            path="/support"
+            element={<SupportPage />}
+          />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
