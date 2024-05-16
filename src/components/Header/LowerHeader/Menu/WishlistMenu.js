@@ -35,7 +35,11 @@ export const WishlistMenu = () => {
         }>
         <HeartIcon />
       </button>
-      {isWishlistOpen && <WishlistModal />}
+      {isWishlistOpen && (
+        <WishlistModal
+          onClick={() => setIsWishlistOpen(false)}
+        />
+      )}
     </MenuStyled>
   );
 };

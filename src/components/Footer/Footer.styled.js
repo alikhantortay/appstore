@@ -81,6 +81,7 @@ export const FooterLinksStyled = styled.div`
     padding: 6px 0;
     transition: color 250ms ease;
 
+    text-transform: capitalize;
     font-size: 14px;
     font-weight: 500;
     line-height: 1.43;

@@ -20,7 +20,7 @@ export const LowerHeader = () => {
     <LowerHeaderStyled>
       <Container>
         {width > 767 && (
-          <HeadLogoLinkStyled>
+          <HeadLogoLinkStyled to="/">
             <Logo />
             <span>CLICON</span>
           </HeadLogoLinkStyled>

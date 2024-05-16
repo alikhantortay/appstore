@@ -6,6 +6,7 @@ export const ModalStyled = styled.div`
   position: absolute;
   top: 44px;
   right: 0;
+  z-index: 1;
   border: 1px solid rgb(228, 231, 233);
   border-radius: 4px;
   box-shadow: 0px 8px 40px 0px rgba(0, 0, 0, 0.12);

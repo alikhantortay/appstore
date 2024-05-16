@@ -49,7 +49,11 @@ export const NavHeader = () => {
             All Category
             <CaretIcon />
           </CategoryBtnStyled>
-          {isCategoriesOpen && <Categories />}
+          {isCategoriesOpen && (
+            <Categories
+              onClick={() => setIsCategoriesOpen(false)}
+            />
+          )}
           <NavLink to="/compare">
             <CompareIcon />
             {width > 424 && "Compare"}

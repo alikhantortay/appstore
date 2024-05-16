@@ -5,6 +5,7 @@ export const UserModalStyled = styled.div`
   position: absolute;
   top: 44px;
   right: 0;
+  z-index: 1;
   padding: 32px;
   border: 1px solid rgb(228, 231, 233);
   border-radius: 4px;

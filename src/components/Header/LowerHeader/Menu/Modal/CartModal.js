@@ -24,7 +24,7 @@ import {
   ModalTitleStyled,
 } from "./Modal.styled";
 
-export const CartModal = () => {
+export const CartModal = ({ onClick }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCart);
 
@@ -89,7 +89,11 @@ export const CartModal = () => {
                   loading="lazy"
                 />
                 <ModalItemTextStyled>
-                  <Link to={`/details/${id}`}>{title}</Link>
+                  <Link
+                    to={`/details/${id}`}
+                    onClick={onClick}>
+                    {title}
+                  </Link>
                   <CartModalPriceStyled>
                     {quantity} x{" "}
                     <span>{countPrice(price)}</span>
@@ -110,7 +114,7 @@ export const CartModal = () => {
       <ModalLowerStyled>
         <p>Sub-Total:</p>
         <span>{countTotalPrice(items)}</span>
-        <ModalLinkStyled to="/cart">
+        <ModalLinkStyled to="/cart" onClick={onClick}>
           VIEW CART
           <ArrowRightIcon />
         </ModalLinkStyled>

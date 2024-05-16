@@ -40,7 +40,9 @@ export const CartMenu = () => {
         }>
         <CartIcon />
       </button>
-      {isCartOpen && <CartModal />}
+      {isCartOpen && (
+        <CartModal onClick={() => setIsCartOpen(false)} />
+      )}
     </MenuStyled>
   );
 };

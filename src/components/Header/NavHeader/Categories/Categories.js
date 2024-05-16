@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux";
-import { CategoriesStyled } from "./Categories.styled";
 import { selectCategories } from "../../../../redux/shop/selectors";
 import { Link } from "react-router-dom";
 
-export const Categories = () => {
+import { CategoriesStyled } from "./Categories.styled";
+
+export const Categories = ({ onClick }) => {
   const categories = useSelector(selectCategories);
 
   return (
@@ -12,7 +13,7 @@ export const Categories = () => {
         {categories.map((item) => {
           return (
             <li key={item}>
-              <Link to={`/shop/${item}`}>
+              <Link to={`/shop/${item}`} onClick={onClick}>
                 {item.replace("-", " ")}
               </Link>
             </li>

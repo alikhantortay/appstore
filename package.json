@@ -11,6 +11,7 @@
     "axios": "^1.6.8",
     "firebase": "^10.11.1",
     "modern-normalize": "^2.0.0",
+    "nanoid": "^5.0.7",
     "notiflix": "^3.2.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -22,6 +23,7 @@
     "redux-persist": "^6.0.0",
     "styled-components": "^6.1.8",
     "use-debounce": "^10.0.0",
+    "uuid4": "^2.0.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -1,5 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
+import { useSelector } from "react-redux";
+import { selectCategories } from "../../redux/shop/selectors";
 
 import { ReactComponent as Logo } from "../../icons/header/logo.svg";
 import { ReactComponent as ArrowRight } from "../../icons/ArrowRight.svg";
@@ -20,6 +22,7 @@ import {
 
 export const Footer = () => {
   const width = useWindowWidth();
+  const categories = useSelector(selectCategories);
 
   return (
     <FooterStyled>
@@ -47,36 +50,15 @@ export const Footer = () => {
           <FooterLinksStyled>
             <h2>Top Category</h2>
             <ul>
-              <li>
-                <NavLink to="/shop/smartphones">
-                  Smartphones
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/shop/laptops">
-                  Laptops
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/shop/groceries">
-                  Groceries
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/shop/furniture">
-                  Furniture
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/shop/mens-shoes">
-                  Men's Shoes
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/shop/womens-jewellery">
-                  Women's Jewellery
-                </NavLink>
-              </li>
+              {categories.slice(0, 6).map((item) => {
+                return (
+                  <li key={item}>
+                    <NavLink to={`/shop/${item}`}>
+                      {item.replace("-", " ")}
+                    </NavLink>
+                  </li>
+                );
+              })}
             </ul>
             <AllCategoryLinkStyled to="/shop">
               Browse All Product

@@ -21,7 +21,7 @@ import {
   WishlistModalPriceStyled,
 } from "./Modal.styled";
 
-export const WishlistModal = () => {
+export const WishlistModal = ({ onClick }) => {
   const dispatch = useDispatch();
   const wishlistItems = useSelector(selectWishlist);
 
@@ -77,7 +77,11 @@ export const WishlistModal = () => {
                 loading="lazy"
               />
               <ModalItemTextStyled>
-                <Link to={`/details/${id}`}>{title}</Link>
+                <Link
+                  to={`/details/${id}`}
+                  onClick={onClick}>
+                  {title}
+                </Link>
                 <WishlistModalPriceStyled>
                   {countPrice(price)}
                 </WishlistModalPriceStyled>
@@ -94,7 +98,7 @@ export const WishlistModal = () => {
         })}
       </ModalListStyled>
       <ModalLowerStyled>
-        <ModalLinkStyled to="/wishlist">
+        <ModalLinkStyled to="/wishlist" onClick={onClick}>
           VIEW WISHLIST
           <ArrowRightIcon />
         </ModalLinkStyled>
