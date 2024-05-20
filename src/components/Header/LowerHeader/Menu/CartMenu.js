@@ -1,10 +1,11 @@
-import { useSelector } from "react-redux";
-import { ReactComponent as CartIcon } from "../../../../icons/Cart.svg";
-
-import { selectCart } from "../../../../redux/shop/selectors";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { selectCart } from "../../../../redux/shop/selectors";
+
+import { ReactComponent as CartIcon } from "../../../../icons/Cart.svg";
+import { CartModal } from "../Modal/CartModal";
+
 import { MenuStyled } from "./Menu.styled";
-import { CartModal } from "./Modal/CartModal";
 
 export const CartMenu = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);

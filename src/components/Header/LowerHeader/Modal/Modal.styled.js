@@ -1,16 +1,20 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { mediaQueries } from "../../../../../styles/mediaQueries";
+import { mediaQueries } from "../../../../styles/mediaQueries";
 
 export const ModalStyled = styled.div`
   position: absolute;
   top: 44px;
   right: 0;
   z-index: 1;
+  width: 376px;
   border: 1px solid rgb(228, 231, 233);
   border-radius: 4px;
   box-shadow: 0px 8px 40px 0px rgba(0, 0, 0, 0.12);
   background-color: #fff;
+
+  ${mediaQueries("tablet")`width: 373px;`}
+  ${mediaQueries("mobile")`width: 300px;`}
 
   @media screen and (max-width: 767px) {
     right: ${(props) =>
@@ -32,14 +36,10 @@ export const ModalTitleStyled = styled.h2`
 `;
 
 export const ModalListStyled = styled.ul`
-  width: 376px;
   padding: 20px 24px;
 
   border-top: 1px solid rgb(228, 231, 233);
   border-bottom: 1px solid rgb(228, 231, 233);
-
-  ${mediaQueries("tablet")`width: 373px;`}
-  ${mediaQueries("mobile")`width: 300px;`}
 
   li:not(:last-child) {
     margin-bottom: 16px;

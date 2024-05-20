@@ -8,10 +8,22 @@ import { useDispatch } from "react-redux";
 import { checkIsUserLoggedIn } from "./firebase";
 import ScrollToTop from "./ScrollToTop";
 import { fetchCategories } from "./redux/shop/categoriesSlice";
+import { RestrictedRoute } from "./components/RestrictedRoute";
 
 const HomePage = lazy(() => import("./pages/Home/Home"));
-const SignInPage = lazy(() =>
-  import("./pages/SignIn/SignIn"),
+const AccountPage = lazy(() =>
+  import("./pages/Account/Account"),
+);
+const SignIn = lazy(() =>
+  import("./components/AccountPage/SignIn"),
+);
+const SignUp = lazy(() =>
+  import("./components/AccountPage/SignUp"),
+);
+const ForgetPassword = lazy(() =>
+  import(
+    "./components/AccountPage/ForgetPassword/ForgetPassword"
+  ),
 );
 const ShopPage = lazy(() => import("./pages/Shop/Shop"));
 const ComparePage = lazy(() =>
@@ -43,8 +55,8 @@ Notify.init({
   clickToClose: true,
 
   failure: {
-    background: "#ebc80c",
-    textColor: "#191c1f",
+    background: "#f7e99e",
+    textColor: "#2da5f3",
   },
 });
 
@@ -62,7 +74,21 @@ const App = () => {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
-          <Route path="/signin" element={<SignInPage />} />
+          <Route
+            path="/user-account"
+            element={
+              <RestrictedRoute
+                component={<AccountPage />}
+              />
+            }>
+            <Route path="sign-in" element={<SignIn />} />
+            <Route path="sign-up" element={<SignUp />} />
+            <Route
+              path="forget-password"
+              element={<ForgetPassword />}
+            />
+          </Route>
+
           <Route
             path="/shop/:category?/:id?"
             element={<ShopPage />}

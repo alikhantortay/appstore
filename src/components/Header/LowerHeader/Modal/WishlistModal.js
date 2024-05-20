@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectWishlist } from "../../../../../redux/shop/selectors";
+import { selectWishlist } from "../../../../redux/shop/selectors";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
-import { fetch } from "../../../../../API";
+import { fetch } from "../../../../API";
 
-import { ReactComponent as CrossIcon } from "../../../../../icons/header/X.svg";
-import { ReactComponent as ArrowRightIcon } from "../../../../../icons/ArrowRight.svg";
+import { ReactComponent as CrossIcon } from "../../../../icons/header/X.svg";
+import { ReactComponent as ArrowRightIcon } from "../../../../icons/ArrowRight.svg";
 
-import { removeFromWishlist } from "../../../../../redux/shop/wishlistSlice";
-import { countPrice } from "../../../../../countPrice";
-import { Loader } from "../../../../Loader/Loader";
+import { removeFromWishlist } from "../../../../redux/shop/wishlistSlice";
+import { countPrice } from "../../../../countPrice";
+import { Loader } from "../../../Loader/Loader";
 import { Link } from "react-router-dom";
 import {
   ModalItemTextStyled,

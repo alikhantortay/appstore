@@ -4,7 +4,7 @@ import { ReactComponent as HeartIcon } from "../../../../icons/Heart.svg";
 import { selectWishlist } from "../../../../redux/shop/selectors";
 import { useEffect, useState } from "react";
 import { MenuStyled } from "./Menu.styled";
-import { WishlistModal } from "./Modal/WishlistModal";
+import { WishlistModal } from "../Modal/WishlistModal";
 
 export const WishlistMenu = () => {
   const [isWishlistOpen, setIsWishlistOpen] =

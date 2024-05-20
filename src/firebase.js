@@ -1,3 +1,4 @@
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
@@ -44,6 +45,9 @@ export const signUp = async (
     );
     await updateProfile(user, { displayName });
     await sendEmailVerification(user);
+    Notify.failure(
+      "Email verification link sent to your email.",
+    );
   } catch (error) {
     makeErrorMessage(error.code);
   }
@@ -66,7 +70,6 @@ export const logIn = async (email, password) => {
 export const logInGoogle = async () => {
   try {
     await signInWithPopup(auth, provider);
-    console.log(auth.currentUser);
   } catch (error) {
     makeErrorMessage(error.code);
   }
@@ -84,6 +87,9 @@ export const checkIsUserLoggedIn = (dispatch) =>
 export const resetPassword = async (email) => {
   try {
     await sendPasswordResetEmail(auth, email);
+    Notify.failure(
+      "Password reset link sent to your email.",
+    );
   } catch (error) {
     makeErrorMessage(error.code);
   }

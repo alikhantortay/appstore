@@ -9,6 +9,7 @@ export const variables = css`
     --text: #475156;
     --textSecondary: #fff;
     --disabled: #929fa5;
+    --disabledSecondary: #e4e7e9;
     --price: #2da5f3;
     --warning: #ebc80c;
     --warningSecondary: #f7e99e;

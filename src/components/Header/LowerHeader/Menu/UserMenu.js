@@ -2,7 +2,7 @@ import { ReactComponent as UserIcon } from "../../../../icons/header/User.svg";
 
 import { useEffect, useState } from "react";
 import { MenuStyled } from "./Menu.styled";
-import { UserModal } from "./Modal/UserModal/UserModal";
+import { UserModal } from "../Modal/UserModal/UserModal";
 
 export const UserMenu = () => {
   const [isUserModalOpen, setIsUserModalOpen] =
@@ -32,7 +32,11 @@ export const UserMenu = () => {
         }>
         <UserIcon />
       </button>
-      {isUserModalOpen && <UserModal />}
+      {isUserModalOpen && (
+        <UserModal
+          onClick={() => setIsUserModalOpen(false)}
+        />
+      )}
     </MenuStyled>
   );
 };
