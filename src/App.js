@@ -65,8 +65,8 @@ const App = () => {
 
   useEffect(() => {
     checkIsUserLoggedIn(dispatch);
-    window.scrollTo(0, 0);
     dispatch(fetchCategories());
+    window.scrollTo(0, 0);
   }, [dispatch]);
 
   return (

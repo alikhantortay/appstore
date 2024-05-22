@@ -77,7 +77,6 @@ export const FooterAddressStyled = styled.address`
 
 export const FooterLinksStyled = styled.div`
   a {
-    display: block;
     padding: 6px 0;
     transition: color 250ms ease;
 
@@ -96,6 +95,7 @@ export const FooterLinksStyled = styled.div`
     margin-top: 12px;
 
     a {
+      display: block;
       color: #929fa5;
 
       &.active::before {
