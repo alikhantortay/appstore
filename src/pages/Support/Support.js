@@ -1,5 +1,11 @@
+import { Help } from "../../components/SupportPage/Help";
+
 const Support = () => {
-  return <div>Support Page</div>;
+  return (
+    <>
+      <Help />
+    </>
+  );
 };
 
 export default Support;

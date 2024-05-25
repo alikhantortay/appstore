@@ -45,27 +45,6 @@ export const LocationPanel = () => {
             );
           })}
         </LocationsStyled>
-        <button
-          type="button"
-          onClick={() =>
-            signUp(
-              "Uebock",
-              "veyobok521@mcatag.com",
-              "qwerty123",
-            )
-          }>
-          signUp
-        </button>
-        <button type="button" onClick={logOut}>
-          logOut
-        </button>
-        <button
-          type="button"
-          onClick={() =>
-            resetPassword("veyobok521@mcatag.com")
-          }>
-          resetPassword
-        </button>
       </Container>
     </LocationPanelStyled>
   );

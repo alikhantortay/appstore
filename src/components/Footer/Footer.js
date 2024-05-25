@@ -50,15 +50,17 @@ export const Footer = () => {
           <FooterLinksStyled>
             <h2>Top Category</h2>
             <ul>
-              {categories.slice(0, 6).map((item) => {
-                return (
-                  <li key={item}>
-                    <NavLink to={`/shop/${item}`}>
-                      {item.replace("-", " ")}
-                    </NavLink>
-                  </li>
-                );
-              })}
+              {categories
+                .slice(0, 6)
+                .map(({ slug, name }) => {
+                  return (
+                    <li key={slug}>
+                      <NavLink to={`/shop/${slug}`}>
+                        {name}
+                      </NavLink>
+                    </li>
+                  );
+                })}
             </ul>
             <AllCategoryLinkStyled to="/shop">
               Browse All Product
