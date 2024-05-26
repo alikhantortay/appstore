@@ -1,0 +1,14 @@
+<svg width="32.000000" height="32.000000" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs/>
+	<rect id="Duotone/LockOpen" width="32.000000" height="32.000000" fill="#FFFFFF" fill-opacity="0"/>
+	<g opacity="0.200000">
+		<path id="Vector" d="M6 11L26 11C26.55 11 27 11.44 27 12L27 26C27 26.55 26.55 27 26 27L6 27C5.44 27 5 26.55 5 26L5 12C5 11.44 5.44 11 6 11Z" fill="#FA8232" fill-opacity="1.000000" fill-rule="evenodd"/>
+	</g>
+	<path id="Vector" d="M26 11C26.55 11 27 11.44 27 12L27 26C27 26.55 26.55 27 26 27L6 27C5.44 27 5 26.55 5 26L5 12C5 11.44 5.44 11 6 11L26 11Z" stroke="#FA8232" stroke-opacity="1.000000" stroke-width="2.000000" stroke-linejoin="round"/>
+	<path id="Vector" d="M11.5 11L11.5 6.5C11.5 5.3 11.97 4.16 12.81 3.31C13.66 2.47 14.8 2 16 2C17.19 2 18.33 2.47 19.18 3.31C20.02 4.16 20.5 5.3 20.5 6.5" stroke="#FA8232" stroke-opacity="1.000000" stroke-width="2.000000" stroke-linejoin="round" stroke-linecap="round"/>
+	<path id="Vector" d="M17.5 19C17.5 19.82 16.82 20.5 16 20.5C15.17 20.5 14.5 19.82 14.5 19C14.5 18.17 15.17 17.5 16 17.5C16.82 17.5 17.5 18.17 17.5 19Z" fill="#FA8232" fill-opacity="1.000000" fill-rule="evenodd"/>
+	<path id="Vector" d="M16 20.5C16.82 20.5 17.5 19.82 17.5 19C17.5 18.17 16.82 17.5 16 17.5C15.17 17.5 14.5 18.17 14.5 19C14.5 19.82 15.17 20.5 16 20.5ZM15.8 18.53Q15.89 18.5 16 18.5Q16.1 18.5 16.19 18.53Q16.28 18.57 16.35 18.64Q16.42 18.71 16.46 18.8Q16.5 18.89 16.5 19Q16.5 19.1 16.46 19.19Q16.42 19.28 16.35 19.35Q16.28 19.42 16.19 19.46Q16.1 19.5 16 19.5Q15.89 19.5 15.8 19.46Q15.71 19.42 15.64 19.35Q15.57 19.28 15.53 19.19Q15.5 19.1 15.5 19Q15.5 18.89 15.53 18.8Q15.57 18.71 15.64 18.64Q15.71 18.57 15.8 18.53Z" fill="#FA8232" fill-opacity="1.000000" fill-rule="evenodd"/>
+</svg>

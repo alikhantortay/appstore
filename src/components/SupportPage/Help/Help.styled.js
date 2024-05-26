@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import bgImg from "../../images/support.png";
-import searchIcon from "../../icons/MagnifyingGlassOrange.svg";
-import { mediaQueries } from "../../styles/mediaQueries";
+import bgImg from "../../../images/support.png";
+import searchIcon from "../../../icons/MagnifyingGlassOrange.svg";
+import { mediaQueries } from "../../../styles/mediaQueries";
 
 export const HelpStyled = styled.div`
-  border-bottom: 1px solid var(--disabled);
+  border-bottom: 1px solid var(--disabledSecondary);
 
   > div {
     padding-top: 72px;

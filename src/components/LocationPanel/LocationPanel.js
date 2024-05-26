@@ -9,11 +9,6 @@ import {
   LocationPanelStyled,
   LocationsStyled,
 } from "./LocationPanel.styled";
-import {
-  logOut,
-  resetPassword,
-  signUp,
-} from "../../firebase";
 
 export const LocationPanel = () => {
   const { pathname } = useLocation();
