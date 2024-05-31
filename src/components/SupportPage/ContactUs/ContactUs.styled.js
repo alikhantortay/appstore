@@ -70,10 +70,9 @@ export const ContactLinkWrapper = styled.div`
   }
 
   a {
-    display: inline-flex;
+    display: inline-block;
     margin-top: 24px;
     padding: 12px 24px;
-    gap: 8px;
     border: none;
     border-radius: 2px;
     background-color: ${(props) =>
@@ -88,6 +87,11 @@ export const ContactLinkWrapper = styled.div`
     &:hover,
     &:focus {
       background-color: var(--primary);
+    }
+
+    svg {
+      vertical-align: bottom;
+      margin-left: 8px;
     }
   }
 `;

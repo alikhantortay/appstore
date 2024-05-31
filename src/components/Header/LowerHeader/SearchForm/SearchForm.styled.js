@@ -52,6 +52,7 @@ export const SearchFormStyled = styled.form`
 export const SearchResultsStyled = styled.div`
   position: absolute;
   top: 52px;
+  z-index: 1;
   width: 100%;
   padding: 16px 30px;
   border: 1px solid rgb(228, 231, 233);

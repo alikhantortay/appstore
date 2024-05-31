@@ -90,7 +90,7 @@ const App = () => {
           </Route>
 
           <Route
-            path="/shop/:category?/:id?"
+            path="/shop/:category?"
             element={<ShopPage />}
           />
           <Route
@@ -103,7 +103,7 @@ const App = () => {
             element={<WishlistPage />}
           />
           <Route
-            path="/details/:id"
+            path="/shop/:category/:id"
             element={<DetailsPage />}
           />
           <Route path="/about" element={<AboutPage />} />

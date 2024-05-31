@@ -10,11 +10,11 @@ export const Categories = ({ onClick }) => {
   return (
     <CategoriesStyled name="categories">
       <ul>
-        {categories.map((item) => {
+        {categories.map(({ slug, name }) => {
           return (
-            <li key={item}>
-              <Link to={`/shop/${item}`} onClick={onClick}>
-                {item.replace("-", " ")}
+            <li key={slug}>
+              <Link to={`/shop/${slug}`} onClick={onClick}>
+                {name}
               </Link>
             </li>
           );

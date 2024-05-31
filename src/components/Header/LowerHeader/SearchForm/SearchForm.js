@@ -29,7 +29,7 @@ export const SearchForm = () => {
         setLoading(true);
         if (q.trim() !== "") {
           const responce = await fetch(
-            `products?q=${q}&skip=0&limit=5`,
+            `products/search?q=${q}&skip=0&limit=5`,
           );
           responce.data.products.length > 0
             ? setItems(responce.data.products)
@@ -75,7 +75,7 @@ export const SearchForm = () => {
           <SearchIcon />
         </button>
       </SearchFormStyled>
-      {q && useEffect && (
+      {q.length > 2 && useEffect && (
         <SearchResultsStyled>
           {items.length > 0 ? (
             <>

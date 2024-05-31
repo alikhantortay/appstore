@@ -8,7 +8,7 @@ import { ReactComponent as CrossIcon } from "../../../../icons/header/X.svg";
 import { ReactComponent as ArrowRightIcon } from "../../../../icons/ArrowRight.svg";
 
 import { removeFromWishlist } from "../../../../redux/shop/wishlistSlice";
-import { countPrice } from "../../../../countPrice";
+import { countSalePrice } from "../../../../countPrice";
 import { Loader } from "../../../Loader/Loader";
 import { Link } from "react-router-dom";
 import {
@@ -66,36 +66,50 @@ export const WishlistModal = ({ onClick }) => {
         )}
       </ModalTitleStyled>
       <ModalListStyled>
-        {items.map(({ id, images, title, price }) => {
-          return (
-            <li key={id}>
-              <img
-                src={images[0]}
-                alt={title}
-                width="80px"
-                height="80px"
-                loading="lazy"
-              />
-              <ModalItemTextStyled>
-                <Link
-                  to={`/details/${id}`}
-                  onClick={onClick}>
-                  {title}
-                </Link>
-                <WishlistModalPriceStyled>
-                  {countPrice(price)}
-                </WishlistModalPriceStyled>
-              </ModalItemTextStyled>
-              <button
-                type="button"
-                onClick={() =>
-                  dispatch(removeFromWishlist(id))
-                }>
-                <CrossIcon />
-              </button>
-            </li>
-          );
-        })}
+        {items.map(
+          ({
+            id,
+            images,
+            title,
+            category,
+            price,
+            discountPercentage,
+          }) => {
+            return (
+              <li key={id}>
+                <img
+                  src={images[0]}
+                  alt={title}
+                  width="80px"
+                  height="80px"
+                  loading="lazy"
+                />
+                <ModalItemTextStyled>
+                  <Link
+                    to={`/shop/${category}/${title
+                      .toLowerCase()
+                      .replaceAll(" ", "-")}`}
+                    onClick={onClick}>
+                    {title}
+                  </Link>
+                  <WishlistModalPriceStyled>
+                    {countSalePrice(
+                      price,
+                      discountPercentage,
+                    )}
+                  </WishlistModalPriceStyled>
+                </ModalItemTextStyled>
+                <button
+                  type="button"
+                  onClick={() =>
+                    dispatch(removeFromWishlist(id))
+                  }>
+                  <CrossIcon />
+                </button>
+              </li>
+            );
+          },
+        )}
       </ModalListStyled>
       <ModalLowerStyled>
         <ModalLinkStyled to="/wishlist" onClick={onClick}>

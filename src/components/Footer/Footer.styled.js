@@ -102,7 +102,7 @@ export const FooterLinksStyled = styled.div`
         content: "";
         display: inline-block;
         margin-right: 8px;
-        vertical-align: middle;
+        vertical-align: 4px;
         width: 24px;
         height: 2px;
         border-radius: 8px;

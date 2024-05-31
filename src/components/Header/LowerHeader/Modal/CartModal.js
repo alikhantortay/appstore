@@ -10,7 +10,6 @@ import { ReactComponent as ArrowRightIcon } from "../../../../icons/ArrowRight.s
 import { removeFromCart } from "../../../../redux/shop/cartSlice";
 import {
   countSalePrice,
-  countPrice,
   countTotalPrice,
 } from "../../../../countPrice";
 import { Loader } from "../../../Loader/Loader";
@@ -38,10 +37,6 @@ export const CartModal = ({ onClick }) => {
     cartItems.map(
       ({ quantity }) => (numberOfItems += quantity),
     );
-
-  console.log(items);
-
-  console.log(countSalePrice(1999, 21));
 
   useEffect(() => {
     cartItems.forEach(({ id, quantity }) => {
@@ -87,6 +82,7 @@ export const CartModal = ({ onClick }) => {
             id,
             images,
             title,
+            category,
             quantity,
             price,
             discountPercentage,
@@ -102,7 +98,9 @@ export const CartModal = ({ onClick }) => {
                 />
                 <ModalItemTextStyled>
                   <Link
-                    to={`/details/${id}`}
+                    to={`/shop/${category}/${title
+                      .toLowerCase()
+                      .replaceAll(" ", "-")}`}
                     onClick={onClick}>
                     {title}
                   </Link>
