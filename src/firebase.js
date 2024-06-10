@@ -1,5 +1,7 @@
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { initializeApp } from "firebase/app";
+import { makeErrorMessage } from "./makeErrorMessage";
+import { addUser, removeUser } from "./redux/auth/slice";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -12,8 +14,6 @@ import {
   onAuthStateChanged,
   sendPasswordResetEmail,
 } from "firebase/auth";
-import { addUser, removeUser } from "./redux/auth/slice";
-import { makeErrorMessage } from "./makeErrorMessage";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,

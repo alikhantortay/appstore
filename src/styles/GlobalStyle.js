@@ -8,7 +8,8 @@ ${variables}
 
 body {
   font-family: 'Public Sans', sans-serif;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.43;
 }
 
 h1,

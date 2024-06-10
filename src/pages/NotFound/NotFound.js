@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
+import { Container } from "../../components/Container/Container";
 import { ReactComponent as ArrowRight } from "../../icons/ArrowRight.svg";
 import { ReactComponent as HomeIcon } from "../../icons/House.svg";
 
-import { Container } from "../../components/Container/Container";
 import {
   GoBackLinkStyled,
   HomeLinkStyled,

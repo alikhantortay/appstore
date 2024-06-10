@@ -6,7 +6,7 @@ import { SharedLayout } from "./components/SharedLayout/SharedLayout";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import { useDispatch } from "react-redux";
 import { checkIsUserLoggedIn } from "./firebase";
-import ScrollToTop from "./ScrollToTop";
+import { ScrollToTop } from "./ScrollToTop";
 import { fetchCategories } from "./redux/shop/categoriesSlice";
 import { RestrictedRoute } from "./components/RestrictedRoute";
 
@@ -66,7 +66,6 @@ const App = () => {
   useEffect(() => {
     checkIsUserLoggedIn(dispatch);
     dispatch(fetchCategories());
-    window.scrollTo(0, 0);
   }, [dispatch]);
 
   return (

@@ -1,11 +1,12 @@
 import { topics } from "./topics";
 
 import { Container } from "../../Container/Container";
+
+import { TitleStyled } from "../../../styles/common";
 import {
   HelpTopicsStyled,
   TopicsListStyled,
 } from "./HelpTopics.styled";
-import { TitleStyled } from "../../../styles/common";
 
 export const HelpTopics = () => {
   return (

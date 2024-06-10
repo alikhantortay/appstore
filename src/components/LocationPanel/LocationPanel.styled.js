@@ -26,8 +26,6 @@ export const CategoryLinkStyled = styled(Link)`
   transition: color 250ms ease;
 
   text-transform: capitalize;
-  font-size: 14px;
-  line-height: 1.43;
   color: #5f6c72;
 
   ${(props) => {

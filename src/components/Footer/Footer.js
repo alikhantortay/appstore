@@ -1,14 +1,14 @@
 import { Link, NavLink } from "react-router-dom";
-import { useWindowWidth } from "../../hooks/useWindowWidth";
 import { useSelector } from "react-redux";
 import { selectCategories } from "../../redux/shop/selectors";
+import { useWindowWidth } from "../../hooks/useWindowWidth";
 
+import { Container } from "../Container/Container";
 import { ReactComponent as Logo } from "../../icons/header/logo.svg";
 import { ReactComponent as ArrowRight } from "../../icons/ArrowRight.svg";
 import { ReactComponent as GPlayIcon } from "../../icons/GooglePlay.svg";
 import { ReactComponent as AppleIcon } from "../../icons/AppStore.svg";
 
-import { Container } from "../Container/Container";
 import {
   AllCategoryLinkStyled,
   FooterAddressStyled,

@@ -7,8 +7,8 @@ export const MenuStyled = styled.div`
     display: flex;
     padding: 0;
     border: none;
-    color: var(--textSecondary);
     background-color: transparent;
+    color: var(--textSecondary);
     transition: color 200ms ease;
 
     &:hover,
@@ -22,8 +22,8 @@ export const MenuStyled = styled.div`
       position: absolute;
       ${(props) =>
         props.$quantity < 1 && "transform: scale(0%);"};
-      right: -4px;
       top: 0;
+      right: -4px;
       width: 20px;
       height: 20px;
       border-radius: 50%;

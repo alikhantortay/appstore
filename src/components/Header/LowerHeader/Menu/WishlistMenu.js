@@ -1,10 +1,11 @@
-import { useSelector } from "react-redux";
-import { ReactComponent as HeartIcon } from "../../../../icons/Heart.svg";
-
-import { selectWishlist } from "../../../../redux/shop/selectors";
 import { useEffect, useState } from "react";
-import { MenuStyled } from "./Menu.styled";
+import { useSelector } from "react-redux";
+import { selectWishlist } from "../../../../redux/shop/selectors";
+
+import { ReactComponent as HeartIcon } from "../../../../icons/Heart.svg";
 import { WishlistModal } from "../Modal/WishlistModal";
+
+import { MenuStyled } from "./Menu.styled";
 
 export const WishlistMenu = () => {
   const [isWishlistOpen, setIsWishlistOpen] =

@@ -1,17 +1,17 @@
-import { ReactComponent as Logo } from "../../../icons/header/logo.svg";
-
-import { SearchForm } from "./SearchForm/SearchForm";
-import { CartMenu } from "./Menu/CartMenu";
-import { WishlistMenu } from "./Menu/WishlistMenu";
+import { useWindowWidth } from "../../../hooks/useWindowWidth";
 
 import { Container } from "../../Container/Container";
+import { CartMenu } from "./Menu/CartMenu";
+import { WishlistMenu } from "./Menu/WishlistMenu";
+import { UserMenu } from "./Menu/UserMenu";
+import { ReactComponent as Logo } from "../../../icons/header/logo.svg";
+import { SearchForm } from "./SearchForm/SearchForm";
+
 import {
   HeadLogoLinkStyled,
   LowerHeaderStyled,
   MenuWrapper,
 } from "./LowerHeader.styled";
-import { UserMenu } from "./Menu/UserMenu";
-import { useWindowWidth } from "../../../hooks/useWindowWidth";
 
 export const LowerHeader = () => {
   const width = useWindowWidth();

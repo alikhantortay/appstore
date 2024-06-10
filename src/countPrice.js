@@ -7,7 +7,7 @@ export const countPrice = (price) => {
     : "€" + Math.round(price * 1.07);
 };
 
-export const countSalePrice = (price, discount) => {
+export const countSalePrice = (price, discount = 10) => {
   return countPrice(price - (price * discount) / 100);
 };
 

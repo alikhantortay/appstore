@@ -6,9 +6,9 @@ import {
 } from "react-router-dom";
 import { logInGoogle } from "../../firebase";
 
+import { Container } from "../../components/Container/Container";
 import { ReactComponent as GoogleIcon } from "../../icons/Google.svg";
 
-import { Container } from "../../components/Container/Container";
 import {
   AccountPageStyled,
   AccountWrapper,

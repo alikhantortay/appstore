@@ -1,9 +1,9 @@
 import { useLocation } from "react-router-dom";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
 
-import { LowerHeader } from "./LowerHeader/LowerHeader";
-import { MidHeader } from "./MidHeader/MidHeader";
 import { UpperHeader } from "./UpperHeader/UpperHeader";
+import { MidHeader } from "./MidHeader/MidHeader";
+import { LowerHeader } from "./LowerHeader/LowerHeader";
 import { NavHeader } from "./NavHeader/NavHeader";
 
 export const Header = () => {

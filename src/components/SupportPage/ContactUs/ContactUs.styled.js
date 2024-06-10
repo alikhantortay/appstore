@@ -13,9 +13,7 @@ export const ContactSpanStyled = styled.span`
   padding: 8px 16px;
   background-color: var(--price);
 
-  font-size: 14px;
   font-weight: 600;
-  line-height: 1.43;
   color: var(--textSecondary);
 `;
 
@@ -52,8 +50,6 @@ export const ContactLinkWrapper = styled.div`
     margin: 8px 0 16px;
     width: 352px;
 
-    font-size: 14px;
-    line-height: 1%.43;
     color: var(--text);
 
     ${mediaQueries("tablet")`width: 180px;`}
@@ -79,9 +75,7 @@ export const ContactLinkWrapper = styled.div`
       props.$call ? "var(--price)" : "var(--ok)"};
     transition: background-color 200ms ease;
 
-    font-size: 14px;
     font-weight: 700;
-    line-height: 1.43;
     color: var(--textSecondary);
 
     &:hover,

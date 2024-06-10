@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 const cartSlice = createSlice({
   name: "cart",
@@ -10,7 +11,7 @@ const cartSlice = createSlice({
         if (
           state.find(({ id }) => id === action.payload.id)
         ) {
-          alert("This item already in the cart!");
+          Notify.failure("This item already in the cart!");
         } else {
           state.push(action.payload);
 

@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { mediaQueries } from "../../../../styles/mediaQueries";
+import { Link } from "react-router-dom";
 
 export const ModalStyled = styled.div`
   position: absolute;
@@ -38,8 +38,8 @@ export const ModalTitleStyled = styled.h2`
 export const ModalListStyled = styled.ul`
   padding: 20px 24px;
 
-  border-top: 1px solid rgb(228, 231, 233);
-  border-bottom: 1px solid rgb(228, 231, 233);
+  border-top: 1px solid #e4e7e9;
+  border-bottom: 1px solid #e4e7e9;
 
   li:not(:last-child) {
     margin-bottom: 16px;
@@ -47,12 +47,11 @@ export const ModalListStyled = styled.ul`
 
   li {
     display: flex;
-
     align-items: center;
 
     img {
       margin-right: 16px;
-      border: 1px solid rgb(228, 231, 233);
+      border: 1px solid #f5f5f5;
     }
 
     button {
@@ -62,8 +61,8 @@ export const ModalListStyled = styled.ul`
       padding: 2px;
       border: none;
       border-radius: 2px;
-      color: var(--disabled);
       background-color: transparent;
+      color: var(--disabled);
       transition: color 250ms ease,
         background-color 250ms ease;
 
@@ -80,10 +79,6 @@ export const ModalListStyled = styled.ul`
 export const ModalItemTextStyled = styled.div`
   a {
     transition: color 250ms ease, font-weight 100ms linear;
-
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.43;
     color: var(--title);
 
     &:hover,
@@ -94,9 +89,8 @@ export const ModalItemTextStyled = styled.div`
   }
 `;
 
-export const CartModalPriceStyled = styled.p`
-  font-size: 14px;
-  line-height: 1.43;
+export const CartModalPriceStyled = styled.span`
+  display: block;
   color: var(--text);
 
   span {
@@ -114,12 +108,10 @@ export const WishlistModalPriceStyled = styled.span`
 
 export const ModalLowerStyled = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   padding: 20px 24px;
+  justify-content: space-between;
+  flex-wrap: wrap;
 
-  font-size: 14px;
-  line-height: 1.43;
   color: var(--text);
 
   span {
@@ -140,15 +132,13 @@ export const ModalLinkStyled = styled(Link)`
   border-radius: 2px;
   transition: color 250ms ease, background-color 250ms ease;
 
-  font-size: 14px;
   font-weight: 700;
   line-height: 3.15;
-  letter-spacing: 1.2%;
   color: var(--primary);
 
   &:hover,
   &:focus {
-    color: var(--textSecondary);
     background-color: var(--primary);
+    color: var(--textSecondary);
   }
 `;

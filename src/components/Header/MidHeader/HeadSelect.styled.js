@@ -4,11 +4,9 @@ import Select from "react-select";
 export const HeadSelectStyled = styled(Select)`
   margin-left: 24px;
 
-  font-size: 14px;
   line-height: 1.5;
 
-  :hover,
-  :focus {
+  &:hover {
     cursor: pointer;
   }
 
@@ -67,12 +65,12 @@ export const HeadSelectStyled = styled(Select)`
   }
 
   .Select__menu {
+    right: 0;
     width: 180px;
     padding: 8px 0;
-    right: 0;
     border: 1px solid rgb(228, 231, 233);
     border-radius: 3px;
-    box-shadow: 0px 8px 40px 0px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 8px 40px 0px #ffffff1f;
     color: var(--text);
   }
 
@@ -82,7 +80,7 @@ export const HeadSelectStyled = styled(Select)`
     padding: 8px 16px;
     transition: color 250ms ease-in-out;
 
-    :hover {
+    &:hover {
       cursor: pointer;
       font-weight: 500;
       color: var(--primary);
@@ -94,11 +92,13 @@ export const HeadSelectStyled = styled(Select)`
 
     &--is-focused {
       background-color: transparent;
+
       font-weight: 500;
       color: var(--primary);
     }
     &--is-selected {
       background-color: transparent;
+
       font-weight: 500;
       color: var(--title);
     }

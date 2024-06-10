@@ -8,8 +8,8 @@ export const HelpTopicsStyled = styled.div`
 export const TopicsListStyled = styled.ul`
   display: flex;
   margin-top: 40px;
-  flex-wrap: wrap;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 24px;
 
   ${mediaQueries("tablet")`justify-content: center;`}
@@ -21,7 +21,7 @@ export const TopicsListStyled = styled.ul`
     padding: 24px;
     align-items: center;
     gap: 16px;
-    border: 2px solid rgb(255, 231, 214);
+    border: 2px solid #ffe7d6;
     border-radius: 4px;
     background-color: transparent;
     transition: border-color 250ms ease;

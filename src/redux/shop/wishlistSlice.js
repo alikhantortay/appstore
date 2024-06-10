@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 const wishlistSlice = createSlice({
   name: "wishlist",
@@ -8,7 +9,9 @@ const wishlistSlice = createSlice({
     addToWishlist: {
       reducer(state, action) {
         if (state.find((item) => item === action.payload)) {
-          alert("This item already in the wishlist!");
+          Notify.failure(
+            "This item already in the wishlist!",
+          );
         } else {
           state.push(action.payload);
 

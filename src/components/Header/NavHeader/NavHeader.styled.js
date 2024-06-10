@@ -15,16 +15,12 @@ export const NavStyled = styled.nav`
 
   > a {
     display: flex;
+    padding: 2px;
     align-items: center;
     gap: 6px;
-    padding: 2px;
     border-radius: 4px;
-    transition: background-color 200ms ease;
-
-    font-size: 14px;
-    line-height: 1.43;
-    text-align: left;
     color: var(--text);
+    transition: background-color 200ms ease;
 
     &:hover {
       background-color: var(--warningSecondary);
@@ -42,14 +38,12 @@ export const CategoryBtnStyled = styled.button`
   border: none;
   border-radius: 2px;
 
-  font-size: 14px;
   font-weight: 500;
-  line-height: 1.43;
   color: var(--title);
-  transition: color 200ms ease, background-color 200ms ease;
   ${({ $isOpen }) =>
     $isOpen &&
     "background-color: var(--primary);color: var(--textSecondary);svg{transform: rotate(-180deg);}"}
+  transition: color 200ms ease, background-color 200ms ease;
 
   &:hover,
   &:focus {
@@ -66,9 +60,9 @@ export const CategoryBtnStyled = styled.button`
 export const HeaderTelStyled = styled.a`
   display: flex;
   float: right;
+  border-radius: 4px;
   align-items: center;
   gap: 8px;
-  border-radius: 4px;
   transition: background-color 200ms ease;
 
   font-size: 18px;

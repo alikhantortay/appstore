@@ -1,3 +1,6 @@
+import { Link, useNavigate } from "react-router-dom";
+import { resetPassword } from "../../../firebase";
+
 import { ReactComponent as ArrowRightIcon } from "../../../icons/ArrowRight.svg";
 
 import {
@@ -10,8 +13,6 @@ import {
   ForgetPasswordStyled,
   ForgetPasswordUpperTextStyled,
 } from "./ForgetPassword.styled";
-import { resetPassword } from "../../../firebase";
-import { Link, useNavigate } from "react-router-dom";
 
 const ForgetPassword = () => {
   const navigate = useNavigate();
@@ -57,6 +58,7 @@ const ForgetPassword = () => {
           <Link to="/user-account/sign-up">Sign Up</Link>
         </li>
       </AuthLinksStyled>
+
       <ForgetPasswordLowerTextStyled>
         You may contact{" "}
         <Link to="/support">Customer Service</Link> for help

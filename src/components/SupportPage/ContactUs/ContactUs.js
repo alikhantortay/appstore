@@ -1,9 +1,9 @@
+import { Container } from "../../Container/Container";
 import { ReactComponent as CallIcon } from "../../../icons/support/Call.svg";
 import { ReactComponent as ChatIcon } from "../../../icons/support/Chat.svg";
 import { ReactComponent as ArrowRightIcon } from "../../../icons/ArrowRight.svg";
 
 import { TitleStyled } from "../../../styles/common";
-import { Container } from "../../Container/Container";
 import {
   ContactLinkWrapper,
   ContactLinksStyled,

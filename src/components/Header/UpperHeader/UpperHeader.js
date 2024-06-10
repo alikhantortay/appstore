@@ -1,5 +1,6 @@
 import { ReactComponent as ArrowRightIcon } from "../../../icons/ArrowRight.svg";
 import { Container } from "../../Container/Container";
+
 import {
   FridayStyled,
   HeadSaleStyled,

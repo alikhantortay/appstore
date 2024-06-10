@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
-import { useWindowWidth } from "../../../hooks/useWindowWidth";
 import { NavLink } from "react-router-dom";
+import { useWindowWidth } from "../../../hooks/useWindowWidth";
+import { Categories } from "./Categories/Categories";
 
+import { Container } from "../../Container/Container";
 import { ReactComponent as PhoneIcon } from "../../../icons/PhoneCall.svg";
 import { ReactComponent as CaretIcon } from "../../../icons/CaretDown.svg";
 import { ReactComponent as CompareIcon } from "../../../icons//Compare.svg";
 import { ReactComponent as SupportIcon } from "../../../icons/Headphones.svg";
 
-import { Container } from "../../Container/Container";
 import {
   CategoryBtnStyled,
   HeaderTelStyled,
   NavHeaderStyled,
   NavStyled,
 } from "./NavHeader.styled";
-import { Categories } from "./Categories/Categories";
 
 export const NavHeader = () => {
   const width = useWindowWidth();

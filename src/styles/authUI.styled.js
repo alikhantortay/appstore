@@ -5,9 +5,6 @@ export const AuthLabelStyled = styled.label`
   position: relative;
   margin-bottom: 16px;
 
-  font-size: 14px;
-  line-height: 1.43;
-  letter-spacing: 0%;
   color: var(--title);
 
   input {
@@ -18,8 +15,6 @@ export const AuthLabelStyled = styled.label`
     border: 1px solid rgb(228, 231, 233);
     border-radius: 2px;
     background-color: transparent;
-
-    font-size: 14px;
 
     &:focus {
       outline-color: var(--primary);
@@ -50,8 +45,8 @@ export const AuthLabelStyled = styled.label`
     height: 44px;
     padding: 0 16px;
     border: none;
-    color: var(--title);
     background-color: transparent;
+    color: var(--title);
     transition: color 250ms ease;
 
     &:hover {
@@ -63,26 +58,25 @@ export const AuthLabelStyled = styled.label`
 
 export const LogInBtnStyled = styled.button`
   display: flex;
-  width: 100%;
   margin-top: 20px;
-  padding: 11px 0;
+  width: 100%;
+  align-items: center;
   justify-content: center;
   gap: 8px;
   border: 2px solid var(--primary);
   border-radius: 2px;
   background-color: var(--primary);
-  transition: color 250ms ease, background-color 250ms ease;
+  transition: background-color 250ms ease, color 250ms ease;
 
-  font-size: 14px;
   font-weight: 700;
-  line-height: 1.43;
+  line-height: 48px;
   color: var(--textSecondary);
 
   &:hover,
   &:focus {
     cursor: pointer;
-    color: var(--primary);
     background-color: #fff;
+    color: var(--primary);
   }
 `;
 
@@ -95,13 +89,12 @@ export const AuthSeparator = styled.div`
   p {
     display: inline-block;
     position: relative;
+    z-index: 2;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 2;
     padding: 0 8px;
     background-color: #fff;
 
-    font-size: 14px;
     line-height: 1.43;
     color: var(--text);
   }
@@ -122,24 +115,19 @@ export const AgreementStyled = styled.div`
   display: flex;
   margin: 16px 0 32px;
   gap: 8px;
-
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.43;
   color: var(--text);
 
   div {
     position: relative;
     height: 20px;
-    background-color: var(--primary);
     border-radius: 2px;
+    background-color: var(--primary);
 
     input {
       position: relative;
-      z-index: 1;
       appearance: none;
       -webkit-appearance: none;
-
+      z-index: 1;
       width: 20px;
       height: 20px;
       border: none;

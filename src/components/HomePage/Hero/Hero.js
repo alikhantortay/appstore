@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 
+import { Container } from "../../Container/Container";
 import { ReactComponent as ArrowRight } from "../../../icons/ArrowRight.svg";
 
 import {
   ErrorMessageStyled,
   ShopLinkStyled,
 } from "../../../styles/common";
-import { Container } from "../../Container/Container";
 import {
   CirclesStyled,
   HeroGridContainer,
-  PStyled,
   PhoneImgStyled,
   PhoneSaleStyled,
   PhoneTextStyled,
@@ -19,7 +18,6 @@ import {
   XBoxLinkStyled,
   XBoxStyled,
   XBoxTextStyled,
-  XPriceStyled,
 } from "./Hero.styled";
 import { fetch } from "../../../API";
 import {
@@ -37,13 +35,12 @@ export const Hero = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        setLoading(true);
         const phone = await fetch("products/133");
         setPhone(phone.data);
         const pods = await fetch("products/100");
         setPods(pods.data);
       } catch (error) {
-        setError(error);
+        setError(error.message);
       } finally {
         setLoading(false);
       }
@@ -138,9 +135,7 @@ export const Hero = () => {
           )}
         </HeroGridContainer>
         {error && (
-          <ErrorMessageStyled>
-            {error.message}
-          </ErrorMessageStyled>
+          <ErrorMessageStyled>{error}</ErrorMessageStyled>
         )}
         {loading && <Loader />}
       </Container>

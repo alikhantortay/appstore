@@ -1,15 +1,13 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { mediaQueries } from "../../../../styles/mediaQueries";
+import { Link } from "react-router-dom";
 
 export const SearchFormWrapper = styled.div`
   position: relative;
   width: 646px;
-  ${mediaQueries("tablet")`
-  max-width: 300px;
-  `}
-  ${mediaQueries("mobile")`
-  margin-right: 12px;`}
+
+  ${mediaQueries("tablet")`max-width: 300px;`}
+  ${mediaQueries("mobile")`margin-right: 12px;`}
 `;
 
 export const SearchFormStyled = styled.form`
@@ -28,8 +26,6 @@ export const SearchFormStyled = styled.form`
     border: none;
     outline: none;
 
-    font-size: 14px;
-    line-height: 1.43;
     ${mediaQueries("mobile")`
   width: 52px;`}
   }
@@ -61,16 +57,16 @@ export const SearchResultsStyled = styled.div`
   background-color: #fff;
 
   li {
-    :hover,
-    :focus {
+    &:hover,
+    &:focus {
       background-color: var(--warning);
     }
 
     a {
       display: flex;
       padding: 4px 8px;
-      border-radius: 4px;
       justify-content: space-between;
+      border-radius: 4px;
       color: var(--title);
       transition: background-color 250ms ease;
     }

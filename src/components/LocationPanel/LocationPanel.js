@@ -1,9 +1,9 @@
 import { useLocation } from "react-router-dom";
 
+import { Container } from "../Container/Container";
 import { ReactComponent as HomeIcon } from "../../icons/House.svg";
 import { ReactComponent as CaretRightIcon } from "../../icons/CaretRight.svg";
 
-import { Container } from "../Container/Container";
 import {
   CategoryLinkStyled,
   LocationPanelStyled,

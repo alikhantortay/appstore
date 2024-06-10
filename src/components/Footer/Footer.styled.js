@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { mediaQueries } from "../../styles/mediaQueries";
+import { Link } from "react-router-dom";
 
 export const FooterStyled = styled.footer`
   background-color: var(--title);
   color: #adb7bc;
 
-  > div {
+  > :first-child {
     display: flex;
     padding-top: 72px;
     padding-bottom: 72px;
@@ -48,9 +48,6 @@ export const FooterAddressStyled = styled.address`
 
   :first-child {
     margin-bottom: 4px;
-
-    font-size: 14px;
-    line-height: 1.43;
     color: var(--disabled);
   }
 
@@ -116,7 +113,6 @@ export const AllCategoryLinkStyled = styled(Link)`
   display: flex;
   align-items: center;
   gap: 8px;
-
   color: var(--warning);
 `;
 
@@ -142,15 +138,14 @@ export const FooterAppLinksStyled = styled.div`
 
     span {
       display: block;
+
       font-size: 11px;
       line-height: 1.18;
     }
 
     p {
       display: block;
-      font-size: 14px;
       font-weight: 600;
-      line-height: 1.43;
     }
   }
 `;
@@ -158,8 +153,8 @@ export const FooterAppLinksStyled = styled.div`
 export const FooterTagsStyled = styled.div`
   ul {
     display: flex;
-    max-width: 320px;
     margin-top: 18px;
+    max-width: 320px;
     flex-wrap: wrap;
     gap: 8px;
 
@@ -168,17 +163,15 @@ export const FooterTagsStyled = styled.div`
       padding: 6px 12px;
       border: 1px solid rgb(48, 54, 57);
       border-radius: 2px;
-      transition: background-color 250ms ease,
-        border-color 250ms ease;
+      transition: border-color 250ms ease,
+        background-color 250ms ease;
 
-      font-size: 14px;
       font-weight: 500;
-      line-height: 1.43;
       color: var(--textSecondary);
 
       &:hover {
-        background-color: #303639;
         border-color: #fff;
+        background-color: #303639;
       }
     }
   }
@@ -192,7 +185,5 @@ export const LowerFooterStyled = styled.div`
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    font-size: 14px;
-    line-height: 1.43;
   }
 `;

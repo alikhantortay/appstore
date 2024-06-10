@@ -1,7 +1,8 @@
 import { useState } from "react";
 
-import { TitleStyled } from "../../../styles/common";
 import { Container } from "../../Container/Container";
+
+import { TitleStyled } from "../../../styles/common";
 import {
   HelpSpanStyled,
   HelpStyled,

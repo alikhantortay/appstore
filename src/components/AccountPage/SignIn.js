@@ -1,7 +1,7 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { logIn } from "../../firebase";
 
-import { Link } from "react-router-dom";
 import { ReactComponent as ArrowRightIcon } from "../../icons/ArrowRight.svg";
 import { ReactComponent as EyeIcon } from "../../icons/Eye.svg";
 

@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectWishlist } from "../../../../redux/shop/selectors";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { fetch } from "../../../../API";
+import { removeFromWishlist } from "../../../../redux/shop/wishlistSlice";
+import { countSalePrice } from "../../../../countPrice";
 
 import { ReactComponent as CrossIcon } from "../../../../icons/header/X.svg";
 import { ReactComponent as ArrowRightIcon } from "../../../../icons/ArrowRight.svg";
-
-import { removeFromWishlist } from "../../../../redux/shop/wishlistSlice";
-import { countSalePrice } from "../../../../countPrice";
 import { Loader } from "../../../Loader/Loader";
-import { Link } from "react-router-dom";
+
 import {
   ModalItemTextStyled,
   ModalLinkStyled,
@@ -69,7 +69,7 @@ export const WishlistModal = ({ onClick }) => {
         {items.map(
           ({
             id,
-            images,
+            thumbnail,
             title,
             category,
             price,
@@ -78,7 +78,7 @@ export const WishlistModal = ({ onClick }) => {
             return (
               <li key={id}>
                 <img
-                  src={images[0]}
+                  src={thumbnail}
                   alt={title}
                   width="80px"
                   height="80px"
@@ -89,6 +89,7 @@ export const WishlistModal = ({ onClick }) => {
                     to={`/shop/${category}/${title
                       .toLowerCase()
                       .replaceAll(" ", "-")}`}
+                    state={id}
                     onClick={onClick}>
                     {title}
                   </Link>

@@ -1,14 +1,13 @@
 import styled from "styled-components";
-import bgImg from "../../../images/support.png";
-import searchIcon from "../../../icons/MagnifyingGlassOrange.svg";
 import { mediaQueries } from "../../../styles/mediaQueries";
+import searchIcon from "../../../icons/MagnifyingGlassOrange.svg";
+import bgImg from "../../../images/support.png";
 
 export const HelpStyled = styled.div`
   border-bottom: 1px solid var(--disabledSecondary);
 
   > div {
-    padding-top: 72px;
-    padding-bottom: 72px;
+    padding: 72px 0;
     background: url(${bgImg}) no-repeat center right;
   }
 `;
@@ -19,9 +18,7 @@ export const HelpSpanStyled = styled.span`
   padding: 8px 16px;
   background-color: #efd33d;
 
-  font-size: 14px;
   font-weight: 600;
-  line-height: 1.43;
   color: var(--title);
 `;
 
@@ -46,8 +43,7 @@ export const QuestionFormStyled = styled.form`
       12px;
 
     ${mediaQueries("mobile")`width: 100%;
-    margin-right: 0;
-    margin-bottom: 12px;`}
+    margin-right: 0 0 12px 0;`}
 
     &:focus {
       outline: none;
@@ -62,9 +58,7 @@ export const QuestionFormStyled = styled.form`
     transition: color 250ms ease,
       background-color 250ms ease;
 
-    font-size: 14px;
     font-weight: 700;
-    line-height: 1.43;
     color: var(--textSecondary);
 
     ${mediaQueries("mobile")`display: block;

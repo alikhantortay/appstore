@@ -73,6 +73,11 @@ export const XBoxLinkStyled = styled(ShopLinkStyled)`
 
   font-size: 16px;
 
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
   ${mediaQueries("mobile")`margin-bottom: 20px;`}
 `;
 

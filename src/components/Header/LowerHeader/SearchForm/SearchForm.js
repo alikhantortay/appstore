@@ -1,6 +1,11 @@
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useDebouncedCallback } from "use-debounce";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
+import { fetch } from "../../../../API";
+import { countPrice } from "../../../../countPrice";
 
+import { Loader } from "../../../Loader/Loader";
 import { ReactComponent as SearchIcon } from "../../../../icons/header/MagnifyingGlass.svg";
 
 import {
@@ -9,11 +14,6 @@ import {
   SearchResultsStyled,
   ShowMoreStyled,
 } from "./SearchForm.styled";
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { fetch } from "../../../../API";
-import { countPrice } from "../../../../countPrice";
-import { Loader } from "../../../Loader/Loader";
 
 export const SearchForm = () => {
   const [q, setQ] = useState("");
@@ -75,6 +75,7 @@ export const SearchForm = () => {
           <SearchIcon />
         </button>
       </SearchFormStyled>
+
       {q.length > 2 && useEffect && (
         <SearchResultsStyled>
           {items.length > 0 ? (

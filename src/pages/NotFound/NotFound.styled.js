@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { mediaQueries } from "../../styles/mediaQueries";
-
-import img from "../../images/404.png";
 import { Link } from "react-router-dom";
+import img from "../../images/404.png";
 
 export const NotFoundWrapper = styled.div`
   padding: 8px 0 124px;
+
   ${mediaQueries("tablet")`padding-bottom: 60px;`}
   ${mediaQueries("mobile")`padding-bottom: 30px;`}
 `;
@@ -15,10 +15,9 @@ export const NotFoundStyled = styled.div`
   margin-right: auto;
   width: 536px;
   padding-top: 500px;
+  background: no-repeat url(${img});
+
   text-align: center;
-  background-image: url(${img});
-  background-position-x: center;
-  background-repeat: no-repeat;
 
   ${mediaQueries("mobile")`width: 100%;
   a {width: 70%;}`}
@@ -42,21 +41,19 @@ export const HomeLinkStyled = styled(Link)`
   padding: 14px 24px;
   justify-content: center;
   gap: 8px;
-  border: 2px solid rgb(255, 231, 214);
+  border: 2px solid #ffe7d6;
   border-radius: 2px;
   background-color: var(--textSecondary);
   transition: color 250ms ease, background-color 250ms ease;
 
-  font-size: 14px;
   font-weight: 700;
-  line-height: 1.43;
   color: var(--primary);
 
   &:hover,
   &:focus {
     cursor: pointer;
-    color: var(--textSecondary);
     background-color: var(--primary);
+    color: var(--textSecondary);
   }
 `;
 
@@ -66,14 +63,12 @@ export const GoBackLinkStyled = styled(HomeLinkStyled)`
   background-color: var(--primary);
   color: var(--textSecondary);
 
-  ${mediaQueries(
-    "mobile",
-  )`margin-right: 0; margin-bottom: 12px;`}
+  ${mediaQueries("mobile")`margin: 0 0 16px 0;`}
 
   &:hover,
   &:focus {
-    color: var(--primary);
     background-color: var(--textSecondary);
+    color: var(--primary);
   }
 
   svg {

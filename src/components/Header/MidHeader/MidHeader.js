@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeCurrency } from "../../../redux/shop/currencySlice";
 import { selectCurrency } from "../../../redux/shop/selectors";
 
+import { Container } from "../../Container/Container";
 import { ReactComponent as Logo } from "../../../icons/header/logo.svg";
-
 import { ReactComponent as TwitterIcon } from "../../../icons/socials/Twitter.svg";
 import { ReactComponent as FacebookIcon } from "../../../icons/socials/Facebook.svg";
 import { ReactComponent as PinterestIcon } from "../../../icons/socials/Pinterest.svg";
@@ -14,7 +14,6 @@ import { ReactComponent as InstagramIcon } from "../../../icons/socials/Instagra
 import { ReactComponent as USAIcon } from "../../../icons/USAFlag.svg";
 import { ReactComponent as UKIcon } from "../../../icons/UKFlag.svg";
 
-import { Container } from "../../Container/Container";
 import {
   FollowUsStyled,
   MidHeaderStyled,

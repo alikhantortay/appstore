@@ -12,17 +12,17 @@ export const TitleStyled = styled.h2`
 
 export const ShopLinkStyled = styled(Link)`
   display: inline-flex;
-  padding: 13px
+  height: 48px;
+  padding: 0
     ${(props) => (props.$padding ? props.$padding : 24)}px;
+  align-items: center;
   gap: 8px;
   border: 1px solid var(--primary);
   border-radius: 2px;
   background-color: var(--primary);
   transition: background-color 200ms ease, color 200ms ease;
 
-  font-size: 14px;
   font-weight: 700;
-  line-height: 1.43;
   color: var(--textSecondary);
 
   &:hover,
@@ -33,6 +33,9 @@ export const ShopLinkStyled = styled(Link)`
 `;
 
 export const ErrorMessageStyled = styled.p`
+  padding: 20px;
+
   font-size: 18px;
-  color: var(--price);
+  font-weight: 600;
+  color: var(--primary);
 `;

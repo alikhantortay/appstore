@@ -61,23 +61,21 @@ export const GoogleBtnStyled = styled.button`
   display: flex;
   position: relative;
   width: 100%;
-  padding: 11px 0;
+  height: 44px;
+  align-items: center;
   justify-content: center;
   gap: 8px;
   border: 1px solid var(--disabledSecondary);
   border-radius: 2px;
   background-color: #fff;
-  transition: color 250ms ease, border-color 250ms ease;
+  transition: border-color 250ms ease, color 250ms ease;
 
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.43;
   color: var(--text);
 
   &:hover {
     cursor: pointer;
-    color: var(--price);
     border-color: var(--price);
+    color: var(--price);
   }
 
   svg {

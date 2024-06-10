@@ -23,11 +23,11 @@ export const FridayStyled = styled.p`
     margin-right: 12px;
     padding: 6px 10px;
     transform: rotate(-3deg);
+    background-color: #f3de6d;
 
     font-size: 20px;
     line-height: 1.4;
     color: var(--title);
-    background-color: #f3de6d;
   }
 `;
 
@@ -53,14 +53,14 @@ export const ShopLinkStyled = styled(Link)`
   display: flex;
   align-items: center;
   padding: 0 24px;
+  background-color: var(--warning);
+  transition: background-color 250ms ease;
 
   font-size: 14px;
   font-weight: 700;
   line-height: 3.43;
-  letter-spacing: 1.2%;
   color: var(--title);
-  background-color: var(--warning);
-  transition: background-color 250ms ease;
+
   &:hover,
   &:focus {
     background-color: var(--textSecondary);

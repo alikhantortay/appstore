@@ -7,3 +7,5 @@ export const selectCategories = (state) =>
 export const selectCart = (state) => state.cart;
 
 export const selectWishlist = (state) => state.wishlist;
+
+export const selectCompare = (state) => state.compare;

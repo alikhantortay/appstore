@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCart } from "../../../../redux/shop/selectors";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
-import { fetch } from "../../../../API";
-
-import { ReactComponent as CrossIcon } from "../../../../icons/header/X.svg";
-import { ReactComponent as ArrowRightIcon } from "../../../../icons/ArrowRight.svg";
-
 import { removeFromCart } from "../../../../redux/shop/cartSlice";
 import {
   countSalePrice,
   countTotalPrice,
 } from "../../../../countPrice";
+import { fetch } from "../../../../API";
+
+import { ReactComponent as CrossIcon } from "../../../../icons/header/X.svg";
+import { ReactComponent as ArrowRightIcon } from "../../../../icons/ArrowRight.svg";
 import { Loader } from "../../../Loader/Loader";
-import { Link } from "react-router-dom";
+
 import {
   CartModalPriceStyled,
   ModalItemTextStyled,
@@ -40,7 +40,7 @@ export const CartModal = ({ onClick }) => {
 
   useEffect(() => {
     cartItems.forEach(({ id, quantity }) => {
-      const getCartItems = async () => {
+      const getCartItem = async () => {
         try {
           setLoading(true);
           const responce = await fetch(`products/${id}`);
@@ -58,7 +58,7 @@ export const CartModal = ({ onClick }) => {
           setLoading(false);
         }
       };
-      getCartItems();
+      getCartItem();
     });
   }, [cartItems]);
 
@@ -76,11 +76,12 @@ export const CartModal = ({ onClick }) => {
           </span>
         )}
       </ModalTitleStyled>
+
       <ModalListStyled>
         {items.map(
           ({
             id,
-            images,
+            thumbnail,
             title,
             category,
             quantity,
@@ -90,7 +91,7 @@ export const CartModal = ({ onClick }) => {
             return (
               <li key={id}>
                 <img
-                  src={images[0]}
+                  src={thumbnail}
                   alt={title}
                   width="80px"
                   height="80px"
@@ -101,6 +102,7 @@ export const CartModal = ({ onClick }) => {
                     to={`/shop/${category}/${title
                       .toLowerCase()
                       .replaceAll(" ", "-")}`}
+                    state={id}
                     onClick={onClick}>
                     {title}
                   </Link>
@@ -126,6 +128,7 @@ export const CartModal = ({ onClick }) => {
           },
         )}
       </ModalListStyled>
+
       <ModalLowerStyled>
         <p>Sub-Total:</p>
         <span>{countTotalPrice(items)}</span>

@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { signUp } from "../../firebase";
 
@@ -12,7 +12,6 @@ import {
   AuthLabelStyled,
   LogInBtnStyled,
 } from "../../styles/authUI.styled";
-import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const navigate = useNavigate();

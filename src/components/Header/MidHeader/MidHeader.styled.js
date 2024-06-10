@@ -12,8 +12,6 @@ export const MidHeaderStyled = styled.div`
   }
 
   p {
-    font-size: 14px;
-    line-height: 1.5;
     color: var(--textSecondary);
   }
 `;

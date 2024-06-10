@@ -1,8 +1,9 @@
-import { ReactComponent as UserIcon } from "../../../../icons/header/User.svg";
-
 import { useEffect, useState } from "react";
-import { MenuStyled } from "./Menu.styled";
+
+import { ReactComponent as UserIcon } from "../../../../icons/header/User.svg";
 import { UserModal } from "../Modal/UserModal/UserModal";
+
+import { MenuStyled } from "./Menu.styled";
 
 export const UserMenu = () => {
   const [isUserModalOpen, setIsUserModalOpen] =
