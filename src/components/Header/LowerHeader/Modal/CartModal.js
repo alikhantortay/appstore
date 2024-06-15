@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { usePrice } from "../../../../hooks/usePrice";
 import { selectCart } from "../../../../redux/shop/selectors";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { removeFromCart } from "../../../../redux/shop/cartSlice";
-import {
-  countSalePrice,
-  countTotalPrice,
-} from "../../../../countPrice";
 import { fetch } from "../../../../API";
 
 import { ReactComponent as CrossIcon } from "../../../../icons/header/X.svg";
@@ -27,6 +24,7 @@ import {
 export const CartModal = ({ onClick }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCart);
+  const { countSalePrice, countTotalPrice } = usePrice();
 
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);

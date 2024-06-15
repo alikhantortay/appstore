@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { usePrice } from "../../../../hooks/usePrice";
 import { selectWishlist } from "../../../../redux/shop/selectors";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { fetch } from "../../../../API";
 import { removeFromWishlist } from "../../../../redux/shop/wishlistSlice";
-import { countSalePrice } from "../../../../countPrice";
 
+import { Loader } from "../../../Loader/Loader";
 import { ReactComponent as CrossIcon } from "../../../../icons/header/X.svg";
 import { ReactComponent as ArrowRightIcon } from "../../../../icons/ArrowRight.svg";
-import { Loader } from "../../../Loader/Loader";
 
 import {
   ModalItemTextStyled,
@@ -24,6 +24,7 @@ import {
 export const WishlistModal = ({ onClick }) => {
   const dispatch = useDispatch();
   const wishlistItems = useSelector(selectWishlist);
+  const { countSalePrice } = usePrice();
 
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);

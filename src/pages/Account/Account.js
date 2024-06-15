@@ -1,10 +1,10 @@
+import { useAuth } from "../../hooks/useAuth";
 import { Suspense } from "react";
 import {
   NavLink,
   Outlet,
   useLocation,
 } from "react-router-dom";
-import { logInGoogle } from "../../firebase";
 
 import { Container } from "../../components/Container/Container";
 import { ReactComponent as GoogleIcon } from "../../icons/Google.svg";
@@ -18,6 +18,7 @@ import {
 import { AuthSeparator } from "../../styles/authUI.styled";
 
 const Account = () => {
+  const { logInGoogle } = useAuth();
   const { pathname } = useLocation();
 
   return (

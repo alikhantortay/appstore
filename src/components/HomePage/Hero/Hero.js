@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import { usePrice } from "../../../hooks/usePrice";
+import { fetch } from "../../../API";
 
 import { Container } from "../../Container/Container";
+import { Loader } from "../../Loader/Loader";
 import { ReactComponent as ArrowRight } from "../../../icons/ArrowRight.svg";
 
 import {
@@ -19,18 +22,14 @@ import {
   XBoxStyled,
   XBoxTextStyled,
 } from "./Hero.styled";
-import { fetch } from "../../../API";
-import {
-  countPrice,
-  countSalePrice,
-} from "../../../countPrice";
-import { Loader } from "../../Loader/Loader";
 
 export const Hero = () => {
   const [phone, setPhone] = useState(null);
   const [pods, setPods] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const { countPrice, countSalePrice } = usePrice();
 
   useEffect(() => {
     const fetchItems = async () => {

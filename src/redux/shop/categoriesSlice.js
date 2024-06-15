@@ -30,6 +30,10 @@ const categoriesSlice = createSlice({
         (state, action) => {
           state.isLoading = false;
           state.error = null;
+          action.payload.map(
+            (item) =>
+              (item.img = require(`../../images/categories/${item.slug}.webp`)),
+          );
           state.items = action.payload;
         },
       )

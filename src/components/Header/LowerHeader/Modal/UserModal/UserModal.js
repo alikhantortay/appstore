@@ -1,9 +1,9 @@
 import { useRef } from "react";
+import { useAuth } from "../../../../../hooks/useAuth";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../../../redux/auth/selectors";
-import { logIn, logOut } from "../../../../../firebase";
 
-import { Link } from "react-router-dom";
 import { ReactComponent as ArrowRightIcon } from "../../../../../icons/ArrowRight.svg";
 import { ReactComponent as EyeIcon } from "../../../../../icons/Eye.svg";
 
@@ -19,6 +19,8 @@ import {
 } from "../../../../../styles/authUI.styled";
 
 export const UserModal = ({ onClick }) => {
+  const { logIn, logOut } = useAuth();
+
   const passwordRef = useRef();
   const { displayName, isLoggedIn } =
     useSelector(selectUser);

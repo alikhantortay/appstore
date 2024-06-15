@@ -1,14 +1,14 @@
 import { lazy, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useAuth } from "./hooks/useAuth";
+import { fetchCategories } from "./redux/shop/categoriesSlice";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 import { SharedLayout } from "./components/SharedLayout/SharedLayout";
-import { GlobalStyle } from "./styles/GlobalStyle";
-import { useDispatch } from "react-redux";
-import { checkIsUserLoggedIn } from "./firebase";
-import { ScrollToTop } from "./ScrollToTop";
-import { fetchCategories } from "./redux/shop/categoriesSlice";
 import { RestrictedRoute } from "./components/RestrictedRoute";
+import { ScrollToTop } from "./components/ScrollToTop";
+import { GlobalStyle } from "./styles/GlobalStyle";
 
 const HomePage = lazy(() => import("./pages/Home/Home"));
 const AccountPage = lazy(() =>
@@ -62,11 +62,12 @@ Notify.init({
 
 const App = () => {
   const dispatch = useDispatch();
+  const { checkIsUserLoggedIn } = useAuth();
 
   useEffect(() => {
-    checkIsUserLoggedIn(dispatch);
+    checkIsUserLoggedIn();
     dispatch(fetchCategories());
-  }, [dispatch]);
+  });
 
   return (
     <>

@@ -1,9 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import {
-  countPrice,
-  countSalePrice,
-} from "../../../../countPrice";
+import { usePrice } from "../../../../hooks/usePrice";
 
 import { Stars } from "../../../Stars/Stars";
 import { HotButtons } from "../HotButtons/HotButtons";
@@ -16,6 +13,8 @@ import {
 } from "./Hot.styled";
 
 export const Hot = ({ hot }) => {
+  const { countPrice, countSalePrice } = usePrice();
+
   const {
     id,
     thumbnail,

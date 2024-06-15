@@ -1,17 +1,8 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  selectCart,
-  selectCompare,
-  selectWishlist,
-} from "../../../redux/shop/selectors";
+import { useShopList } from "../../../hooks/useShopList";
 import { Link } from "react-router-dom";
 import { fetch } from "../../../API";
-import { handleShopBtnClick } from "../../../shopListFns";
-import {
-  countPrice,
-  countSalePrice,
-} from "../../../countPrice";
+import { usePrice } from "../../../hooks/usePrice";
 import { itemIds } from "./itemIds";
 
 import { Container } from "../../Container/Container";
@@ -43,10 +34,8 @@ export const BestDeals = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const cart = useSelector(selectCart);
-  const wishlist = useSelector(selectWishlist);
-  const compare = useSelector(selectCompare);
-  const dispatch = useDispatch();
+  const { checkIsInList, modifyList } = useShopList();
+  const { countPrice, countSalePrice } = usePrice();
 
   useEffect(() => {
     itemIds.forEach((id) => {
@@ -115,39 +104,31 @@ export const BestDeals = () => {
                       <ListBtnStyled
                         type="button"
                         onClick={() =>
-                          handleShopBtnClick(
-                            id,
-                            "wishlist",
-                            dispatch,
-                          )
+                          modifyList(id, "wishlist")
                         }
-                        $inList={wishlist.includes(id)}>
+                        $inList={checkIsInList(
+                          id,
+                          "wishlist",
+                        )}>
                         <HeartIcon />
                       </ListBtnStyled>
                       <ListBtnStyled
                         type="button"
                         onClick={() =>
-                          handleShopBtnClick(
-                            id,
-                            "cart",
-                            dispatch,
-                          )
+                          modifyList(id, "cart")
                         }
-                        $inList={cart.some((item) => {
-                          return item.id === id;
-                        })}>
+                        $inList={checkIsInList(id, "cart")}>
                         <CartIcon />
                       </ListBtnStyled>
                       <ListBtnStyled
                         type="button"
                         onClick={() =>
-                          handleShopBtnClick(
-                            id,
-                            "compare",
-                            dispatch,
-                          )
+                          modifyList(id, "compare")
                         }
-                        $inList={compare.includes(id)}>
+                        $inList={checkIsInList(
+                          id,
+                          "compare",
+                        )}>
                         <EyeIcon />
                       </ListBtnStyled>
                     </HoverBtnsStyled>

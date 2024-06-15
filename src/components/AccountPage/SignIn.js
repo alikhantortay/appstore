@@ -1,6 +1,6 @@
 import { useRef } from "react";
+import { useAuth } from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
-import { logIn } from "../../firebase";
 
 import { ReactComponent as ArrowRightIcon } from "../../icons/ArrowRight.svg";
 import { ReactComponent as EyeIcon } from "../../icons/Eye.svg";
@@ -11,6 +11,7 @@ import {
 } from "../../styles/authUI.styled";
 
 const SignIn = () => {
+  const { logIn } = useAuth();
   const passwordRef = useRef();
 
   const handleSubmit = (e) => {

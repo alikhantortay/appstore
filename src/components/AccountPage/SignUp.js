@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
+import { useAuth } from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
-import { signUp } from "../../firebase";
 
 import { ReactComponent as ArrowRightIcon } from "../../icons/ArrowRight.svg";
 import { ReactComponent as EyeIcon } from "../../icons/Eye.svg";
@@ -16,7 +16,7 @@ import {
 const SignUp = () => {
   const navigate = useNavigate();
   const [isAgree, setIsAgree] = useState(false);
-
+  const { signUp } = useAuth();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
 

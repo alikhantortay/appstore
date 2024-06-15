@@ -1,5 +1,5 @@
+import { useAuth } from "../../../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
-import { resetPassword } from "../../../firebase";
 
 import { ReactComponent as ArrowRightIcon } from "../../../icons/ArrowRight.svg";
 
@@ -15,6 +15,7 @@ import {
 } from "./ForgetPassword.styled";
 
 const ForgetPassword = () => {
+  const { resetPassword } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {

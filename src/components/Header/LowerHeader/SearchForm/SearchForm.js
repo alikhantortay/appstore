@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDebouncedCallback } from "use-debounce";
+import { usePrice } from "../../../../hooks/usePrice";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { fetch } from "../../../../API";
-import { countPrice } from "../../../../countPrice";
 
 import { Loader } from "../../../Loader/Loader";
 import { ReactComponent as SearchIcon } from "../../../../icons/header/MagnifyingGlass.svg";
@@ -21,6 +21,7 @@ export const SearchForm = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const { countSalePrice } = usePrice();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -90,7 +91,7 @@ export const SearchForm = () => {
                           setQ("");
                         }}>
                         {title}
-                        <span>{countPrice(price)}</span>
+                        <span>{countSalePrice(price)}</span>
                       </Link>
                     </li>
                   );
