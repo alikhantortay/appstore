@@ -4,14 +4,14 @@ import { mediaQueries } from "../../../styles/mediaQueries";
 
 export const HeroGridContainer = styled.div`
   display: grid;
-  grid-template-columns: 872px 424px;
   grid-template-areas:
     "xbox phone"
     "xbox pods";
+
   padding: 24px 0;
   gap: 24px;
 
-  ${mediaQueries("tablet")`  grid-template-areas:
+  ${mediaQueries("tablet")`grid-template-areas:
     "xbox xbox"
     "phone pods";
     grid-template-columns: 50%;`}

@@ -11,14 +11,14 @@ export const CategoriesStyled = styled.div`
   }
 
   swiper-slide {
-    min-width: 205px;
+    width: 205px;
     padding: 24px 12px;
     border: 1px solid var(--disabledSecondary);
     border-radius: 4px;
 
-    ${mediaQueries("tablet")`min-width: auto;`}
-    ${mediaQueries("mobile")`height: 178px;
-    padding: 6px 0;`}
+    ${mediaQueries("mobile")`width: 120px;
+    height: 178px;
+    padding: 12px;`}
 
     a {
       &:hover,

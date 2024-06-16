@@ -48,7 +48,7 @@ export const HotWarningsStyled = styled.div`
   }
 `;
 
-export const StarRatingStyled = styled.div`
+export const HotStarRatingStyled = styled.div`
   display: flex;
   margin: 24px 0 16px;
   align-items: center;

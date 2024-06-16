@@ -24,12 +24,7 @@ export const Categories = () => {
           navigation={width > 767}
           mousewheel="true"
           keyboard="true"
-          slides-per-view={
-            width > 767
-              ? Math.round(width / 205)
-              : width / 125
-          }
-          loop="true">
+          slides-per-view="auto">
           {categories.map(({ slug, name, img }) => {
             return (
               <swiper-slide key={slug}>

@@ -50,7 +50,7 @@ Notify.init({
   borderRadius: "2px",
   fontSize: "18px",
   useIcon: false,
-  timeout: 3000,
+  timeout: 2000,
   showOnlyTheLastOne: true,
   clickToClose: true,
 

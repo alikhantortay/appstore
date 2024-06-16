@@ -9,7 +9,7 @@ import {
   HotPriceStyled,
   HotStyled,
   HotWarningsStyled,
-  StarRatingStyled,
+  HotStarRatingStyled,
 } from "./Hot.styled";
 
 export const Hot = ({ hot }) => {
@@ -21,9 +21,10 @@ export const Hot = ({ hot }) => {
     title,
     description,
     category,
-    reviews,
     price,
     discountPercentage,
+    rating,
+    reviews,
   } = hot;
 
   return (
@@ -46,10 +47,10 @@ export const Hot = ({ hot }) => {
           height={280}
         />
       </Link>
-      <StarRatingStyled>
-        <Stars rating={3} bestDeals />
+      <HotStarRatingStyled>
+        <Stars rating={rating} bestDeals />
         {reviews.length && <p>{`(${reviews.length})`}</p>}
-      </StarRatingStyled>
+      </HotStarRatingStyled>
       <Link
         to={`shop/${category}/${title
           .toLowerCase()
@@ -76,8 +77,9 @@ Hot.propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
-    reviews: PropTypes.array.isRequired,
     price: PropTypes.number.isRequired,
     discountPercentage: PropTypes.number.isRequired,
+    rating: PropTypes.number.isRequired,
+    reviews: PropTypes.array.isRequired,
   }).isRequired,
 };
