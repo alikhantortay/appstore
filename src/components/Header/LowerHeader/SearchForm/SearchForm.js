@@ -82,23 +82,27 @@ export const SearchForm = () => {
           {items.length > 0 ? (
             <>
               <ul>
-                {items.map(({ id, title, price }) => {
-                  return (
-                    <li key={id}>
-                      <Link
-                        to={`details/${id}`}
-                        onClick={() => {
-                          setQ("");
-                        }}>
-                        {title}
-                        <span>{countSalePrice(price)}</span>
-                      </Link>
-                    </li>
-                  );
-                })}
+                {items.map(
+                  ({ id, title, category, price }) => {
+                    return (
+                      <li key={id}>
+                        <Link
+                          to={`shop/${category}/${title
+                            .toLowerCase()
+                            .replaceAll(" ", "-")}`}
+                          state={id}>
+                          {title}
+                          <span>
+                            {countSalePrice(price)}
+                          </span>
+                        </Link>
+                      </li>
+                    );
+                  },
+                )}
               </ul>
               <ShowMoreStyled
-                to={`/shop?query=${q}`}
+                to={`/shop?q=${q}`}
                 onClick={() => {
                   setQ("");
                 }}>

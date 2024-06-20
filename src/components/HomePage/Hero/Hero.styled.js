@@ -61,6 +61,8 @@ export const XBoxTextStyled = styled.div`
   }
 
   p {
+    max-width: 356px;
+
     font-size: 18px;
     line-height: 1.33;
     color: var(--text);

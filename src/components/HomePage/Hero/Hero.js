@@ -56,11 +56,8 @@ export const Hero = () => {
               <span>THE BEST PLACE TO PLAY</span>
               <h2>Xbox Consoles</h2>
               <p>
-                Save up to 50% on select Xbox games.
-                <br />
-                Get 3 months of PC Game Pass for $2
-                <br />
-                USD.
+                Save up to 50% on select Xbox games. Get 3
+                months of PC Game Pass for $2 USD.
               </p>
               <XBoxLinkStyled to="/shop/laptops">
                 SHOP NOW
@@ -90,7 +87,8 @@ export const Hero = () => {
                 <ShopLinkStyled
                   to={`/shop/${phone.category}/${phone.title
                     .toLowerCase()
-                    .replaceAll(" ", "-")}`}>
+                    .replaceAll(" ", "-")}`}
+                  state={phone.id}>
                   SHOP NOW
                   <ArrowRight />
                 </ShopLinkStyled>
