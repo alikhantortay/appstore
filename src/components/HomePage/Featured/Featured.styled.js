@@ -31,7 +31,7 @@ export const FeaturedArticleStyled = styled.article`
     ${mediaQueries("mobile")`padding: 16px 0;`}
 
     h2 {
-      margin: 20px 0;
+      margin: 16px 0;
     }
   }
 
@@ -124,10 +124,4 @@ export const FeaturedLinksStyled = styled.ul`
       color: var(--primary);
     }
   }
-`;
-
-export const FeaturedListStyled = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
 `;

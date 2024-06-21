@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { ShopLinkStyled } from "../../../styles/common";
 import { mediaQueries } from "../../../styles/mediaQueries";
 
 export const HeroGridContainer = styled.div`
@@ -29,7 +28,8 @@ export const XBoxStyled = styled.div`
   border-radius: 6px;
 
   ${mediaQueries("tablet")`padding: 32px;`}
-  ${mediaQueries("mobile")`flex-wrap: wrap;`}
+  ${mediaQueries("mobile")`flex-wrap: wrap;
+  a {margin-bottom: 20px;}`}
 `;
 
 export const XBoxTextStyled = styled.div`
@@ -69,20 +69,6 @@ export const XBoxTextStyled = styled.div`
   }
 `;
 
-export const XBoxLinkStyled = styled(ShopLinkStyled)`
-  padding: 16px 32px;
-  gap: 12px;
-
-  font-size: 16px;
-
-  svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  ${mediaQueries("mobile")`margin-bottom: 20px;`}
-`;
-
 export const CirclesStyled = styled.div`
   display: flex;
   margin-top: 90px;
@@ -106,18 +92,20 @@ export const XBoxImgStyled = styled.div`
   position: relative;
 
   > span {
+    display: flex;
     position: absolute;
     top: 0;
     right: 0;
     width: 100px;
     height: 100px;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
     background-color: var(--price);
 
     font-size: 22px;
     font-weight: 600;
-    line-height: 100px;
-    text-align: center;
+    line-height: 1;
     color: #fff;
   }
 `;

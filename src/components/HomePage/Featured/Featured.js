@@ -9,8 +9,9 @@ import { Loader } from "../../Loader/Loader";
 import { ReactComponent as ArrowRightIcon } from "../../../icons/ArrowRight.svg";
 
 import {
+  BigShopLinkStyled,
   ErrorMessageStyled,
-  ShopLinkStyled,
+  ItemListStyled,
   TitleStyled,
 } from "../../../styles/common";
 
@@ -18,7 +19,6 @@ import {
   FeaturedArticleStyled,
   FeaturedEndsStyled,
   FeaturedLinksStyled,
-  FeaturedListStyled,
   FeaturedStyled,
   FeaturedTextStyled,
   FeaturedTitleStyled,
@@ -35,9 +35,7 @@ export const Featured = () => {
     const getItems = async () => {
       try {
         setLoading(true);
-        const responce = await fetch(
-          "/products?limit=8&skip=132",
-        );
+        const responce = await fetch("?limit=8&skip=132");
 
         setItems(responce.data.products);
       } catch (error) {
@@ -64,10 +62,10 @@ export const Featured = () => {
             <FeaturedEndsStyled>
               Offers ends in: <span>ENDS OF CHRISTMAS</span>
             </FeaturedEndsStyled>
-            <ShopLinkStyled to="/shop/laptops">
+            <BigShopLinkStyled to="/shop/laptops">
               SHOP NOW
               <ArrowRightIcon />
-            </ShopLinkStyled>
+            </BigShopLinkStyled>
           </div>
           <img
             src={require("../../../images/featured.jpeg")}
@@ -107,7 +105,7 @@ export const Featured = () => {
           </Link>
         </FeaturedTitleStyled>
 
-        <FeaturedListStyled>
+        <ItemListStyled>
           {items.length > 0 &&
             items
               .slice(0, width < 1320 ? 2 : 8)
@@ -118,7 +116,7 @@ export const Featured = () => {
                   </li>
                 );
               })}
-        </FeaturedListStyled>
+        </ItemListStyled>
 
         {error && (
           <ErrorMessageStyled>{error}</ErrorMessageStyled>

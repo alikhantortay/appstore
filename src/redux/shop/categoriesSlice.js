@@ -6,7 +6,7 @@ export const fetchCategories = createAsyncThunk(
   "categories/fetchAll",
   async (_, thunkAPI) => {
     try {
-      const res = await axios.get("/products/categories");
+      const res = await axios.get("/categories");
       return res.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(

@@ -7,8 +7,9 @@ import { Loader } from "../../Loader/Loader";
 import { ReactComponent as ArrowRight } from "../../../icons/ArrowRight.svg";
 
 import {
-  ErrorMessageStyled,
   ShopLinkStyled,
+  BigShopLinkStyled,
+  ErrorMessageStyled,
 } from "../../../styles/common";
 import {
   CirclesStyled,
@@ -18,7 +19,6 @@ import {
   PhoneTextStyled,
   PodsStyled,
   XBoxImgStyled,
-  XBoxLinkStyled,
   XBoxStyled,
   XBoxTextStyled,
 } from "./Hero.styled";
@@ -34,9 +34,9 @@ export const Hero = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const phone = await fetch("products/133");
+        const phone = await fetch("/133");
         setPhone(phone.data);
-        const pods = await fetch("products/100");
+        const pods = await fetch("/100");
         setPods(pods.data);
       } catch (error) {
         setError(error.message);
@@ -59,10 +59,10 @@ export const Hero = () => {
                 Save up to 50% on select Xbox games. Get 3
                 months of PC Game Pass for $2 USD.
               </p>
-              <XBoxLinkStyled to="/shop/laptops">
+              <BigShopLinkStyled to="/shop/laptops">
                 SHOP NOW
                 <ArrowRight />
-              </XBoxLinkStyled>
+              </BigShopLinkStyled>
               <CirclesStyled>
                 <span />
                 <span />

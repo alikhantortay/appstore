@@ -28,7 +28,7 @@ export const BestDeals = () => {
       const getItem = async () => {
         try {
           setLoading(true);
-          const responce = await fetch(`products/${id}`);
+          const responce = await fetch(`/${id}`);
           responce.data.id === 80
             ? setHot(responce.data)
             : setItems((prevState) => [

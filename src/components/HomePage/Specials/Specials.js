@@ -1,20 +1,23 @@
 import { useEffect, useState } from "react";
+import { fetch } from "../../../API";
+import { usePrice } from "../../../hooks/usePrice";
+
 import { Container } from "../../Container/Container";
+import { Loader } from "../../Loader/Loader";
+import { ReactComponent as ArrowRightIcon } from "../../../icons/ArrowRight.svg";
+
+import {
+  ErrorMessageStyled,
+  ShopLinkStyled,
+  TitleStyled,
+} from "../../../styles/common";
 import {
   SpecialsPhoneStyled,
   SpecialsPodStyled,
-  SpecialsStyled,
   SpecialsPodTextStyled,
   SpecialPhoneTextStyled,
   SpecialsPhonePriceStyled,
 } from "./Specials.styled";
-import { fetch } from "../../../API";
-import {
-  ShopLinkStyled,
-  TitleStyled,
-} from "../../../styles/common";
-import { ReactComponent as ArrowRightIcon } from "../../../icons/ArrowRight.svg";
-import { usePrice } from "../../../hooks/usePrice";
 
 export const Specials = () => {
   const { countSalePrice } = usePrice();
@@ -26,9 +29,9 @@ export const Specials = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const pod = await fetch("products/103");
+        const pod = await fetch("/103");
         setPods(pod.data);
-        const phone = await fetch("products/134");
+        const phone = await fetch("/134");
         setPhone(phone.data);
       } catch (error) {
         setError(error.message);
@@ -40,7 +43,7 @@ export const Specials = () => {
   }, []);
 
   return (
-    <SpecialsStyled>
+    <div>
       <Container>
         {pod && (
           <SpecialsPodStyled>
@@ -96,7 +99,12 @@ export const Specials = () => {
             </SpecialsPhonePriceStyled>
           </SpecialsPhoneStyled>
         )}
+
+        {error && (
+          <ErrorMessageStyled>{error}</ErrorMessageStyled>
+        )}
+        {loading && <Loader />}
       </Container>
-    </SpecialsStyled>
+    </div>
   );
 };

@@ -10,12 +10,19 @@ export const TitleStyled = styled.h2`
   color: var(--title);
 `;
 
+export const ItemListStyled = styled.ul`
+  display: flex;
+  grid-area: list;
+  flex-wrap: wrap;
+  gap: 16px;
+`;
+
 export const ShopLinkStyled = styled(Link)`
   display: inline-flex;
   height: 48px;
-  padding: 0
-    ${(props) => (props.$padding ? props.$padding : 24)}px;
+  padding: 0 24px;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   border: 1px solid var(--primary);
   border-radius: 2px;
@@ -29,6 +36,18 @@ export const ShopLinkStyled = styled(Link)`
   &:focus {
     background-color: #fff;
     color: var(--primary);
+  }
+`;
+
+export const BigShopLinkStyled = styled(ShopLinkStyled)`
+  height: 56px;
+  padding: 0 32px;
+  gap: 12px;
+  font-size: 16px;
+
+  svg {
+    width: 24px;
+    height: 24px;
   }
 `;
 

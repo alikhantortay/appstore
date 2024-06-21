@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { mediaQueries } from "../../../styles/mediaQueries";
 
-export const SpecialsStyled = styled.div``;
-
 export const SpecialsPodStyled = styled.div`
   display: inline-flex;
   margin-right: 24px;
