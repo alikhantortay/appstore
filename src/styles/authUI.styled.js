@@ -60,6 +60,7 @@ export const LogInBtnStyled = styled.button`
   display: flex;
   margin-top: 20px;
   width: 100%;
+  height: 48px;
   align-items: center;
   justify-content: center;
   gap: 8px;
@@ -69,7 +70,7 @@ export const LogInBtnStyled = styled.button`
   transition: background-color 250ms ease, color 250ms ease;
 
   font-weight: 700;
-  line-height: 48px;
+
   color: var(--textSecondary);
 
   &:hover,

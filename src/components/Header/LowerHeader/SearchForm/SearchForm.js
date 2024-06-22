@@ -30,7 +30,7 @@ export const SearchForm = () => {
         setLoading(true);
         if (q.trim() !== "") {
           const responce = await fetch(
-            `products/search?q=${q}&skip=0&limit=5`,
+            `search?q=${q}&skip=0&limit=5`,
           );
           responce.data.products.length > 0
             ? setItems(responce.data.products)
