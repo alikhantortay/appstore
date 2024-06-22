@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
+import { usePrice } from "../../../hooks/usePrice";
+import { fetch } from "../../../API";
+
 import { Container } from "../../Container/Container";
+import { Loader } from "../../Loader/Loader";
+import { ShopLink } from "../../ShopLink/ShopLink";
+
+import { ErrorMessageStyled } from "../../../styles/common";
 import {
   BigDealImgWrapper,
   BigDealStyled,
   BigDealTextStyled,
 } from "./BigDeal.styled";
-import {
-  BigShopLinkStyled,
-  ErrorMessageStyled,
-} from "../../../styles/common";
-import { Loader } from "../../Loader/Loader";
-import { fetch } from "../../../API";
-import { usePrice } from "../../../hooks/usePrice";
-import { ReactComponent as ArrowRightIcon } from "../../../icons/ArrowRight.svg";
 
 export const BigDeal = () => {
   const [item, setItem] = useState(null);
@@ -45,14 +44,10 @@ export const BigDeal = () => {
               <span>SAVE UP TO {countPrice(200)}</span>
               <h2>{item.title.slice(0, 13)}</h2>
               <p>{item.description.slice(0, 68)}</p>
-              <BigShopLinkStyled
-                to={`shop/${item.category}/${item.title
-                  .toLowerCase()
-                  .replaceAll(" ", "-")}`}
-                state={item.id}>
-                SHOP NOW
-                <ArrowRightIcon />
-              </BigShopLinkStyled>
+              <ShopLink
+                to={`shop/${item.category}/${item.title}`}
+                state={item.id}
+              />
             </BigDealTextStyled>
 
             <BigDealImgWrapper>
@@ -61,6 +56,7 @@ export const BigDeal = () => {
                 alt={item.title}
                 width={424}
                 height={424}
+                loading="lazy"
               />
               <span>
                 {countSalePrice(

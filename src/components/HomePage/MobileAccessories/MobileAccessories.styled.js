@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { ShopLinkStyled } from "../../../styles/common";
 import { mediaQueries } from "../../../styles/mediaQueries";
+import { ShopLinkStyled } from "../../ShopLink/ShopLink.styled";
 
 export const MobileAccessoriesStyled = styled.div`
   padding: 72px 0;

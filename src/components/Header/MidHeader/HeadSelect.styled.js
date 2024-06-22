@@ -6,7 +6,7 @@ export const HeadSelectStyled = styled(Select)`
 
   line-height: 1.5;
 
-  &:hover {
+  :hover {
     cursor: pointer;
   }
 

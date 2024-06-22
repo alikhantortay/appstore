@@ -45,6 +45,7 @@ export const Hot = ({ hot }) => {
           alt={title}
           width={280}
           height={280}
+          loading="lazy"
         />
       </Link>
       <HotStarRatingStyled>

@@ -1,9 +1,18 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { usePrice } from "../../../hooks/usePrice";
+import { fetch } from "../../../API";
+
 import { Container } from "../../Container/Container";
-import { ItemCard } from "../../ItemCard/ItemCard";
 import { Loader } from "../../Loader/Loader";
+import { ItemCard } from "../../ItemCard/ItemCard";
+import { ShopLink } from "../../ShopLink/ShopLink";
 import { ReactComponent as ArrowRightIcon } from "../../../icons/ArrowRight.svg";
 
+import {
+  ErrorMessageStyled,
+  ItemListStyled,
+} from "../../../styles/common";
 import {
   AccessoriesPodsStyled,
   AccessoriesTitleStyled,
@@ -11,14 +20,6 @@ import {
   SalesShopLinkStyled,
   SummerSalesStyled,
 } from "./MobileAccessories.styled";
-import { fetch } from "../../../API";
-import { Link } from "react-router-dom";
-import {
-  ErrorMessageStyled,
-  ItemListStyled,
-  ShopLinkStyled,
-} from "../../../styles/common";
-import { usePrice } from "../../../hooks/usePrice";
 
 export const MobileAccessories = () => {
   const [pods, setPods] = useState(null);
@@ -78,6 +79,7 @@ export const MobileAccessories = () => {
               alt={pods.title}
               width={108}
               height={108}
+              loading="lazy"
             />
             <h3>{pods.title}</h3>
             <p>{pods.description.slice(0, 86)}</p>
@@ -90,14 +92,10 @@ export const MobileAccessories = () => {
                 )}
               </span>
             </p>
-            <ShopLinkStyled
-              to={`shop/${pods.category}/${pods.title
-                .toLowerCase()
-                .replaceAll(" ", "-")}`}
-              state={pods.id}>
-              SHOP NOW
-              <ArrowRightIcon />
-            </ShopLinkStyled>
+            <ShopLink
+              to={`shop/${pods.category}/${pods.title}`}
+              state={pods.id}
+            />
           </AccessoriesPodsStyled>
         )}
 

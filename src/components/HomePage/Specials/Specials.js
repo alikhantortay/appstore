@@ -4,11 +4,10 @@ import { usePrice } from "../../../hooks/usePrice";
 
 import { Container } from "../../Container/Container";
 import { Loader } from "../../Loader/Loader";
-import { ReactComponent as ArrowRightIcon } from "../../../icons/ArrowRight.svg";
+import { ShopLink } from "../../ShopLink/ShopLink";
 
 import {
   ErrorMessageStyled,
-  ShopLinkStyled,
   TitleStyled,
 } from "../../../styles/common";
 import {
@@ -51,20 +50,17 @@ export const Specials = () => {
               <span>INTRODUCING</span>
               <TitleStyled $left>{pod.title}</TitleStyled>
               <p>{pod.description.slice(0, 65) + "..."}</p>
-              <ShopLinkStyled
-                to={`shop/${pod.category}/${pod.title
-                  .toLowerCase()
-                  .replaceAll(" ", "-")}`}
-                state={pod.id}>
-                SHOP NOW
-                <ArrowRightIcon />
-              </ShopLinkStyled>
+              <ShopLink
+                to={`shop/${pod.category}/${pod.title}`}
+                state={pod.id}
+              />
             </SpecialsPodTextStyled>
             <img
               src={pod.thumbnail}
               alt={pod.title}
               width={240}
               height={240}
+              loading="lazy"
             />
           </SpecialsPodStyled>
         )}
@@ -76,20 +72,17 @@ export const Specials = () => {
               <p>
                 {phone.description.slice(0, 70) + "..."}
               </p>
-              <ShopLinkStyled
-                to={`shop/${phone.category}/${phone.title
-                  .toLowerCase()
-                  .replaceAll(" ", "-")}`}
-                state={phone.id}>
-                SHOP NOW
-                <ArrowRightIcon />
-              </ShopLinkStyled>
+              <ShopLink
+                to={`shop/${phone.category}/${phone.title}`}
+                state={phone.id}
+              />
             </SpecialPhoneTextStyled>
             <img
               src={phone.thumbnail}
               alt={phone.title}
               width={312}
               height={312}
+              loading="lazy"
             />
             <SpecialsPhonePriceStyled>
               {countSalePrice(

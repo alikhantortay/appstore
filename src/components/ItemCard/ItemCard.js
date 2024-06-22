@@ -52,6 +52,7 @@ export const ItemCard = ({ item, bestDeals }) => {
           alt={title}
           width={bestDeals ? 216 : 202}
           height={bestDeals ? 216 : 202}
+          loading="lazy"
         />
         <HoverBtnsStyled>
           <ListBtnStyled

@@ -6,6 +6,7 @@ import { Featured } from "../../components/HomePage/Featured/Featured";
 import { Specials } from "../../components/HomePage/Specials/Specials";
 import { MobileAccessories } from "../../components/HomePage/MobileAccessories/MobileAccessories";
 import { BigDeal } from "../../components/HomePage/BigDeal/BigDeal";
+import { OtherDeals } from "../../components/HomePage/OtherDeals/OtherDeals";
 
 const Home = () => {
   return (
@@ -18,6 +19,7 @@ const Home = () => {
       <Specials />
       <MobileAccessories />
       <BigDeal />
+      <OtherDeals />
     </>
   );
 };

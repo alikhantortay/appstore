@@ -4,13 +4,9 @@ import { fetch } from "../../../API";
 
 import { Container } from "../../Container/Container";
 import { Loader } from "../../Loader/Loader";
-import { ReactComponent as ArrowRight } from "../../../icons/ArrowRight.svg";
+import { ShopLink } from "../../ShopLink/ShopLink";
 
-import {
-  ShopLinkStyled,
-  BigShopLinkStyled,
-  ErrorMessageStyled,
-} from "../../../styles/common";
+import { ErrorMessageStyled } from "../../../styles/common";
 import {
   CirclesStyled,
   HeroGridContainer,
@@ -24,12 +20,12 @@ import {
 } from "./Hero.styled";
 
 export const Hero = () => {
+  const { countPrice, countSalePrice } = usePrice();
+
   const [phone, setPhone] = useState(null);
   const [pods, setPods] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  const { countPrice, countSalePrice } = usePrice();
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -59,10 +55,7 @@ export const Hero = () => {
                 Save up to 50% on select Xbox games. Get 3
                 months of PC Game Pass for $2 USD.
               </p>
-              <BigShopLinkStyled to="/shop/laptops">
-                SHOP NOW
-                <ArrowRight />
-              </BigShopLinkStyled>
+              <ShopLink to="/shop/laptops" big />
               <CirclesStyled>
                 <span />
                 <span />
@@ -75,23 +68,21 @@ export const Hero = () => {
                 alt="XBox console"
                 width={368}
                 height={408}
+                loading="lazy"
               />
               <span>{countPrice(299)}</span>
             </XBoxImgStyled>
           </XBoxStyled>
+
           {phone && (
             <PhoneSaleStyled>
               <PhoneTextStyled>
                 <span>SUMMER SALES</span>
                 <h2>{phone.title}</h2>
-                <ShopLinkStyled
-                  to={`/shop/${phone.category}/${phone.title
-                    .toLowerCase()
-                    .replaceAll(" ", "-")}`}
-                  state={phone.id}>
-                  SHOP NOW
-                  <ArrowRight />
-                </ShopLinkStyled>
+                <ShopLink
+                  to={`/shop/${phone.category}/${phone.title}`}
+                  state={phone.id}
+                />
               </PhoneTextStyled>
               <PhoneImgStyled>
                 <img
@@ -99,11 +90,13 @@ export const Hero = () => {
                   alt={phone.title}
                   width={206}
                   height={366}
+                  loading="lazy"
                 />
                 <span>29% OFF</span>
               </PhoneImgStyled>
             </PhoneSaleStyled>
           )}
+
           {pods && (
             <PodsStyled>
               <img
@@ -111,6 +104,7 @@ export const Hero = () => {
                 alt={pods.title}
                 width={160}
                 height={160}
+                loading="lazy"
               />
               <div>
                 <h2>{pods.title}</h2>
@@ -120,13 +114,10 @@ export const Hero = () => {
                     pods.discountPercentage,
                   )}
                 </span>
-                <ShopLinkStyled
-                  to={`/shop/${pods.category}/${pods.title
-                    .toLowerCase()
-                    .replaceAll(" ", "-")}`}>
-                  SHOP NOW
-                  <ArrowRight />
-                </ShopLinkStyled>
+                <ShopLink
+                  to={`/shop/${pods.category}/${pods.title}`}
+                  state={pods.id}
+                />
               </div>
             </PodsStyled>
           )}

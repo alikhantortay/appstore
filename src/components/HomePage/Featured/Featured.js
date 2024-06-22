@@ -4,12 +4,12 @@ import { useWindowWidth } from "../../../hooks/useWindowWidth";
 import { fetch } from "../../../API";
 
 import { Container } from "../../Container/Container";
-import { ItemCard } from "../../ItemCard/ItemCard";
 import { Loader } from "../../Loader/Loader";
+import { ItemCard } from "../../ItemCard/ItemCard";
+import { ShopLink } from "../../ShopLink/ShopLink";
 import { ReactComponent as ArrowRightIcon } from "../../../icons/ArrowRight.svg";
 
 import {
-  BigShopLinkStyled,
   ErrorMessageStyled,
   ItemListStyled,
   TitleStyled,
@@ -27,6 +27,7 @@ import {
 
 export const Featured = () => {
   const width = useWindowWidth();
+
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -62,16 +63,14 @@ export const Featured = () => {
             <FeaturedEndsStyled>
               Offers ends in: <span>ENDS OF CHRISTMAS</span>
             </FeaturedEndsStyled>
-            <BigShopLinkStyled to="/shop/laptops">
-              SHOP NOW
-              <ArrowRightIcon />
-            </BigShopLinkStyled>
+            <ShopLink to="/shop/laptops" big />
           </div>
           <img
             src={require("../../../images/featured.jpeg")}
             alt="Electronic devices"
             width={312}
             height={428}
+            loading="lazy"
           />
         </FeaturedArticleStyled>
         <FeaturedTitleStyled>
