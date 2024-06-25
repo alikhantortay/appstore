@@ -19,7 +19,7 @@ export const SubscribtionStyled = styled.div`
     max-width: 536px;
 
     font-size: 16px;
-    line-height: 24px;
+    line-height: 1.5;
   }
 `;
 

@@ -37,7 +37,6 @@ export const ModalTitleStyled = styled.h2`
 
 export const ModalListStyled = styled.ul`
   padding: 20px 24px;
-
   border-top: 1px solid #e4e7e9;
   border-bottom: 1px solid #e4e7e9;
 
@@ -74,6 +73,11 @@ export const ModalListStyled = styled.ul`
       }
     }
   }
+`;
+
+export const EmptyMessageStyled = styled.p`
+  padding: 0 24px;
+  color: var(--text);
 `;
 
 export const ModalItemTextStyled = styled.div`

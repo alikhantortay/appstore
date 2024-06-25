@@ -13,6 +13,7 @@ import { Loader } from "../../../Loader/Loader";
 
 import {
   CartModalPriceStyled,
+  EmptyMessageStyled,
   ModalItemTextStyled,
   ModalLinkStyled,
   ModalListStyled,
@@ -37,18 +38,16 @@ export const CartModal = ({ onClick }) => {
     );
 
   useEffect(() => {
-    cartItems.forEach(({ id, quantity }) => {
+    cartItems.forEach((item) => {
       const getCartItem = async () => {
         try {
           setLoading(true);
-          const responce = await fetch(`products/${id}`);
-          responce.data.quantity = quantity;
-          setItems(
-            (prevState) =>
-              !prevState.some((item) => item.id === id) && [
-                ...prevState,
-                responce.data,
-              ],
+          const responce = await fetch(`${item.id}`);
+          responce.data.quantity = item.quantity;
+          setItems((prevState) =>
+            prevState.some(({ id }) => id === item.id)
+              ? prevState
+              : [...prevState, responce.data],
           );
         } catch (error) {
           setError(error);
@@ -75,61 +74,76 @@ export const CartModal = ({ onClick }) => {
         )}
       </ModalTitleStyled>
 
-      <ModalListStyled>
-        {items.map(
-          ({
-            id,
-            thumbnail,
-            title,
-            category,
-            quantity,
-            price,
-            discountPercentage,
-          }) => {
-            return (
-              <li key={id}>
-                <img
-                  src={thumbnail}
-                  alt={title}
-                  width="80px"
-                  height="80px"
-                  loading="lazy"
-                />
-                <ModalItemTextStyled>
-                  <Link
-                    to={`/shop/${category}/${title
-                      .toLowerCase()
-                      .replaceAll(" ", "-")}`}
-                    state={id}
-                    onClick={onClick}>
-                    {title}
-                  </Link>
-                  <CartModalPriceStyled>
-                    {quantity} x{" "}
-                    <span>
-                      {countSalePrice(
-                        price,
-                        discountPercentage,
-                      )}
-                    </span>
-                  </CartModalPriceStyled>
-                </ModalItemTextStyled>
-                <button
-                  type="button"
-                  onClick={() =>
-                    dispatch(removeFromCart(id))
-                  }>
-                  <CrossIcon />
-                </button>
-              </li>
-            );
-          },
-        )}
-      </ModalListStyled>
+      {items.length > 0 ? (
+        <ModalListStyled>
+          {items.map(
+            ({
+              id,
+              thumbnail,
+              title,
+              category,
+              quantity,
+              price,
+              discountPercentage,
+            }) => {
+              return (
+                <li key={id}>
+                  <img
+                    src={thumbnail}
+                    alt={title}
+                    width="80px"
+                    height="80px"
+                    loading="lazy"
+                  />
+                  <ModalItemTextStyled>
+                    <Link
+                      to={`/shop/${category}/${title
+                        .toLowerCase()
+                        .replaceAll(" ", "-")}`}
+                      state={id}
+                      onClick={onClick}>
+                      {title}
+                    </Link>
+                    <CartModalPriceStyled>
+                      {quantity} x{" "}
+                      <span>
+                        {countSalePrice(
+                          price,
+                          discountPercentage,
+                        )}
+                      </span>
+                    </CartModalPriceStyled>
+                  </ModalItemTextStyled>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      dispatch(removeFromCart(id));
+                      setItems((prevState) =>
+                        prevState.filter(
+                          (item) => item.id !== id,
+                        ),
+                      );
+                    }}>
+                    <CrossIcon />
+                  </button>
+                </li>
+              );
+            },
+          )}
+        </ModalListStyled>
+      ) : (
+        <EmptyMessageStyled>
+          Your cart is empty!
+        </EmptyMessageStyled>
+      )}
 
       <ModalLowerStyled>
-        <p>Sub-Total:</p>
-        <span>{countTotalPrice(items)}</span>
+        {items.length > 0 && (
+          <>
+            <p>Sub-Total:</p>
+            <span>{countTotalPrice(items)}</span>
+          </>
+        )}
         <ModalLinkStyled to="/cart" onClick={onClick}>
           VIEW CART
           <ArrowRightIcon />

@@ -11,35 +11,6 @@ export const HotButtonsStyled = styled.div`
   }
 `;
 
-export const CenterButtonStyled = styled.button`
-  display: flex;
-  padding: 13px 22px;
-  border: 1px solid var(--primary);
-  gap: 8px;
-  background-color: var(--primary);
-
-  font-weight: 700;
-  color: var(--textSecondary);
-
-  &:hover {
-    cursor: pointer;
-    background-color: #fff;
-    color: var(--primary);
-
-    svg {
-      ${({ $inList }) => {
-        return $inList && "fill: var(--primary);";
-      }}
-    }
-  }
-
-  svg {
-    ${({ $inList }) => {
-      return $inList && "fill: #fff;";
-    }}
-  }
-`;
-
 export const SideButtonStyled = styled.button`
   display: flex;
   padding: 12px;

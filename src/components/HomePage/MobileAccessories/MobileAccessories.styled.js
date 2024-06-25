@@ -75,13 +75,13 @@ export const AccessoriesPodsStyled = styled.div`
 
     font-size: 26px;
     font-weight: 600;
-    line-height: 32px;
+    line-height: 1.23;
     color: var(--title);
   }
 
   p {
     font-size: 16px;
-    line-height: 24px;
+    line-height: 1.5;
     color: var(--text);
 
     span {
@@ -127,12 +127,12 @@ export const SummerSalesStyled = styled.div`
     margin: 12px 0;
 
     font-size: 28px;
-    line-height: 32px;
+    line-height: 1.14;
   }
 
   p {
     font-size: 18px;
-    line-height: 24px;
+    line-height: 1.33;
 
     span {
       font-weight: 600;

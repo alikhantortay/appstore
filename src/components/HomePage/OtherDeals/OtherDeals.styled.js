@@ -17,7 +17,7 @@ export const OtherDealsStyled = styled.div`
 export const OtherDealStyled = styled.div`
   h2 {
     font-size: 16px;
-    line-height: 24px;
+    line-height: 1.5;
     color: var(--title);
   }
 

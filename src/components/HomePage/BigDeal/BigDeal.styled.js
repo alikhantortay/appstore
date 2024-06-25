@@ -33,14 +33,14 @@ export const BigDealTextStyled = styled.div`
   h2 {
     font-size: 48px;
     font-weight: 600;
-    line-height: 56px;
+    line-height: 1.16;
   }
 
   p {
     margin: 22px 0;
 
     font-size: 24px;
-    line-height: 32px;
+    line-height: 1.33;
     color: var(--title);
   }
 `;

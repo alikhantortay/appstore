@@ -34,7 +34,7 @@ export const SpecialsPodTextStyled = styled.div`
     margin: 12px 0 20px;
 
     font-size: 16px;
-    line-height: 24px;
+    line-height: 1.5;
     color: var(--text);
   }
 `;
@@ -90,6 +90,6 @@ export const SpecialsPhonePriceStyled = styled.span`
 
   font-size: 20px;
   font-weight: 600;
-  line-height: 28px;
+  line-height: 1.4;
   color: var(--textSecondary);
 `;

@@ -50,7 +50,7 @@ export const UpperSpanStyled = styled.span`
 
 export const FeaturedTextStyled = styled.p`
   font-size: 16px;
-  line-height: 24px;
+  line-height: 1.5;
   color: var(--text);
 `;
 

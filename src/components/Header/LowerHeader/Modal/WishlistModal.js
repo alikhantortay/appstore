@@ -12,6 +12,7 @@ import { ReactComponent as CrossIcon } from "../../../../icons/header/X.svg";
 import { ReactComponent as ArrowRightIcon } from "../../../../icons/ArrowRight.svg";
 
 import {
+  EmptyMessageStyled,
   ModalItemTextStyled,
   ModalLinkStyled,
   ModalListStyled,
@@ -35,12 +36,11 @@ export const WishlistModal = ({ onClick }) => {
       const getWishlistItems = async () => {
         try {
           setLoading(true);
-          const responce = await fetch(`products/${item}`);
-          setItems(
-            (prevState) =>
-              !prevState.some(
-                (item) => item.id === item,
-              ) && [...prevState, responce.data],
+          const responce = await fetch(`${item}`);
+          setItems((prevState) =>
+            prevState.some(({ id }) => id === item)
+              ? prevState
+              : [...prevState, responce.data],
           );
         } catch (error) {
           setError(error);
@@ -55,7 +55,7 @@ export const WishlistModal = ({ onClick }) => {
   return (
     <ModalStyled name="wishlist" $wishlist>
       <ModalTitleStyled>
-        Wishlist{" "}
+        Wishlist
         {items.length > 0 && (
           <span>
             (
@@ -66,53 +66,66 @@ export const WishlistModal = ({ onClick }) => {
           </span>
         )}
       </ModalTitleStyled>
-      <ModalListStyled>
-        {items.map(
-          ({
-            id,
-            thumbnail,
-            title,
-            category,
-            price,
-            discountPercentage,
-          }) => {
-            return (
-              <li key={id}>
-                <img
-                  src={thumbnail}
-                  alt={title}
-                  width="80px"
-                  height="80px"
-                  loading="lazy"
-                />
-                <ModalItemTextStyled>
-                  <Link
-                    to={`/shop/${category}/${title
-                      .toLowerCase()
-                      .replaceAll(" ", "-")}`}
-                    state={id}
-                    onClick={onClick}>
-                    {title}
-                  </Link>
-                  <WishlistModalPriceStyled>
-                    {countSalePrice(
-                      price,
-                      discountPercentage,
-                    )}
-                  </WishlistModalPriceStyled>
-                </ModalItemTextStyled>
-                <button
-                  type="button"
-                  onClick={() =>
-                    dispatch(removeFromWishlist(id))
-                  }>
-                  <CrossIcon />
-                </button>
-              </li>
-            );
-          },
-        )}
-      </ModalListStyled>
+
+      {items.length > 0 ? (
+        <ModalListStyled>
+          {items.map(
+            ({
+              id,
+              thumbnail,
+              title,
+              category,
+              price,
+              discountPercentage,
+            }) => {
+              return (
+                <li key={id}>
+                  <img
+                    src={thumbnail}
+                    alt={title}
+                    width="80px"
+                    height="80px"
+                    loading="lazy"
+                  />
+                  <ModalItemTextStyled>
+                    <Link
+                      to={`/shop/${category}/${title
+                        .toLowerCase()
+                        .replaceAll(" ", "-")}`}
+                      state={id}
+                      onClick={onClick}>
+                      {title}
+                    </Link>
+                    <WishlistModalPriceStyled>
+                      {countSalePrice(
+                        price,
+                        discountPercentage,
+                      )}
+                    </WishlistModalPriceStyled>
+                  </ModalItemTextStyled>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      dispatch(removeFromWishlist(id));
+                      setItems((prevState) =>
+                        prevState.filter(
+                          (item) => item.id !== id,
+                        ),
+                      );
+                    }}>
+                    <CrossIcon />
+                  </button>
+                </li>
+              );
+            },
+          )}
+        </ModalListStyled>
+      ) : (
+        <EmptyMessageStyled>
+          Your wishlist is empty!
+        </EmptyMessageStyled>
+      )}
+
       <ModalLowerStyled>
         <ModalLinkStyled to="/wishlist" onClick={onClick}>
           VIEW WISHLIST
