@@ -29,9 +29,14 @@ const ShopPage = lazy(() => import("./pages/Shop/Shop"));
 const ComparePage = lazy(() =>
   import("./pages/Compare/Compare"),
 );
-const CartPage = lazy(() => import("./pages/Cart/Cart"));
 const WishlistPage = lazy(() =>
   import("./pages/Wishlist/Wishlist"),
+);
+const CartPage = lazy(() =>
+  import("./pages/Cart/CartPage"),
+);
+const CherckoutPage = lazy(() =>
+  import("./pages/Ckeckout/Ckeckout"),
 );
 const DetailsPage = lazy(() =>
   import("./pages/Details/Details"),
@@ -97,7 +102,15 @@ const App = () => {
             path="/compare"
             element={<ComparePage />}
           />
-          <Route path="/cart" element={<CartPage />} />
+          <Route
+            path="/shopping-cart"
+            element={<CartPage />}
+          />
+          <Route
+            path="/shopping-cart/checkout"
+            element={<CherckoutPage />}
+          />
+
           <Route
             path="/wishlist"
             element={<WishlistPage />}

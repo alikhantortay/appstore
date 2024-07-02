@@ -2,35 +2,15 @@ import styled from "styled-components";
 import { mediaQueries } from "../../styles/mediaQueries";
 import { Link } from "react-router-dom";
 
-export const WishlistStyled = styled.div`
-  padding: 72px 0;
-`;
-
-export const WishlistWrapper = styled.div`
-  border: 1px solid var(--disabledSecondary);
-
-  h2 {
-    padding: 20px 24px;
-
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 1.33;
-    color: var(--title);
-  }
-
-  > p {
-    padding: 24px;
-    color: var(--text);
-  }
-`;
-
-export const HeadingsListStyled = styled.ul`
+export const WishlistHeadingsStyled = styled.ul`
   display: flex;
   padding: 10px 24px;
   justify-content: space-between;
   border-top: 1px solid var(--disabledSecondary);
   border-bottom: 1px solid var(--disabledSecondary);
   background-color: #f2f4f5;
+
+  ${mediaQueries("mobile")`display: none;`}
 
   li {
     min-width: 200px;
@@ -41,7 +21,7 @@ export const HeadingsListStyled = styled.ul`
   > :first-child {
     width: 579px;
 
-    ${mediaQueries("tablet")`width: 240px;`}
+    ${mediaQueries("tablet")`width: 220px;`}
   }
 
   > :last-child {
@@ -56,7 +36,7 @@ export const HeadingsListStyled = styled.ul`
   }
 `;
 
-export const WishlistItemsStyled = styled.ul`
+export const WishlistStyled = styled.ul`
   padding: 24px;
 
   > :not(:last-child) {
@@ -79,16 +59,20 @@ export const WishlistItemsStyled = styled.ul`
 
       ${mediaQueries("tablet")`min-width: 80px;`}
     }
+
+    > :first-child {
+      width: 579px;
+
+      ${mediaQueries("tablet")`width: 220px;`}
+    }
   }
 `;
 
 export const WishlistLinkStyled = styled(Link)`
-  width: 579px;
   gap: 16px;
   transition: color 250ms ease;
   color: var(--text);
 
-  ${mediaQueries("tablet")`width: 240px;`}
   ${mediaQueries("mobile")`width: 100%;
   flex-wrap: wrap;
   
@@ -96,18 +80,6 @@ export const WishlistLinkStyled = styled(Link)`
 
   &:hover {
     color: var(--primary);
-  }
-`;
-
-export const WishlistPriceStyled = styled.p`
-  gap: 4px;
-  font-weight: 500;
-  color: var(--title);
-
-  span {
-    text-decoration-line: line-through;
-    font-weight: 400;
-    color: #929fa5;
   }
 `;
 
@@ -122,19 +94,4 @@ export const WishlistBtnsStyled = styled.div`
 
   ${mediaQueries("mobile")`width: 100%;
   justify-content: space-between;`}
-`;
-
-export const WishlistRemoveBtnStyled = styled.button`
-  height: 24px;
-  padding: 0;
-  border: none;
-  background-color: #fff;
-  color: var(--disabled);
-  transition: color 200ms ease;
-
-  &:hover,
-  &:focus {
-    cursor: pointer;
-    color: var(--primary);
-  }
 `;

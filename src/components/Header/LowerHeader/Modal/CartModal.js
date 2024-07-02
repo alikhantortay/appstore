@@ -41,7 +41,7 @@ export const CartModal = ({ onClick }) => {
     cartItems.forEach((item) => {
       const getCartItem = async () => {
         try {
-          setLoading(true);
+          items.length === 0 && setLoading(true);
           const responce = await fetch(`${item.id}`);
           responce.data.quantity = item.quantity;
           setItems((prevState) =>
@@ -57,7 +57,7 @@ export const CartModal = ({ onClick }) => {
       };
       getCartItem();
     });
-  }, [cartItems]);
+  }, [cartItems, items.length]);
 
   return (
     <ModalStyled name="cart">
@@ -144,7 +144,9 @@ export const CartModal = ({ onClick }) => {
             <span>{countTotalPrice(items)}</span>
           </>
         )}
-        <ModalLinkStyled to="/cart" onClick={onClick}>
+        <ModalLinkStyled
+          to="/shopping-cart"
+          onClick={onClick}>
           VIEW CART
           <ArrowRightIcon />
         </ModalLinkStyled>

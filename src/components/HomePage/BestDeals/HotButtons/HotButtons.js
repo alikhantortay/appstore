@@ -5,7 +5,7 @@ import { ReactComponent as HeartIcon } from "../../../../icons/Heart.svg";
 import { ReactComponent as CartIcon } from "../../../../icons/CartSecond.svg";
 import { ReactComponent as EyeIcon } from "../../../../icons/Eye.svg";
 
-import { CartButtonStyled } from "../../../../styles/common";
+import { CartBtnStyled } from "../../../../styles/common";
 import {
   HotButtonsStyled,
   SideButtonStyled,
@@ -22,13 +22,13 @@ export const HotButtons = ({ id }) => {
         $inList={checkIsInList(id, "wishlist")}>
         <HeartIcon />
       </SideButtonStyled>
-      <CartButtonStyled
+      <CartBtnStyled
         type="button"
         onClick={() => modifyList(id, "cart")}
         $inList={checkIsInList(id, "cart")}>
         <CartIcon />
         ADD TO CART
-      </CartButtonStyled>
+      </CartBtnStyled>
       <SideButtonStyled
         type="button"
         onClick={() => modifyList(id, "compare")}

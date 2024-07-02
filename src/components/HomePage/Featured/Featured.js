@@ -106,15 +106,13 @@ export const Featured = () => {
 
         <ItemListStyled>
           {items.length > 0 &&
-            items
-              .slice(0, width < 1320 ? 2 : 8)
-              .map((item) => {
-                return (
-                  <li key={item.id}>
-                    <ItemCard item={item} />
-                  </li>
-                );
-              })}
+            items.map((item) => {
+              return (
+                <li key={item.id}>
+                  <ItemCard item={item} />
+                </li>
+              );
+            })}
         </ItemListStyled>
 
         {error && (

@@ -9,6 +9,7 @@ export const FeaturedStyled = styled.div`
     grid-template-areas:
       "article title"
       "article list";
+    align-items: start;
     gap: 24px;
 
     ${mediaQueries("mobile")`display: block;`}

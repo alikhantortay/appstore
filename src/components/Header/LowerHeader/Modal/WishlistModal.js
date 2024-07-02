@@ -35,7 +35,7 @@ export const WishlistModal = ({ onClick }) => {
     wishlistItems.forEach((item) => {
       const getWishlistItems = async () => {
         try {
-          setLoading(true);
+          items.length === 0 && setLoading(true);
           const responce = await fetch(`${item}`);
           setItems((prevState) =>
             prevState.some(({ id }) => id === item)
@@ -50,7 +50,7 @@ export const WishlistModal = ({ onClick }) => {
       };
       getWishlistItems();
     });
-  }, [wishlistItems]);
+  }, [wishlistItems, items.length]);
 
   return (
     <ModalStyled name="wishlist" $wishlist>

@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 export const ModalStyled = styled.div`
   position: absolute;
+  z-index: 2;
   top: 44px;
   right: 0;
-  z-index: 1;
   width: 376px;
   border: 1px solid rgb(228, 231, 233);
   border-radius: 4px;

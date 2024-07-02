@@ -54,5 +54,7 @@ export const BestDealsGridContainer = styled.ul`
 
   ${mediaQueries("tablet")`
     grid-template-columns: 50%;`}
-  ${mediaQueries("mobile")`display: block;`}
+  ${mediaQueries(
+    "mobile",
+  )`display: block;grid-template-columns: 100%;`}
 `;

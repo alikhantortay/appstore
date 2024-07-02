@@ -33,4 +33,8 @@ img {
 }
 
 a{text-decoration:none;}
+
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
 `;

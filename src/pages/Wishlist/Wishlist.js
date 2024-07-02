@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useWindowWidth } from "../../hooks/useWindowWidth";
 import { useShopList } from "../../hooks/useShopList";
 import { usePrice } from "../../hooks/usePrice";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,18 +12,18 @@ import { ReactComponent as CartIcon } from "../../icons/CartSecond.svg";
 import { ReactComponent as CrossCircleIcon } from "../../icons/XCircle.svg";
 
 import {
-  CartButtonStyled,
+  CartBtnStyled,
   ErrorMessageStyled,
+  ListPriceStyled,
+  ListRemoveBtnStyled,
+  ListWrapper,
+  SectionStyled,
 } from "../../styles/common";
 import {
-  HeadingsListStyled,
+  WishlistHeadingsStyled,
   WishlistLinkStyled,
-  WishlistPriceStyled,
-  WishlistRemoveBtnStyled,
   WishlistStockStatusStyled,
-  WishlistItemsStyled,
   WishlistStyled,
-  WishlistWrapper,
   WishlistBtnsStyled,
 } from "./Wishlist.styled";
 
@@ -33,7 +32,6 @@ const Wishlist = () => {
   const wishlistItems = useSelector(selectWishlist);
   const { checkIsInList, modifyList } = useShopList();
   const { countPrice, countSalePrice } = usePrice();
-  const width = useWindowWidth();
 
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -43,7 +41,7 @@ const Wishlist = () => {
     wishlistItems.forEach((item) => {
       const getWishlistItem = async () => {
         try {
-          setLoading(true);
+          items.length === 0 && setLoading(true);
           const responce = await fetch(`${item}`);
           setItems((prevState) =>
             prevState.some(({ id }) => id === item)
@@ -58,34 +56,32 @@ const Wishlist = () => {
       };
       getWishlistItem();
     });
-  }, [wishlistItems]);
+  }, [wishlistItems, items.length]);
 
   return (
-    <WishlistStyled>
+    <SectionStyled>
       <Container>
-        <WishlistWrapper>
+        <ListWrapper>
           <h2>Wishlist</h2>
 
           {items.length > 0 ? (
             <>
-              {width > 767 && (
-                <HeadingsListStyled>
-                  <li>
-                    <p>PRODUCTS</p>
-                  </li>
-                  <li>
-                    <p>PRICE</p>
-                  </li>
-                  <li>
-                    <p>STOCK STATUS</p>
-                  </li>
-                  <li>
-                    <p>ACTIONS</p>
-                  </li>
-                </HeadingsListStyled>
-              )}
+              <WishlistHeadingsStyled>
+                <li>
+                  <p>PRODUCTS</p>
+                </li>
+                <li>
+                  <p>PRICE</p>
+                </li>
+                <li>
+                  <p>STOCK STATUS</p>
+                </li>
+                <li>
+                  <p>ACTIONS</p>
+                </li>
+              </WishlistHeadingsStyled>
 
-              <WishlistItemsStyled>
+              <WishlistStyled>
                 {items.map(
                   ({
                     id,
@@ -113,7 +109,7 @@ const Wishlist = () => {
                           {title}
                         </WishlistLinkStyled>
 
-                        <WishlistPriceStyled>
+                        <ListPriceStyled>
                           {discountPercentage > 10 && (
                             <span>{countPrice(price)}</span>
                           )}
@@ -121,7 +117,7 @@ const Wishlist = () => {
                             price,
                             discountPercentage,
                           )}
-                        </WishlistPriceStyled>
+                        </ListPriceStyled>
 
                         <WishlistStockStatusStyled
                           $inStock={stock}>
@@ -131,7 +127,7 @@ const Wishlist = () => {
                         </WishlistStockStatusStyled>
 
                         <WishlistBtnsStyled>
-                          <CartButtonStyled
+                          <CartBtnStyled
                             type="button"
                             onClick={() =>
                               modifyList(id, "cart")
@@ -139,11 +135,12 @@ const Wishlist = () => {
                             $inList={checkIsInList(
                               id,
                               "cart",
-                            )}>
+                            )}
+                            disabled={!stock}>
                             ADD TO CART
                             <CartIcon />
-                          </CartButtonStyled>
-                          <WishlistRemoveBtnStyled
+                          </CartBtnStyled>
+                          <ListRemoveBtnStyled
                             type="button"
                             onClick={() => {
                               dispatch(
@@ -156,25 +153,25 @@ const Wishlist = () => {
                               );
                             }}>
                             <CrossCircleIcon />
-                          </WishlistRemoveBtnStyled>
+                          </ListRemoveBtnStyled>
                         </WishlistBtnsStyled>
                       </li>
                     );
                   },
                 )}
-              </WishlistItemsStyled>
+              </WishlistStyled>
             </>
           ) : (
             <p>Your wishlist is empty!</p>
           )}
-        </WishlistWrapper>
+        </ListWrapper>
 
         {error && (
           <ErrorMessageStyled>{error}</ErrorMessageStyled>
         )}
         {loading && <Loader />}
       </Container>
-    </WishlistStyled>
+    </SectionStyled>
   );
 };
 

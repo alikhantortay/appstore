@@ -10,8 +10,14 @@ export const usePrice = () => {
       : "€" + Math.round(price * 1.07);
   };
 
-  const countSalePrice = (price, discount = 10) => {
-    return countPrice(price - (price * discount) / 100);
+  const countSalePrice = (
+    price,
+    discount = 10,
+    quantity = 1,
+  ) => {
+    return countPrice(
+      (price - (price * discount) / 100) * quantity,
+    );
   };
 
   const countTotalPrice = (array) => {
@@ -26,5 +32,26 @@ export const usePrice = () => {
     );
   };
 
-  return { countPrice, countSalePrice, countTotalPrice };
+  const countTotalDiscount = (array) => {
+    let totalDiscount = 0;
+
+    array.map(({ price, quantity, discountPercentage }) => {
+      if (discountPercentage >= 10) {
+        totalDiscount +=
+          (price -
+            (price - (price * discountPercentage) / 100)) *
+          quantity;
+      }
+      return totalDiscount;
+    });
+
+    return countPrice(totalDiscount);
+  };
+
+  return {
+    countPrice,
+    countSalePrice,
+    countTotalPrice,
+    countTotalDiscount,
+  };
 };
