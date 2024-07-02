@@ -40,17 +40,28 @@ export const ModalListStyled = styled.ul`
   border-top: 1px solid #e4e7e9;
   border-bottom: 1px solid #e4e7e9;
 
-  li:not(:last-child) {
-    margin-bottom: 16px;
-  }
-
   li {
     display: flex;
     align-items: center;
 
+    &:not(:last-child) {
+      margin-bottom: 16px;
+    }
+
     img {
       margin-right: 16px;
       border: 1px solid #f5f5f5;
+    }
+
+    a {
+      transition: color 250ms ease, font-weight 100ms linear;
+      color: var(--title);
+
+      &:hover,
+      &:focus {
+        color: var(--primary);
+        font-weight: 600;
+      }
     }
 
     button {
@@ -75,26 +86,9 @@ export const ModalListStyled = styled.ul`
   }
 `;
 
-export const EmptyMessageStyled = styled.p`
-  padding: 0 24px;
-  color: var(--text);
-`;
-
-export const ModalItemTextStyled = styled.div`
-  a {
-    transition: color 250ms ease, font-weight 100ms linear;
-    color: var(--title);
-
-    &:hover,
-    &:focus {
-      color: var(--secondary);
-      font-weight: 600;
-    }
-  }
-`;
-
 export const CartModalPriceStyled = styled.span`
   display: block;
+  margin-top: 6px;
   color: var(--text);
 
   span {
@@ -108,6 +102,11 @@ export const WishlistModalPriceStyled = styled.span`
 
   font-weight: 600;
   color: var(--price);
+`;
+
+export const EmptyMessageStyled = styled.p`
+  padding: 0 24px;
+  color: var(--text);
 `;
 
 export const ModalLowerStyled = styled.div`

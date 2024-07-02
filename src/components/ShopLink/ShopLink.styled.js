@@ -8,7 +8,7 @@ export const ShopLinkStyled = styled(Link)`
   align-items: center;
   justify-content: center;
   gap: ${(props) => (props.$big ? "12px" : "8px")};
-  border: 1px solid var(--primary);
+  border: 2px solid var(--primary);
   border-radius: 2px;
   background-color: var(--primary);
   transition: background-color 200ms ease, color 200ms ease;

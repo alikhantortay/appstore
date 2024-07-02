@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mediaQueries } from "./mediaQueries";
 
 export const SectionStyled = styled.div`
   padding: 72px 0;
@@ -18,6 +19,9 @@ export const ItemListStyled = styled.ul`
   grid-area: list;
   flex-wrap: wrap;
   gap: 16px;
+
+  ${mediaQueries("mobile")`
+      li {width: 100%;}`}
 `;
 
 export const ErrorMessageStyled = styled.p`

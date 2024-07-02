@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ModalLinkStyled } from "../../Header/LowerHeader/Modal/Modal.styled";
+import { ShopLinkStyled } from "../../ShopLink/ShopLink.styled";
 
 export const CartTotalsStyled = styled.div`
   padding: 20px 24px 24px;
@@ -40,15 +40,10 @@ export const CartTotalStyled = styled.div`
   display: flex;
   margin: 16px 0 24px;
   justify-content: space-between;
+
+  font-weight: 700;
 `;
 
-export const OrderLinkStyled = styled(ModalLinkStyled)`
-  background-color: var(--primary);
-  color: var(--textSecondary);
-
-  &:hover,
-  &:focus {
-    background-color: #fff;
-    color: var(--primary);
-  }
+export const OrderLinkStyled = styled(ShopLinkStyled)`
+  display: flex;
 `;

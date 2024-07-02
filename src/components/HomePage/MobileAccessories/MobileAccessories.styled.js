@@ -11,6 +11,7 @@ export const MobileAccessoriesStyled = styled.div`
       "title pods"
       "list pods"
       "list sales";
+    align-items: start;
     gap: 24px;
 
     ${mediaQueries("mobile")`display: block;`}

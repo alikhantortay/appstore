@@ -51,7 +51,7 @@ export const CartTotals = ({ items }) => {
           )}
         </span>
       </CartTotalStyled>
-      <OrderLinkStyled to="/shopping-cart/checkout">
+      <OrderLinkStyled to="/shopping-cart/checkout" $big>
         PROCEED TO CHECKOUT
         <ArrowIcon />
       </OrderLinkStyled>

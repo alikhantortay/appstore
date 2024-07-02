@@ -14,7 +14,6 @@ import { Loader } from "../../../Loader/Loader";
 import {
   CartModalPriceStyled,
   EmptyMessageStyled,
-  ModalItemTextStyled,
   ModalLinkStyled,
   ModalListStyled,
   ModalLowerStyled,
@@ -95,7 +94,7 @@ export const CartModal = ({ onClick }) => {
                     height="80px"
                     loading="lazy"
                   />
-                  <ModalItemTextStyled>
+                  <div>
                     <Link
                       to={`/shop/${category}/${title
                         .toLowerCase()
@@ -113,7 +112,7 @@ export const CartModal = ({ onClick }) => {
                         )}
                       </span>
                     </CartModalPriceStyled>
-                  </ModalItemTextStyled>
+                  </div>
                   <button
                     type="button"
                     onClick={() => {

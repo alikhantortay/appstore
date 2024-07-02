@@ -13,7 +13,6 @@ import { ReactComponent as ArrowRightIcon } from "../../../../icons/ArrowRight.s
 
 import {
   EmptyMessageStyled,
-  ModalItemTextStyled,
   ModalLinkStyled,
   ModalListStyled,
   ModalLowerStyled,
@@ -87,7 +86,7 @@ export const WishlistModal = ({ onClick }) => {
                     height="80px"
                     loading="lazy"
                   />
-                  <ModalItemTextStyled>
+                  <div>
                     <Link
                       to={`/shop/${category}/${title
                         .toLowerCase()
@@ -102,7 +101,7 @@ export const WishlistModal = ({ onClick }) => {
                         discountPercentage,
                       )}
                     </WishlistModalPriceStyled>
-                  </ModalItemTextStyled>
+                  </div>
                   <button
                     type="button"
                     onClick={() => {
