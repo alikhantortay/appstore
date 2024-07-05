@@ -15,7 +15,7 @@ import {
   FormWrapper,
   GoogleBtnStyled,
 } from "./Account.styled";
-import { AuthSeparator } from "../../styles/authUI.styled";
+import { AuthSeparator } from "../../styles/authStyles";
 
 const Account = () => {
   const { logInGoogle } = useAuth();

@@ -12,17 +12,19 @@ import { ReactComponent as CartIcon } from "../../icons/CartSecond.svg";
 import { ReactComponent as CrossCircleIcon } from "../../icons/XCircle.svg";
 
 import {
+  SectionStyled,
   CartBtnStyled,
   ErrorMessageStyled,
-  ListPriceStyled,
-  ListRemoveBtnStyled,
-  ListWrapper,
-  SectionStyled,
 } from "../../styles/common";
+import {
+  ListWrapper,
+  ListPriceStyled,
+  ListStockStatusStyled,
+  ListRemoveBtnStyled,
+} from "../../styles/listStyles";
 import {
   WishlistHeadingsStyled,
   WishlistLinkStyled,
-  WishlistStockStatusStyled,
   WishlistStyled,
   WishlistBtnsStyled,
 } from "./Wishlist.styled";
@@ -119,12 +121,12 @@ const Wishlist = () => {
                           )}
                         </ListPriceStyled>
 
-                        <WishlistStockStatusStyled
+                        <ListStockStatusStyled
                           $inStock={stock}>
                           {stock
                             ? "IN STOCK"
                             : "OUT OF STOCK"}
-                        </WishlistStockStatusStyled>
+                        </ListStockStatusStyled>
 
                         <WishlistBtnsStyled>
                           <CartBtnStyled

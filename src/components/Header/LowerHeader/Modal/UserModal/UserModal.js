@@ -16,7 +16,7 @@ import {
   AuthLabelStyled,
   AuthSeparator,
   LogInBtnStyled,
-} from "../../../../../styles/authUI.styled";
+} from "../../../../../styles/authStyles";
 
 export const UserModal = ({ onClick }) => {
   const { logIn, logOut } = useAuth();

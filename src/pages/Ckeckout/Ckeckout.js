@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { usePrice } from "../../hooks/usePrice";
 import { useSelector } from "react-redux";
 import { selectCart } from "../../redux/shop/selectors";
+import { selectUser } from "../../redux/auth/selectors";
 import { fetch } from "../../API";
 
 import { Container } from "../../components/Container/Container";
@@ -23,11 +24,13 @@ import {
   CheckoutListStyled,
   CheckoutStyled,
   CheckoutTotalsListStyled,
-  OrderedMsgStyled,
+  CheckoutMsgStyled,
 } from "./Checkout.styled";
 
 const Ckeckout = () => {
+  const navigate = useNavigate();
   const cartItems = useSelector(selectCart);
+  const { isLoggedIn } = useSelector(selectUser);
   const {
     countPrice,
     countSalePrice,
@@ -101,7 +104,6 @@ const Ckeckout = () => {
                         <CartModalPriceStyled>
                           {quantity} x{" "}
                           <span>
-                            4
                             {countSalePrice(
                               price,
                               discountPercentage,
@@ -154,16 +156,29 @@ const Ckeckout = () => {
           </CartTotalStyled>
 
           {isOrdered ? (
-            <OrderedMsgStyled>
+            <CheckoutMsgStyled>
               Your order was placed!
-            </OrderedMsgStyled>
+            </CheckoutMsgStyled>
           ) : (
-            <CheckoutBtnStyled
-              type="button"
-              onClick={() => setIsOrdered(true)}>
-              PLACE ORDER
-              <ArrowIcon />
-            </CheckoutBtnStyled>
+            <>
+              {!isLoggedIn && (
+                <CheckoutMsgStyled>
+                  Sign in to proceed.
+                </CheckoutMsgStyled>
+              )}
+              <CheckoutBtnStyled
+                type="button"
+                onClick={() => {
+                  isLoggedIn
+                    ? setIsOrdered(true)
+                    : navigate("/user-account/sign-in", {
+                        state: "/shopping-cart/checkout",
+                      });
+                }}>
+                {isLoggedIn ? "PLACE ORDER" : "SIGN IN"}
+                <ArrowIcon />
+              </CheckoutBtnStyled>
+            </>
           )}
 
           {error && (

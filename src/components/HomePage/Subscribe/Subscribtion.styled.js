@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { mediaQueries } from "../../../styles/mediaQueries";
-import { LogInBtnStyled } from "../../../styles/authUI.styled";
+import { LogInBtnStyled } from "../../../styles/authStyles";
 
 export const SubscribtionStyled = styled.div`
   padding: 72px 0;

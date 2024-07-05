@@ -17,7 +17,7 @@ import {
   ListPriceStyled,
   ListRemoveBtnStyled,
   ListWrapper,
-} from "../../../styles/common";
+} from "../../../styles/listStyles";
 import {
   CartBtnstyled,
   CartHeadingsStyled,

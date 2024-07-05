@@ -6,7 +6,7 @@ import { ReactComponent as ArrowRightIcon } from "../../../icons/ArrowRight.svg"
 import {
   AuthLabelStyled,
   LogInBtnStyled,
-} from "../../../styles/authUI.styled";
+} from "../../../styles/authStyles";
 import {
   AuthLinksStyled,
   ForgetPasswordLowerTextStyled,

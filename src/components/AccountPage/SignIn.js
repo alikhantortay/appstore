@@ -1,6 +1,10 @@
 import { useRef } from "react";
 import { useAuth } from "../../hooks/useAuth";
-import { Link } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 
 import { ReactComponent as ArrowRightIcon } from "../../icons/ArrowRight.svg";
 import { ReactComponent as EyeIcon } from "../../icons/Eye.svg";
@@ -8,11 +12,13 @@ import { ReactComponent as EyeIcon } from "../../icons/Eye.svg";
 import {
   AuthLabelStyled,
   LogInBtnStyled,
-} from "../../styles/authUI.styled";
+} from "../../styles/authStyles";
 
 const SignIn = () => {
   const { logIn } = useAuth();
   const passwordRef = useRef();
+  const navigate = useNavigate();
+  const backLink = useLocation().state;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,6 +27,7 @@ const SignIn = () => {
       form.elements.email.value,
       form.elements.password.value,
     );
+    backLink && navigate(backLink);
   };
 
   const changePasswordVisibilty = () => {

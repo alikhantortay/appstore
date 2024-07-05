@@ -59,7 +59,9 @@ export const CheckoutBtnStyled = styled(CartBtnStyled)`
   width: 100%;
 `;
 
-export const OrderedMsgStyled = styled.p`
+export const CheckoutMsgStyled = styled.p`
+  padding-bottom: 8px;
+
   color: var(--primary);
   font-size: 18px;
   font-weight: 600;

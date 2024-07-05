@@ -83,12 +83,6 @@ export const WishlistLinkStyled = styled(Link)`
   }
 `;
 
-export const WishlistStockStatusStyled = styled.span`
-  font-weight: 600;
-  color: ${({ $inStock }) =>
-    $inStock ? "var(--ok);" : "var(--danger);"};
-`;
-
 export const WishlistBtnsStyled = styled.div`
   gap: 24px;
 
