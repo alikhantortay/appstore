@@ -83,7 +83,7 @@ export const ItemCard = ({ item, bestDeals }) => {
         </StarRatingStyled>
       )}
       <Link
-        to={`shop/${category}/${title
+        to={`/shop/${category}/${title
           .toLowerCase()
           .replaceAll(" ", "-")}`}
         state={id}>

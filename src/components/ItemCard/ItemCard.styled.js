@@ -10,6 +10,7 @@ export const ItemCardStyled = styled.div`
   a {
     display: block;
     margin: 4px 0;
+    width: 202px;
     height: 40px;
 
     color: var(--title);

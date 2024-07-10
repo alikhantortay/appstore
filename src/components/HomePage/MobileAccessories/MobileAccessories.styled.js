@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { mediaQueries } from "../../../styles/mediaQueries";
+import { ArticleStyled } from "../../../styles/common";
 import { ShopLinkStyled } from "../../ShopLink/ShopLink.styled";
 
 export const MobileAccessoriesStyled = styled.div`
@@ -11,18 +12,14 @@ export const MobileAccessoriesStyled = styled.div`
       "title pods"
       "list pods"
       "list sales";
+    grid-template-columns: auto 312px;
     align-items: start;
     gap: 24px;
 
+    ${mediaQueries(
+      "tablet",
+    )`grid-template-columns: auto 200px;`}
     ${mediaQueries("mobile")`display: block;`}
-
-    li {
-      max-width: 234px;
-
-      ${mediaQueries("tablet")`
-      max-width: none;
-      width: 100%;`}
-    }
   }
 `;
 
@@ -54,57 +51,22 @@ export const AccessoriesTitleStyled = styled.div`
   }
 `;
 
-export const AccessoriesPodsStyled = styled.div`
+export const AccessoriesPodsStyled = styled(ArticleStyled)`
   grid-area: pods;
-  width: 312px;
-  padding: 32px;
-  border-radius: 4px;
   background-color: #f7e99e;
-  text-align: center;
 
-  ${mediaQueries("mobile")`width: 100%;
+  ${mediaQueries("mobile")`
   margin: 20px 0;
-  padding: 32px 16px;`}
-
-  img {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  h3 {
-    margin: 12px 0 8px;
-
-    font-size: 26px;
-    font-weight: 600;
-    line-height: 1.23;
-    color: var(--title);
-  }
+`}
 
   p {
     font-size: 16px;
-    line-height: 1.5;
     color: var(--text);
-
-    span {
-      display: inline-block;
-      margin: 16px 0 24px 8px;
-      padding: 6px 12px;
-      border-radius: 3px;
-      background-color: #fff;
-
-      font-weight: 600;
-      color: var(--title);
-    }
-  }
-
-  a {
-    width: 100%;
   }
 `;
 
 export const SummerSalesStyled = styled.div`
   grid-area: sales;
-  width: 312px;
   padding: 40px 24px;
   border-radius: 4px;
   background-color: #124261;

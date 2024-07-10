@@ -70,151 +70,156 @@ const Compare = () => {
     <SectionStyled>
       <Container>
         <CompareWrapper>
-          <CompareHeadingsStyled>
-            <li>
-              <p>Customer feedback:</p>
-            </li>
-            <li>
-              <p>Price:</p>
-            </li>
-            <li>
-              <p>Sold by:</p>
-            </li>
-            <li>
-              <p>Brand:</p>
-            </li>
-            <li>
-              <p>Stock status:</p>
-            </li>
-            <li>
-              <p>Size:</p>
-            </li>
-            <li>
-              <p>Weight:</p>
-            </li>
-          </CompareHeadingsStyled>
-
-          {items.length > 0 && (
-            <CompareListStyled>
-              {items.map(
-                ({
-                  id,
-                  title,
-                  thumbnail,
-                  category,
-                  brand,
-                  rating,
-                  reviews,
-                  price,
-                  discountPercentage,
-                  stock,
-                  dimensions: { width },
-                  weight,
-                }) => {
-                  return (
-                    <li key={id}>
-                      <ListRemoveBtnStyled
-                        type="button"
-                        onClick={() => {
-                          dispatch(removeFromCompare(id));
-                          setItems((prevState) =>
-                            prevState.filter(
-                              (item) => item.id !== id,
-                            ),
-                          );
-                        }}>
-                        <CrossCircleIcon />
-                      </ListRemoveBtnStyled>
-
-                      <CompareLinkStyled
-                        to={`shop/${category}/${title
-                          .toLowerCase()
-                          .replaceAll(" ", "-")}`}
-                        state={id}>
-                        <img
-                          src={thumbnail}
-                          alt={title}
-                          width={272}
-                          height={272}
-                          loading="lazy"
-                        />
-                        <p>
-                          {windowWidth > 567
-                            ? title
-                            : title.slice(0, 20) + "..."}
-                        </p>
-                      </CompareLinkStyled>
-
-                      <CompareBtnsStyled>
-                        <CartBtnStyled
+          {items.length > 0 ? (
+            <>
+              <CompareHeadingsStyled>
+                <li>
+                  <p>Customer feedback:</p>
+                </li>
+                <li>
+                  <p>Price:</p>
+                </li>
+                <li>
+                  <p>Sold by:</p>
+                </li>
+                <li>
+                  <p>Brand:</p>
+                </li>
+                <li>
+                  <p>Stock status:</p>
+                </li>
+                <li>
+                  <p>Size:</p>
+                </li>
+                <li>
+                  <p>Weight:</p>
+                </li>
+              </CompareHeadingsStyled>
+              <CompareListStyled>
+                {items.map(
+                  ({
+                    id,
+                    title,
+                    thumbnail,
+                    category,
+                    brand,
+                    rating,
+                    reviews,
+                    price,
+                    discountPercentage,
+                    stock,
+                    dimensions: { width },
+                    weight,
+                  }) => {
+                    return (
+                      <li key={id}>
+                        <ListRemoveBtnStyled
                           type="button"
-                          onClick={() =>
-                            modifyList(id, "cart")
-                          }
-                          $inList={checkIsInList(
-                            id,
-                            "cart",
+                          onClick={() => {
+                            dispatch(removeFromCompare(id));
+                            setItems((prevState) =>
+                              prevState.filter(
+                                (item) => item.id !== id,
+                              ),
+                            );
+                          }}>
+                          <CrossCircleIcon />
+                        </ListRemoveBtnStyled>
+
+                        <CompareLinkStyled
+                          to={`shop/${category}/${title
+                            .toLowerCase()
+                            .replaceAll(" ", "-")}`}
+                          state={id}>
+                          <img
+                            src={thumbnail}
+                            alt={title}
+                            width={272}
+                            height={272}
+                            loading="lazy"
+                          />
+                          <p>
+                            {windowWidth > 567
+                              ? title
+                              : title.slice(0, 20) + "..."}
+                          </p>
+                        </CompareLinkStyled>
+
+                        <CompareBtnsStyled>
+                          <CartBtnStyled
+                            type="button"
+                            onClick={() =>
+                              modifyList(id, "cart")
+                            }
+                            $inList={checkIsInList(
+                              id,
+                              "cart",
+                            )}
+                            disabled={!stock}>
+                            {windowWidth > 1119 &&
+                              "ADD TO CART"}
+                            <CartIcon />
+                          </CartBtnStyled>
+                          <CompareWishlistBtnStyled
+                            type="button"
+                            onClick={() =>
+                              modifyList(id, "wishlist")
+                            }
+                            $inList={checkIsInList(
+                              id,
+                              "wishlist",
+                            )}
+                            disabled={!stock}>
+                            <HeartIcon />
+                          </CompareWishlistBtnStyled>
+                        </CompareBtnsStyled>
+
+                        <CompareStarRatingStyled>
+                          <Stars rating={rating} />
+                          {reviews.length && (
+                            <p>{`(${reviews.length})`}</p>
                           )}
-                          disabled={!stock}>
-                          {windowWidth > 1119 &&
-                            "ADD TO CART"}
-                          <CartIcon />
-                        </CartBtnStyled>
-                        <CompareWishlistBtnStyled
-                          type="button"
-                          onClick={() =>
-                            modifyList(id, "wishlist")
-                          }
-                          $inList={checkIsInList(
-                            id,
-                            "wishlist",
+                        </CompareStarRatingStyled>
+
+                        <ComparePriceStyled>
+                          {windowWidth > 567 &&
+                            discountPercentage > 10 && (
+                              <span>
+                                {countPrice(price)}
+                              </span>
+                            )}
+                          {countSalePrice(
+                            price,
+                            discountPercentage,
                           )}
-                          disabled={!stock}>
-                          <HeartIcon />
-                        </CompareWishlistBtnStyled>
-                      </CompareBtnsStyled>
+                        </ComparePriceStyled>
 
-                      <CompareStarRatingStyled>
-                        <Stars rating={rating} />
-                        {reviews.length && (
-                          <p>{`(${reviews.length})`}</p>
-                        )}
-                      </CompareStarRatingStyled>
+                        <p>{brand ? brand : "Clicon"}</p>
+                        <p>{brand ? brand : "Clicon"}</p>
 
-                      <ComparePriceStyled>
-                        {windowWidth > 567 &&
-                          discountPercentage > 10 && (
-                            <span>{countPrice(price)}</span>
-                          )}
-                        {countSalePrice(
-                          price,
-                          discountPercentage,
-                        )}
-                      </ComparePriceStyled>
+                        <ListStockStatusStyled
+                          $inStock={stock}>
+                          {stock
+                            ? "IN STOCK"
+                            : "OUT OF STOCK"}
+                        </ListStockStatusStyled>
 
-                      <p>{brand}</p>
-                      <p>{brand}</p>
-
-                      <ListStockStatusStyled
-                        $inStock={stock}>
-                        {stock
-                          ? "IN STOCK"
-                          : "OUT OF STOCK"}
-                      </ListStockStatusStyled>
-
-                      <p>{`${width} inches, ${(
-                        width * 2.54
-                      ).toFixed(2)} cm`}</p>
-                      <p>{`${Math.round(
-                        weight * 453.6,
-                      )} g (${(weight * 16).toFixed(
-                        2,
-                      )} oz)`}</p>
-                    </li>
-                  );
-                },
-              )}
-            </CompareListStyled>
+                        <p>{`${width} inches, ${(
+                          width * 2.54
+                        ).toFixed(2)} cm`}</p>
+                        <p>{`${Math.round(
+                          weight * 453.6,
+                        )} g (${(weight * 16).toFixed(
+                          2,
+                        )} oz)`}</p>
+                      </li>
+                    );
+                  },
+                )}
+              </CompareListStyled>
+            </>
+          ) : (
+            <p>Your compare list is empty!</p>
           )}
         </CompareWrapper>
 

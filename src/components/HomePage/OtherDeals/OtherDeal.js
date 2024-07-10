@@ -1,6 +1,8 @@
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { OtherDealStyled } from "./OtherDeals.styled";
 import { usePrice } from "../../../hooks/usePrice";
+
+import { OtherDealStyled } from "./OtherDeals.styled";
 
 export const OtherDeal = ({ items, title }) => {
   const { countSalePrice } = usePrice();
@@ -47,4 +49,18 @@ export const OtherDeal = ({ items, title }) => {
       </ul>
     </OtherDealStyled>
   );
+};
+
+OtherDeal.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      category: PropTypes.string.isRequired,
+      thumbnail: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      discountPercentage: PropTypes.number.isRequired,
+    }).isRequired,
+  ).isRequired,
+  title: PropTypes.string.isRequired,
 };

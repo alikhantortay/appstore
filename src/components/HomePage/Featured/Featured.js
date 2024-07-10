@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useWindowWidth } from "../../../hooks/useWindowWidth";
 import { fetch } from "../../../API";
 
 import { Container } from "../../Container/Container";
@@ -26,8 +25,6 @@ import {
 } from "./Featured.styled";
 
 export const Featured = () => {
-  const width = useWindowWidth();
-
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);

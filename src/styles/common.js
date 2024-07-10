@@ -76,3 +76,46 @@ export const CartBtnStyled = styled.button`
     background-color: #adb7bc;
   }
 `;
+
+export const ArticleStyled = styled.article`
+  padding: 32px;
+  border-radius: 4px;
+  text-align: center;
+
+  ${mediaQueries("mobile")`width: 100%;
+  padding: 32px 16px;`}
+
+  img {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  h3 {
+    margin: 24px 0 8px;
+
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.23;
+    color: var(--title);
+  }
+
+  a,
+  button {
+    width: 100%;
+  }
+`;
+
+export const ArticlePriceStyled = styled.span`
+  color: var(--text);
+
+  span {
+    display: inline-block;
+    margin: 16px 0 24px 8px;
+    padding: 6px 12px;
+    border-radius: 3px;
+    background-color: #fff;
+
+    font-weight: 600;
+    color: var(--title);
+  }
+`;

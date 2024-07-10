@@ -10,6 +10,7 @@ import { ShopLink } from "../../ShopLink/ShopLink";
 import { ReactComponent as ArrowRightIcon } from "../../../icons/ArrowRight.svg";
 
 import {
+  ArticlePriceStyled,
   ErrorMessageStyled,
   ItemListStyled,
 } from "../../../styles/common";
@@ -83,7 +84,7 @@ export const MobileAccessories = () => {
             />
             <h3>{pods.title}</h3>
             <p>{pods.description.slice(0, 86)}</p>
-            <p>
+            <ArticlePriceStyled>
               Only for:
               <span>
                 {countSalePrice(
@@ -91,7 +92,7 @@ export const MobileAccessories = () => {
                   pods.discountPercentage,
                 )}
               </span>
-            </p>
+            </ArticlePriceStyled>
             <ShopLink
               to={`shop/${pods.category}/${pods.title}`}
               state={pods.id}

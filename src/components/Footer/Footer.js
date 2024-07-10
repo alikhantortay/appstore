@@ -1,9 +1,10 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectCategories } from "../../redux/shop/selectors";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
 
 import { Container } from "../Container/Container";
+import { Tags } from "../Tags/Tags";
 import { ReactComponent as Logo } from "../../icons/header/logo.svg";
 import { ReactComponent as ArrowRight } from "../../icons/ArrowRight.svg";
 import { ReactComponent as GPlayIcon } from "../../icons/GooglePlay.svg";
@@ -16,7 +17,6 @@ import {
   FooterLinksStyled,
   FooterLogoLinkStyled,
   FooterStyled,
-  FooterTagsStyled,
   LowerFooterStyled,
 } from "./Footer.styled";
 
@@ -116,56 +116,7 @@ export const Footer = () => {
           </a>
         </FooterAppLinksStyled>
 
-        <FooterTagsStyled>
-          <h2>Popular Tag</h2>
-          <ul>
-            <li>
-              <Link to="/shop&q=game">Game</Link>
-            </li>
-            <li>
-              <Link to="/shop&q=iphone">iPhone</Link>
-            </li>
-            <li>
-              <Link to="/shop&q=tv">TV</Link>
-            </li>
-            <li>
-              <Link to="/shop&q=asus+laptops">
-                Asus Laptops
-              </Link>
-            </li>
-            <li>
-              <Link to="/shop&q=macbook">MacBook</Link>
-            </li>
-            <li>
-              <Link to="/shop&q=ssd">SSD</Link>
-            </li>
-            <li>
-              <Link to="/shop&q=graphic+card">
-                Graphic Card
-              </Link>
-            </li>
-            <li>
-              <Link to="/shop&q=power+bank">
-                Power Bank
-              </Link>
-            </li>
-            <li>
-              <Link to="/shop&q=smart+tv">Smart TV</Link>
-            </li>
-            <li>
-              <Link to="/shop&q=speaker">Speaker</Link>
-            </li>
-            <li>
-              <Link to="/shop&q=tablet">Tablet</Link>
-            </li>
-            <li>
-              <Link to="/shop&q=microvawe">Microvawe</Link>
-            </li>
-            <li>
-              <Link to="/shop&q=samsung">Samsung</Link>
-            </li>
-          </ul>
-        </FooterTagsStyled>
+        <Tags footer />
       </Container>
       <LowerFooterStyled>
         <p>

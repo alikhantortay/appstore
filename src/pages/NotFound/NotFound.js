@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import { Container } from "../../components/Container/Container";
-import { ReactComponent as ArrowRight } from "../../icons/ArrowRight.svg";
+import { ReactComponent as ArrowIcon } from "../../icons/ArrowRight.svg";
 import { ReactComponent as HomeIcon } from "../../icons/House.svg";
 
 import {
@@ -27,7 +27,7 @@ const NotFound = () => {
           <GoBackLinkStyled
             to="#"
             onClick={() => navigate(-1)}>
-            <ArrowRight />
+            <ArrowIcon />
             GO BACK
           </GoBackLinkStyled>
           <HomeLinkStyled to="/">

@@ -171,8 +171,16 @@ export const Cart = ({ items, setItems }) => {
                           onChange={(e) =>
                             setQuantity(e, id)
                           }
-                          value={quantity}
-                          placeholder={quantity}
+                          value={
+                            quantity > 9
+                              ? quantity
+                              : "0" + quantity
+                          }
+                          placeholder={
+                            quantity > 9
+                              ? quantity
+                              : "0" + quantity
+                          }
                         />
                         <button
                           type="button"

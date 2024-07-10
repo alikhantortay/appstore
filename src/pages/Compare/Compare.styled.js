@@ -51,7 +51,8 @@ export const CompareListStyled = styled.ul`
 
     ${mediaQueries(
       "mobile",
-    )`> :nth-last-child(-n + 2) {height: 84px;}`}
+    )`> :nth-last-child(2) {height: 84px;}
+    > :last-child, :nth-child(6), :nth-child(7) {height: 64px;}`}
 
     > * {
       padding: 12px 24px;
