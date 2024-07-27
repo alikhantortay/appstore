@@ -32,51 +32,6 @@ export const ErrorMessageStyled = styled.p`
   color: var(--primary);
 `;
 
-export const CartBtnStyled = styled.button`
-  display: flex;
-  width: 176px;
-  height: 48px;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border: 2px solid var(--primary);
-  border-radius: 2px;
-  background-color: var(--primary);
-  transition: background-color 250ms ease, color 250ms ease;
-
-  font-weight: 700;
-  line-height: 1;
-  color: var(--textSecondary);
-
-  svg {
-    ${({ $inList }) => {
-      return $inList && "fill: #fff;";
-    }}
-  }
-
-  &:hover {
-    cursor: pointer;
-    background-color: #fff;
-    color: var(--primary);
-
-    svg {
-      ${({ $inList }) => {
-        return $inList && "fill: var(--primary);";
-      }}
-    }
-
-    &:disabled {
-      cursor: default;
-      color: #fff;
-    }
-  }
-
-  &:disabled {
-    border-color: #adb7bc;
-    background-color: #adb7bc;
-  }
-`;
-
 export const ArticleStyled = styled.article`
   padding: 32px;
   border-radius: 4px;

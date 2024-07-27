@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useShopList } from "../../hooks/useShopList";
 import { usePrice } from "../../hooks/usePrice";
 import { useDispatch, useSelector } from "react-redux";
 import { selectWishlist } from "../../redux/shop/selectors";
@@ -8,12 +7,10 @@ import { fetch } from "../../API";
 
 import { Container } from "../../components/Container/Container";
 import { Loader } from "../../components/Loader/Loader";
-import { ReactComponent as CartIcon } from "../../icons/CartSecond.svg";
 import { ReactComponent as CrossCircleIcon } from "../../icons/XCircle.svg";
 
 import {
   SectionStyled,
-  CartBtnStyled,
   ErrorMessageStyled,
 } from "../../styles/common";
 import {
@@ -28,11 +25,11 @@ import {
   WishlistStyled,
   WishlistBtnsStyled,
 } from "./Wishlist.styled";
+import { CartBtn } from "../../components/CartBtn/CartBtn";
 
 const Wishlist = () => {
   const dispatch = useDispatch();
   const wishlistItems = useSelector(selectWishlist);
-  const { checkIsInList, modifyList } = useShopList();
   const { countPrice, countSalePrice } = usePrice();
 
   const [items, setItems] = useState([]);
@@ -129,19 +126,11 @@ const Wishlist = () => {
                         </ListStockStatusStyled>
 
                         <WishlistBtnsStyled>
-                          <CartBtnStyled
-                            type="button"
-                            onClick={() =>
-                              modifyList(id, "cart")
-                            }
-                            $inList={checkIsInList(
-                              id,
-                              "cart",
-                            )}
-                            disabled={!stock}>
-                            ADD TO CART
-                            <CartIcon />
-                          </CartBtnStyled>
+                          {" "}
+                          <CartBtn
+                            id={id}
+                            disabled={!stock}
+                          />
                           <ListRemoveBtnStyled
                             type="button"
                             onClick={() => {

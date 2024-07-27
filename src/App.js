@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useAuth } from "./hooks/useAuth";
 import { fetchCategories } from "./redux/shop/categoriesSlice";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
+import { register } from "swiper/element/bundle";
 
 import { SharedLayout } from "./components/SharedLayout/SharedLayout";
 import { RestrictedRoute } from "./components/RestrictedRoute";
@@ -65,6 +66,8 @@ Notify.init({
   },
 });
 
+register();
+
 const App = () => {
   const dispatch = useDispatch();
   const { checkIsUserLoggedIn } = useAuth();
@@ -116,7 +119,7 @@ const App = () => {
             element={<WishlistPage />}
           />
           <Route
-            path="/shop/:category/:id"
+            path="/shop/:category/:title"
             element={<DetailsPage />}
           />
           <Route path="/about" element={<AboutPage />} />

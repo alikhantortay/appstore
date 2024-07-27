@@ -8,6 +8,7 @@ export const variables = css`
     --titleSecondary: #2484c2;
     --text: #475156;
     --textSecondary: #fff;
+    --textThird: #5f6c72;
     --disabled: #929fa5;
     --disabledSecondary: #e4e7e9;
     --price: #2da5f3;

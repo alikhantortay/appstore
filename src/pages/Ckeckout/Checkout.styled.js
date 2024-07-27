@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { CartTotalsListStyled } from "../../components/CartPage/CartTotals/CartTotals.styled";
-import { CartBtnStyled } from "../../styles/common";
+import { CartBtnStyled } from "../../components/CartBtn/CartBtn.styled";
 import { mediaQueries } from "../../styles/mediaQueries";
 
 export const CheckoutStyled = styled.div`

@@ -117,12 +117,16 @@ export const QuantityStyled = styled.div`
   align-items: center;
   justify-content: space-between;
   border: 1px solid var(--disabledSecondary);
+  border-radius: 3px;
 
   button {
+    display: flex;
     width: 32px;
     height: 32px;
     border: none;
     background-color: transparent;
+    align-items: center;
+    justify-content: center;
     transition: color 250ms ease;
 
     font-size: 24px;

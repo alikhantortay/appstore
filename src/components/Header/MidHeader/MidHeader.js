@@ -41,32 +41,50 @@ export const MidHeader = () => {
               <p>Follow us:</p>
               <ul>
                 <li>
-                  <a href="https://twitter.com/">
+                  <a
+                    href="https://twitter.com/"
+                    target="_blank"
+                    rel="noreferrer">
                     <TwitterIcon />
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.facebook.com/">
+                  <a
+                    href="https://www.facebook.com/"
+                    target="_blank"
+                    rel="noreferrer">
                     <FacebookIcon />
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.pinterest.com/">
+                  <a
+                    href="https://www.pinterest.com/"
+                    target="_blank"
+                    rel="noreferrer">
                     <PinterestIcon />
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.reddit.com/">
+                  <a
+                    href="https://www.reddit.com/"
+                    target="_blank"
+                    rel="noreferrer">
                     <RedditIcon />
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.youtube.com/">
+                  <a
+                    href="https://www.youtube.com/"
+                    target="_blank"
+                    rel="noreferrer">
                     <YoutubeIcon />
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.instagram.com/">
+                  <a
+                    href="https://www.instagram.com/"
+                    target="_blank"
+                    rel="noreferrer">
                     <InstagramIcon />
                   </a>
                 </li>

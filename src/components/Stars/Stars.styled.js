@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StarsStyled = styled.span`
+export const StarsStyled = styled.div`
   display: inline-block;
   height: 20px;
   color: ${(props) => {

@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { useWindowWidth } from "../../../hooks/useWindowWidth";
 import { useSelector } from "react-redux";
 import { selectCategories } from "../../../redux/shop/selectors";
-import { register } from "swiper/element/bundle";
 
 import { Container } from "../../Container/Container";
 
@@ -12,8 +11,6 @@ import { CategoriesStyled } from "./Categories.styled";
 export const Categories = () => {
   const categories = useSelector(selectCategories);
   const width = useWindowWidth();
-
-  register();
 
   return (
     <CategoriesStyled>
@@ -27,7 +24,7 @@ export const Categories = () => {
           slides-per-view="auto">
           {categories.map(({ slug, name, img }) => {
             return (
-              <swiper-slide key={slug}>
+              <swiper-slide key={slug} lazy="true">
                 <Link to={`/shop/${slug}`}>
                   <img
                     src={img}

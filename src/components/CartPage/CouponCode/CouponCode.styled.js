@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { CartBtnStyled } from "../../../styles/common";
+import { CartBtnStyled } from "../../../components/CartBtn/CartBtn.styled";
 
 export const CouponCodeStyled = styled.div`
   border: 1px solid var(--disabledSecondary);

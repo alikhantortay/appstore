@@ -15,7 +15,6 @@ import { ReactComponent as HeartIcon } from "../../icons/Heart.svg";
 import { ReactComponent as CartIcon } from "../../icons/CartSecond.svg";
 
 import {
-  CartBtnStyled,
   ErrorMessageStyled,
   SectionStyled,
 } from "../../styles/common";
@@ -23,6 +22,7 @@ import {
   ListRemoveBtnStyled,
   ListStockStatusStyled,
 } from "../../styles/listStyles";
+import { CartBtnStyled } from "../../components/CartBtn/CartBtn.styled";
 import {
   CompareBtnsStyled,
   CompareHeadingsStyled,

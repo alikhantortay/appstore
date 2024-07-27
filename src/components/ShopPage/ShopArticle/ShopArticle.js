@@ -1,22 +1,18 @@
 import { useEffect, useState } from "react";
 import { usePrice } from "../../../hooks/usePrice";
-import { useShopList } from "../../../hooks/useShopList";
 import { fetch } from "../../../API";
 
 import { Loader } from "../../Loader/Loader";
-import { ReactComponent as CartIcon } from "../../../icons/CartSecond.svg";
 import { ReactComponent as ArrowIcon } from "../../../icons/ArrowRight.svg";
 import { ReactComponent as AppleIcon } from "../../../icons/Apple.svg";
 
-import {
-  CartBtnStyled,
-  ErrorMessageStyled,
-} from "../../../styles/common";
+import { ErrorMessageStyled } from "../../../styles/common";
 import {
   ShopArticleLinkStyled,
   ShopArticlePriceStyled,
   ShopArticleStyled,
 } from "./ShopArticle.styled";
+import { CartBtn } from "../../CartBtn/CartBtn";
 
 export const ShopArticle = () => {
   const [item, setItem] = useState(null);
@@ -24,13 +20,12 @@ export const ShopArticle = () => {
   const [error, setError] = useState(null);
 
   const { countSalePrice } = usePrice();
-  const { checkIsInList, modifyList } = useShopList();
 
   useEffect(() => {
     const getItem = async () => {
       try {
         setLoading(true);
-        const responce = await fetch(`/106`);
+        const responce = await fetch("/106");
         setItem(responce.data);
       } catch (error) {
         setError(error);
@@ -66,13 +61,7 @@ export const ShopArticle = () => {
               )}
             </span>
           </ShopArticlePriceStyled>
-          <CartBtnStyled
-            type="button"
-            onClick={() => modifyList(item.id, "cart")}
-            $inList={checkIsInList(item.id, "cart")}>
-            ADD TO CART
-            <CartIcon />
-          </CartBtnStyled>
+          <CartBtn id={item.id} />
           <ShopArticleLinkStyled
             to={`/shop/${item.category}/${item.title
               .toLowerCase()

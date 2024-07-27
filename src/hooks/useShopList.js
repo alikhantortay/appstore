@@ -38,12 +38,12 @@ export const useShopList = () => {
     }
   };
 
-  const modifyList = (id, listType) => {
+  const modifyList = (id, listType, quantity = 1) => {
     switch (listType) {
       case "cart":
         checkIsInList(id, listType)
           ? dispatch(removeFromCart(id))
-          : dispatch(addToCart({ id, quantity: 1 }));
+          : dispatch(addToCart({ id, quantity }));
         break;
       case "wishlist":
         checkIsInList(id, listType)
