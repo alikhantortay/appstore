@@ -92,7 +92,7 @@ export const MidHeader = () => {
             </FollowUsStyled>
           </>
         ) : (
-          <HeadLogoLinkStyled>
+          <HeadLogoLinkStyled to="/">
             <Logo />
             <span>CLICON</span>
           </HeadLogoLinkStyled>

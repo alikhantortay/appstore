@@ -1,8 +1,11 @@
 import PropTypes from "prop-types";
+import { useWindowWidth } from "../../../hooks/useWindowWidth";
 
 import { DetailsSwiperStyled } from "./DetailsSwiper.styled";
 
 export const DetailsSwiper = ({ title, images }) => {
+  const width = useWindowWidth();
+
   return (
     <DetailsSwiperStyled>
       <swiper-container
@@ -26,7 +29,8 @@ export const DetailsSwiper = ({ title, images }) => {
 
       {images.length > 1 && (
         <swiper-container
-          slides-per-view="5"
+          slides-per-view={width > 1319 ? 5 : 3}
+          space-between={width < 1319 && width > 339 && 36}
           mousewheel="true"
           keyboard="true"
           class="thumbs">

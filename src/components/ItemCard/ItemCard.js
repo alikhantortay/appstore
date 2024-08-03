@@ -85,8 +85,7 @@ export const ItemCard = ({ item, bestDeals }) => {
       <Link
         to={`/shop/${category}/${title
           .toLowerCase()
-          .replaceAll(" ", "-")}`}
-        state={id}>
+          .replaceAll(" ", "-")}?id=${id}`}>
         {title}
       </Link>
 

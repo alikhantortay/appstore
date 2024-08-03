@@ -45,8 +45,7 @@ export const BigDeal = () => {
               <h2>{item.title.slice(0, 13)}</h2>
               <p>{item.description.slice(0, 68)}</p>
               <ShopLink
-                to={`shop/${item.category}/${item.title}`}
-                state={item.id}
+                to={`shop/${item.category}/${item.title}?id=${item.id}`}
               />
             </BigDealTextStyled>
 
@@ -69,7 +68,9 @@ export const BigDeal = () => {
         )}
 
         {error && (
-          <ErrorMessageStyled>{error}</ErrorMessageStyled>
+          <ErrorMessageStyled>
+            {error.message}
+          </ErrorMessageStyled>
         )}
         {loading && <Loader />}
       </Container>

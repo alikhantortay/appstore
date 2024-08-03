@@ -113,7 +113,9 @@ export const Featured = () => {
         </ItemListStyled>
 
         {error && (
-          <ErrorMessageStyled>{error}</ErrorMessageStyled>
+          <ErrorMessageStyled>
+            {error.message}
+          </ErrorMessageStyled>
         )}
         {loading && <Loader />}
       </Container>

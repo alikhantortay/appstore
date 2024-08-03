@@ -65,8 +65,7 @@ export const ShopArticle = () => {
           <ShopArticleLinkStyled
             to={`/shop/${item.category}/${item.title
               .toLowerCase()
-              .replaceAll(" ", "-")}`}
-            state={item.id}>
+              .replaceAll(" ", "-")}?id=${item.id}`}>
             VIEW DETAILS
             <ArrowIcon />
           </ShopArticleLinkStyled>
@@ -74,7 +73,9 @@ export const ShopArticle = () => {
       )}
 
       {error && (
-        <ErrorMessageStyled>{error}</ErrorMessageStyled>
+        <ErrorMessageStyled>
+          {error.message}
+        </ErrorMessageStyled>
       )}
       {loading && <Loader />}
     </>

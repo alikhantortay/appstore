@@ -90,8 +90,7 @@ export const WishlistModal = ({ onClick }) => {
                     <Link
                       to={`/shop/${category}/${title
                         .toLowerCase()
-                        .replaceAll(" ", "-")}`}
-                      state={id}
+                        .replaceAll(" ", "-")}?id=${id}`}
                       onClick={onClick}>
                       {title}
                     </Link>

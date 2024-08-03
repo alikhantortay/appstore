@@ -89,8 +89,10 @@ export const SearchForm = () => {
                         <Link
                           to={`shop/${category}/${title
                             .toLowerCase()
-                            .replaceAll(" ", "-")}`}
-                          state={id}>
+                            .replaceAll(
+                              " ",
+                              "-",
+                            )}?id=${id}`}>
                           {title}
                           <span>
                             {countSalePrice(price)}

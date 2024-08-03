@@ -38,8 +38,7 @@ export const Hot = ({ hot }) => {
       <Link
         to={`shop/${category}/${title
           .toLowerCase()
-          .replaceAll(" ", "-")}`}
-        state={id}>
+          .replaceAll(" ", "-")}?id=${id}`}>
         <img
           src={thumbnail}
           alt={title}
@@ -55,8 +54,7 @@ export const Hot = ({ hot }) => {
       <Link
         to={`shop/${category}/${title
           .toLowerCase()
-          .replaceAll(" ", "-")}`}
-        state={id}>
+          .replaceAll(" ", "-")}?id=${id}`}>
         {title}
       </Link>
       <HotPriceStyled>

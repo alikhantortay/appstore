@@ -35,7 +35,13 @@ export const LocationPanel = () => {
                   to={link}
                   $current={link === pathname}>
                   {link
-                    ? string.replaceAll("-", " ")
+                    ? string
+                        .replaceAll("-", " ")
+                        .slice(
+                          0,
+                          string.indexOf("?") + 1 ||
+                            string.length,
+                        )
                     : "home"}
                 </CategoryLinkStyled>
               </li>

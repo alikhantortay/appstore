@@ -54,7 +54,9 @@ const CartPage = () => {
         </CartGridContainer>
 
         {error && (
-          <ErrorMessageStyled>{error}</ErrorMessageStyled>
+          <ErrorMessageStyled>
+            {error.message}
+          </ErrorMessageStyled>
         )}
         {loading && <Loader />}
       </Container>

@@ -80,8 +80,7 @@ export const Hero = () => {
                 <span>SUMMER SALES</span>
                 <h2>{phone.title}</h2>
                 <ShopLink
-                  to={`/shop/${phone.category}/${phone.title}`}
-                  state={phone.id}
+                  to={`/shop/${phone.category}/${phone.title}?id=${phone.id}`}
                 />
               </PhoneTextStyled>
               <PhoneImgStyled>
@@ -115,15 +114,16 @@ export const Hero = () => {
                   )}
                 </span>
                 <ShopLink
-                  to={`/shop/${pods.category}/${pods.title}`}
-                  state={pods.id}
+                  to={`/shop/${pods.category}/${pods.title}?id=${pods.id}`}
                 />
               </div>
             </PodsStyled>
           )}
         </HeroGridContainer>
         {error && (
-          <ErrorMessageStyled>{error}</ErrorMessageStyled>
+          <ErrorMessageStyled>
+            {error.message}
+          </ErrorMessageStyled>
         )}
         {loading && <Loader />}
       </Container>

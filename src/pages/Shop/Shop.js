@@ -56,6 +56,7 @@ const Shop = () => {
         );
         setItems(responce.data.products);
         setTotal(responce.data.total);
+        window.scrollTo(0, 0);
       } catch (error) {
         setError(error);
       } finally {
@@ -104,7 +105,9 @@ const Shop = () => {
           </ItemListStyled>
 
           {error && (
-            <ErrorMessageStyled>{error}</ErrorMessageStyled>
+            <ErrorMessageStyled>
+              {error.message}
+            </ErrorMessageStyled>
           )}
           {loading && <Loader />}
 

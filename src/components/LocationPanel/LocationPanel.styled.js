@@ -12,6 +12,7 @@ export const LocationPanelStyled = styled.div`
 
 export const LocationsStyled = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 8px;
 

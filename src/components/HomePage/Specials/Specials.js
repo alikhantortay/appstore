@@ -51,8 +51,7 @@ export const Specials = () => {
               <TitleStyled $left>{pod.title}</TitleStyled>
               <p>{pod.description.slice(0, 65) + "..."}</p>
               <ShopLink
-                to={`shop/${pod.category}/${pod.title}`}
-                state={pod.id}
+                to={`shop/${pod.category}/${pod.title}?id=${pod.id}`}
               />
             </SpecialsPodTextStyled>
             <img
@@ -73,8 +72,7 @@ export const Specials = () => {
                 {phone.description.slice(0, 70) + "..."}
               </p>
               <ShopLink
-                to={`shop/${phone.category}/${phone.title}`}
-                state={phone.id}
+                to={`shop/${phone.category}/${phone.title}?id=${phone.id}`}
               />
             </SpecialPhoneTextStyled>
             <img
@@ -94,7 +92,9 @@ export const Specials = () => {
         )}
 
         {error && (
-          <ErrorMessageStyled>{error}</ErrorMessageStyled>
+          <ErrorMessageStyled>
+            {error.message}
+          </ErrorMessageStyled>
         )}
         {loading && <Loader />}
       </Container>

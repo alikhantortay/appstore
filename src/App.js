@@ -8,7 +8,6 @@ import { register } from "swiper/element/bundle";
 
 import { SharedLayout } from "./components/SharedLayout/SharedLayout";
 import { RestrictedRoute } from "./components/RestrictedRoute";
-import { ScrollToTop } from "./components/ScrollToTop";
 import { GlobalStyle } from "./styles/GlobalStyle";
 
 const HomePage = lazy(() => import("./pages/Home/Home"));
@@ -41,6 +40,23 @@ const CherckoutPage = lazy(() =>
 );
 const DetailsPage = lazy(() =>
   import("./pages/Details/Details"),
+);
+const Description = lazy(() =>
+  import(
+    "./components/DetailsPage/Description/Description"
+  ),
+);
+
+const AdditionalInfo = lazy(() =>
+  import(
+    "./components/DetailsPage/AdditionalInfo/AdditionalInfo"
+  ),
+);
+const Specs = lazy(() =>
+  import("./components/DetailsPage/Specs/Specs"),
+);
+const Reviews = lazy(() =>
+  import("./components/DetailsPage/Reviews/Reviews"),
 );
 const AboutPage = lazy(() => import("./pages/About/About"));
 const SupportPage = lazy(() =>
@@ -120,8 +136,18 @@ const App = () => {
           />
           <Route
             path="/shop/:category/:title"
-            element={<DetailsPage />}
-          />
+            element={<DetailsPage />}>
+            <Route index element={<Description />} />
+            <Route
+              path="additional-info"
+              element={<AdditionalInfo />}
+            />
+            <Route
+              path="specifications"
+              element={<Specs />}
+            />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
           <Route path="/about" element={<AboutPage />} />
           <Route
             path="/support"
@@ -131,7 +157,6 @@ const App = () => {
         </Route>
       </Routes>
       <GlobalStyle />
-      <ScrollToTop />
     </>
   );
 };

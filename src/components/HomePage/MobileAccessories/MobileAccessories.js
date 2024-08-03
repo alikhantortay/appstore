@@ -94,14 +94,15 @@ export const MobileAccessories = () => {
               </span>
             </ArticlePriceStyled>
             <ShopLink
-              to={`shop/${pods.category}/${pods.title}`}
-              state={pods.id}
+              to={`shop/${pods.category}/${pods.title}?id=${pods.id}`}
             />
           </AccessoriesPodsStyled>
         )}
 
         {error && (
-          <ErrorMessageStyled>{error}</ErrorMessageStyled>
+          <ErrorMessageStyled>
+            {error.message}
+          </ErrorMessageStyled>
         )}
         {loading && <Loader />}
 

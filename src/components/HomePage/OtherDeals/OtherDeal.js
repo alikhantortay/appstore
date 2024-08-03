@@ -25,8 +25,7 @@ export const OtherDeal = ({ items, title }) => {
                 <Link
                   to={`shop/${category}/${title
                     .toLowerCase()
-                    .replaceAll(" ", "-")}`}
-                  state={id}>
+                    .replaceAll(" ", "-")}?id=${id}`}>
                   <img
                     src={thumbnail}
                     alt={title}

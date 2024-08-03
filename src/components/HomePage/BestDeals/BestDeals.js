@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetch } from "../../../API";
-import { bestDealsIds } from "./bestDealsIds";
+import { BestDealsIds } from "./BestDealsIds";
 
 import { Container } from "../../Container/Container";
 import { Hot } from "./Hot/Hot";
@@ -24,7 +24,7 @@ export const BestDeals = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    bestDealsIds.forEach((id) => {
+    BestDealsIds.forEach((id) => {
       const getItem = async () => {
         try {
           setLoading(true);
@@ -68,7 +68,9 @@ export const BestDeals = () => {
             ))}
         </BestDealsGridContainer>
         {error && (
-          <ErrorMessageStyled>{error}</ErrorMessageStyled>
+          <ErrorMessageStyled>
+            {error.message}
+          </ErrorMessageStyled>
         )}
         {loading && <Loader />}
       </Container>

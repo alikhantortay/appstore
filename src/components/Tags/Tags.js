@@ -18,28 +18,24 @@ export const Tags = ({ footer }) => {
           <NavLink to="/shop?q=tv">TV</NavLink>
         </li>
         <li>
-          <NavLink to="/shop?q=asus+laptops">
-            Asus Laptops
-          </NavLink>
+          <NavLink to="/shop?q=laptop">Laptops</NavLink>
         </li>
         <li>
           <NavLink to="/shop?q=macbook">MacBook</NavLink>
         </li>
         <li>
-          <NavLink to="/shop?q=ssd">SSD</NavLink>
+          <NavLink to="/shop?q=nike">Nike</NavLink>
         </li>
         <li>
-          <NavLink to="/shop?q=graphic+card">
-            Graphic Card
+          <NavLink to="/shop?q=colombo">Colombo</NavLink>
+        </li>
+        <li>
+          <NavLink to="/shop?q=glasses">Sunglasses</NavLink>
+        </li>
+        <li>
+          <NavLink to="/shop?q=motorcycle">
+            Motorcycles
           </NavLink>
-        </li>
-        <li>
-          <NavLink to="/shop?q=power+bank">
-            Power Bank
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/shop?q=smart+tv">Smart TV</NavLink>
         </li>
         <li>
           <NavLink to="/shop?q=speaker">Speaker</NavLink>
@@ -48,9 +44,7 @@ export const Tags = ({ footer }) => {
           <NavLink to="/shop?q=tablet">Tablet</NavLink>
         </li>
         <li>
-          <NavLink to="/shop?q=microvawe">
-            Microvawe
-          </NavLink>
+          <NavLink to="/shop?q=oppo">Oppo</NavLink>
         </li>
         <li>
           <NavLink to="/shop?q=samsung">Samsung</NavLink>

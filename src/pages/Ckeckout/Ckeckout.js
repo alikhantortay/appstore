@@ -182,7 +182,9 @@ const Ckeckout = () => {
           )}
 
           {error && (
-            <ErrorMessageStyled>{error}</ErrorMessageStyled>
+            <ErrorMessageStyled>
+              {error.message}
+            </ErrorMessageStyled>
           )}
           {loading && <Loader />}
         </CheckoutStyled>
