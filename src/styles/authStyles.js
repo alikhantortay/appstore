@@ -41,10 +41,10 @@ export const AuthLabelStyled = styled.label`
     position: absolute;
     right: 0;
     bottom: 0;
-    align-items: center;
     height: 44px;
     padding: 0 16px;
     border: none;
+    align-items: center;
     background-color: transparent;
     color: var(--title);
     transition: color 250ms ease;
@@ -70,7 +70,6 @@ export const LogInBtnStyled = styled.button`
   transition: background-color 250ms ease, color 250ms ease;
 
   font-weight: 700;
-
   color: var(--textSecondary);
 
   &:hover,

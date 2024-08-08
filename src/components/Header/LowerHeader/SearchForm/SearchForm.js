@@ -72,7 +72,7 @@ export const SearchForm = () => {
           placeholder="Search for anything..."
           onChange={handleChange}
         />
-        <button type="submit">
+        <button type="submit" aria-label="Search">
           <SearchIcon />
         </button>
       </SearchFormStyled>

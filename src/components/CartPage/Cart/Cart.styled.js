@@ -186,7 +186,6 @@ export const CartBtnstyled = styled.div`
       color 250ms ease;
 
     font-weight: 700;
-
     color: #2da5f3;
 
     svg {

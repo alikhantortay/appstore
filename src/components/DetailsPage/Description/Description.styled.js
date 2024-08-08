@@ -14,7 +14,7 @@ export const DescriptionStyled = styled.div`
     margin-bottom: 12px;
 
     font-size: 16px;
-    line-height: 24px;
+    line-height: 1.5;
     color: var(--title);
   }
 `;

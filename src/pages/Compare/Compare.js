@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCompare } from "../../redux/shop/selectors";
 import { removeFromCompare } from "../../redux/shop/compareListSlice";
 import { fetch } from "../../API";
+import { Helmet } from "react-helmet-async";
 
 import { Container } from "../../components/Container/Container";
 import { Loader } from "../../components/Loader/Loader";
@@ -68,6 +69,10 @@ const Compare = () => {
 
   return (
     <SectionStyled>
+      <Helmet>
+        <title>Compare</title>
+      </Helmet>
+
       <Container>
         <CompareWrapper>
           {items.length > 0 ? (
@@ -115,6 +120,7 @@ const Compare = () => {
                       <li key={id}>
                         <ListRemoveBtnStyled
                           type="button"
+                          aria-label="Remove item from compare list"
                           onClick={() => {
                             dispatch(removeFromCompare(id));
                             setItems((prevState) =>
@@ -127,10 +133,12 @@ const Compare = () => {
                         </ListRemoveBtnStyled>
 
                         <CompareLinkStyled
-                          to={`shop/${category}/${title
+                          to={`/shop/${category}/${title
                             .toLowerCase()
-                            .replaceAll(" ", "-")}`}
-                          state={id}>
+                            .replaceAll(
+                              " ",
+                              "-",
+                            )}?id=${id}`}>
                           <img
                             src={thumbnail}
                             alt={title}
@@ -148,6 +156,7 @@ const Compare = () => {
                         <CompareBtnsStyled>
                           <CartBtnStyled
                             type="button"
+                            aria-label="Add to Cart"
                             onClick={() =>
                               modifyList(id, "cart")
                             }
@@ -162,6 +171,7 @@ const Compare = () => {
                           </CartBtnStyled>
                           <CompareWishlistBtnStyled
                             type="button"
+                            aria-label="Add to Wishlist"
                             onClick={() =>
                               modifyList(id, "wishlist")
                             }
@@ -194,8 +204,8 @@ const Compare = () => {
                           )}
                         </ComparePriceStyled>
 
-                        <p>{brand ? brand : "Clicon"}</p>
-                        <p>{brand ? brand : "Clicon"}</p>
+                        <p>{brand || "Clicon"}</p>
+                        <p>{brand || "Clicon"}</p>
 
                         <ListStockStatusStyled
                           $inStock={stock}>

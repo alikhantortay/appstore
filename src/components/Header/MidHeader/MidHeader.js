@@ -2,15 +2,10 @@ import { useWindowWidth } from "../../../hooks/useWindowWidth";
 import { useDispatch, useSelector } from "react-redux";
 import { changeCurrency } from "../../../redux/shop/currencySlice";
 import { selectCurrency } from "../../../redux/shop/selectors";
+import { socials } from "./socials";
 
 import { Container } from "../../Container/Container";
 import { ReactComponent as Logo } from "../../../icons/header/logo.svg";
-import { ReactComponent as TwitterIcon } from "../../../icons/socials/Twitter.svg";
-import { ReactComponent as FacebookIcon } from "../../../icons/socials/Facebook.svg";
-import { ReactComponent as PinterestIcon } from "../../../icons/socials/Pinterest.svg";
-import { ReactComponent as RedditIcon } from "../../../icons/socials/Reddit.svg";
-import { ReactComponent as YoutubeIcon } from "../../../icons/socials/Youtube.svg";
-import { ReactComponent as InstagramIcon } from "../../../icons/socials/Instagram.svg";
 import { ReactComponent as USAIcon } from "../../../icons/USAFlag.svg";
 import { ReactComponent as UKIcon } from "../../../icons/UKFlag.svg";
 
@@ -40,61 +35,25 @@ export const MidHeader = () => {
             <FollowUsStyled>
               <p>Follow us:</p>
               <ul>
-                <li>
-                  <a
-                    href="https://twitter.com/"
-                    target="_blank"
-                    rel="noreferrer">
-                    <TwitterIcon />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.facebook.com/"
-                    target="_blank"
-                    rel="noreferrer">
-                    <FacebookIcon />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.pinterest.com/"
-                    target="_blank"
-                    rel="noreferrer">
-                    <PinterestIcon />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.reddit.com/"
-                    target="_blank"
-                    rel="noreferrer">
-                    <RedditIcon />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.youtube.com/"
-                    target="_blank"
-                    rel="noreferrer">
-                    <YoutubeIcon />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.instagram.com/"
-                    target="_blank"
-                    rel="noreferrer">
-                    <InstagramIcon />
-                  </a>
-                </li>
+                {socials.map(({ href, svg }) => {
+                  return (
+                    <li key={href}>
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noreferrer">
+                        {svg}
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </FollowUsStyled>
           </>
         ) : (
           <HeadLogoLinkStyled to="/">
             <Logo />
-            <span>CLICON</span>
+            CLICON
           </HeadLogoLinkStyled>
         )}
 

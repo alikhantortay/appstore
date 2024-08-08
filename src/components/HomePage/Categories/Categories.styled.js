@@ -16,10 +16,6 @@ export const CategoriesStyled = styled.div`
     border: 1px solid var(--disabledSecondary);
     border-radius: 4px;
 
-    ${mediaQueries("mobile")`width: 120px;
-    height: 178px;
-    padding: 12px;`}
-
     a {
       &:hover,
       &:focus {

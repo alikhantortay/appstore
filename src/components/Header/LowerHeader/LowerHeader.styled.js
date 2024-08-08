@@ -20,12 +20,14 @@ export const HeadLogoLinkStyled = styled(Link)`
   color: var(--primary);
   ${mediaQueries("mobile")`margin-right: auto;`}
 
-  span {
-    font-size: 32px;
-    font-weight: 700;
-    line-height: 1.25;
-    color: var(--textSecondary);
-    ${mediaQueries("mobile")`font-size: 18px;`}
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--textSecondary);
+  ${mediaQueries("mobile")`font-size: 18px;`}
+
+  svg {
+    color: var(--primary);
   }
 `;
 

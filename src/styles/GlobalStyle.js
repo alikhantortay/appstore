@@ -32,7 +32,7 @@ img {
   height: auto;
 }
 
-a{text-decoration:none;}
+a {text-decoration:none;}
 
 input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;

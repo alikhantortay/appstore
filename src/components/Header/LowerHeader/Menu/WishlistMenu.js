@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectWishlist } from "../../../../redux/shop/selectors";
 
-import { ReactComponent as HeartIcon } from "../../../../icons/Heart.svg";
 import { WishlistModal } from "../Modal/WishlistModal";
+import { ReactComponent as HeartIcon } from "../../../../icons/Heart.svg";
 
 import { MenuStyled } from "./Menu.styled";
 
@@ -31,6 +31,7 @@ export const WishlistMenu = () => {
       <button
         name="wishlist"
         type="button"
+        aria-label="Open Wishlist Modal"
         onClick={() =>
           setIsWishlistOpen((prevState) => !prevState)
         }>

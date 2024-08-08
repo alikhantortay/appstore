@@ -48,7 +48,6 @@ export const AdditionalTagsStyled = styled.ul`
     border-radius: 2px;
     transition: border-color 200ms ease,
       background-color 200ms ease, color 200ms ease;
-
     color: var(--title);
 
     &:hover {

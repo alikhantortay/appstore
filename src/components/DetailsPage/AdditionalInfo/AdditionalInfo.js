@@ -40,7 +40,7 @@ const AdditionalInfo = () => {
           <li>
             <p>Brand: </p>
             <Link to={`/shop?q=${item.brand || "clicon"}`}>
-              {item.brand.replaceAll("-", " ") || "Clicon"}
+              {item.brand || "Clicon"}
             </Link>
           </li>
           <li>

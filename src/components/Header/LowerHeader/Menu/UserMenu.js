@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { ReactComponent as UserIcon } from "../../../../icons/header/User.svg";
 import { UserModal } from "../Modal/UserModal/UserModal";
+import { ReactComponent as UserIcon } from "../../../../icons/header/User.svg";
 
 import { MenuStyled } from "./Menu.styled";
 
@@ -28,6 +28,7 @@ export const UserMenu = () => {
       <button
         name="userMenu"
         type="button"
+        aria-label="Open User Modal"
         onClick={() =>
           setIsUserModalOpen((prevState) => !prevState)
         }>

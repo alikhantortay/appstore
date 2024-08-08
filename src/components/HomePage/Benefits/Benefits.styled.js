@@ -35,9 +35,7 @@ export const BenefitsStyled = styled.div`
 
       h2 {
         text-transform: uppercase;
-        font-size: 14px;
         font-weight: 500;
-        line-height: 1.43;
         color: var(--title);
       }
 

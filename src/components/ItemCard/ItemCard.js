@@ -57,18 +57,21 @@ export const ItemCard = ({ item, bestDeals }) => {
         <HoverBtnsStyled>
           <ListBtnStyled
             type="button"
+            aria-label="Add to Wishlist"
             onClick={() => modifyList(id, "wishlist")}
             $inList={checkIsInList(id, "wishlist")}>
             <HeartIcon />
           </ListBtnStyled>
           <ListBtnStyled
             type="button"
+            aria-label="Add to Cart"
             onClick={() => modifyList(id, "cart")}
             $inList={checkIsInList(id, "cart")}>
             <CartIcon />
           </ListBtnStyled>
           <ListBtnStyled
             type="button"
+            aria-label="Add to Compare"
             onClick={() => modifyList(id, "compare")}
             $inList={checkIsInList(id, "compare")}>
             <EyeIcon />

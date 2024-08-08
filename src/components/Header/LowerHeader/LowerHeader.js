@@ -22,7 +22,7 @@ export const LowerHeader = () => {
         {width > 767 && (
           <HeadLogoLinkStyled to="/">
             <Logo />
-            <span>CLICON</span>
+            CLICON
           </HeadLogoLinkStyled>
         )}
         <SearchForm />

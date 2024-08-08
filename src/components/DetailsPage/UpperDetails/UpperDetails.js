@@ -77,7 +77,7 @@ export const UpperDetails = ({ item }) => {
           <p>
             Brand:{" "}
             <Link to={`/shop?q=${brand || "clicon"}`}>
-              {brand.replaceAll("-", " ") || "Clicon"}
+              {brand || "Clicon"}
             </Link>
           </p>
         </li>
@@ -154,6 +154,7 @@ export const UpperDetails = ({ item }) => {
           src={require("../../../images/payment.png")}
           alt="Bank cards"
           width={312}
+          height={18}
           loading="lazy"
         />
       </DetailsCardsStyled>
@@ -166,7 +167,7 @@ UpperDetails.propTypes = {
     id: PropTypes.number.isRequired,
     sku: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    brand: PropTypes.string.isRequired,
+    brand: PropTypes.string,
     category: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     discountPercentage: PropTypes.number.isRequired,

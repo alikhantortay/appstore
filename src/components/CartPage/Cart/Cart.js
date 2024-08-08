@@ -118,6 +118,7 @@ export const Cart = ({ items, setItems }) => {
                     <CartProductStyled>
                       <ListRemoveBtnStyled
                         type="button"
+                        aria-label="Remove item from Cart"
                         onClick={() => {
                           dispatch(removeFromCart(id));
                           setItems((prevState) =>
@@ -129,10 +130,9 @@ export const Cart = ({ items, setItems }) => {
                         <CrossCircleIcon />
                       </ListRemoveBtnStyled>
                       <Link
-                        to={`shop/${category}/${title
+                        to={`/shop/${category}/${title
                           .toLowerCase()
-                          .replaceAll(" ", "-")}`}
-                        state={id}>
+                          .replaceAll(" ", "-")}?id=${id}`}>
                         <img
                           src={thumbnail}
                           alt={title}
@@ -158,6 +158,7 @@ export const Cart = ({ items, setItems }) => {
                       <QuantityStyled>
                         <button
                           type="button"
+                          aria-label="Remove one unit from Cart"
                           onClick={() => minusQuantity(id)}
                           disabled={quantity < 2}>
                           -
@@ -184,6 +185,7 @@ export const Cart = ({ items, setItems }) => {
                         />
                         <button
                           type="button"
+                          aria-label="Add one unit to Cart"
                           onClick={() => plusQuantity(id)}>
                           +
                         </button>

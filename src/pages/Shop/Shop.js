@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
 import { fetch } from "../../API";
+import { Helmet } from "react-helmet-async";
 
 import { Container } from "../../components/Container/Container";
 import { Loader } from "../../components/Loader/Loader";
@@ -68,6 +69,13 @@ const Shop = () => {
 
   return (
     <ShopStyled>
+      <Helmet>
+        <title>
+          {pageTitle.charAt(0).toUpperCase() +
+            pageTitle.slice(1)}
+        </title>
+      </Helmet>
+
       <Container>
         <div>
           {width > 767 && (
@@ -85,7 +93,7 @@ const Shop = () => {
             <p>
               <span>{total}</span> Results found.
             </p>
-            {!category && (
+            {(category || q) && (
               <Link to="/shop">
                 Browse All Products
                 <ArrowIcon />

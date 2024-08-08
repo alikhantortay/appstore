@@ -43,7 +43,9 @@ const ForgetPassword = () => {
             required
           />
         </AuthLabelStyled>
-        <LogInBtnStyled type="submit">
+        <LogInBtnStyled
+          type="submit"
+          aria-label="Send reset password link to email">
           SEND LINK
           <ArrowRightIcon />
         </LogInBtnStyled>

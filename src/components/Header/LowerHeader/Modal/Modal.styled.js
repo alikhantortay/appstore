@@ -73,8 +73,8 @@ export const ModalListStyled = styled.ul`
       border-radius: 2px;
       background-color: transparent;
       color: var(--disabled);
-      transition: color 250ms ease,
-        background-color 250ms ease;
+      transition: background-color 250ms ease,
+        color 250ms ease;
 
       &:hover,
       &:focus {

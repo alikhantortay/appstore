@@ -45,7 +45,7 @@ export const useAuth = () => {
       );
       await updateProfile(user, { displayName });
       await sendEmailVerification(user);
-      Notify.failure(
+      Notify.success(
         "Email verification link sent to your email.",
       );
     } catch (error) {
@@ -87,7 +87,7 @@ export const useAuth = () => {
   const resetPassword = async (email) => {
     try {
       await sendPasswordResetEmail(auth, email);
-      Notify.failure(
+      Notify.success(
         "Password reset link sent to your email.",
       );
     } catch (error) {

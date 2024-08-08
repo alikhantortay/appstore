@@ -19,6 +19,7 @@ export const DetailsQuantity = ({
     <DetailsQuantityStyled>
       <button
         type="button"
+        aria-label="Remove one unit from cart"
         onClick={() => {
           setQuantity((quantity -= 1));
           inCart && dispatch(decreaseQuantity(id));
@@ -46,6 +47,7 @@ export const DetailsQuantity = ({
       />
       <button
         type="button"
+        aria-label="Add one unit to cart"
         onClick={() => {
           setQuantity((quantity += 1));
           inCart && dispatch(increaseQuantity(id));

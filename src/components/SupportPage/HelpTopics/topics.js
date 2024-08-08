@@ -8,17 +8,17 @@ import { ReactComponent as StorefrontIcon } from "../../../icons/support/Storefr
 
 export const topics = [
   {
-    icon: <TruckIcon />,
+    svg: <TruckIcon />,
     title: "Track Order",
   },
-  { icon: <LockOpenIcon />, title: "Reset Password" },
-  { icon: <CreditCardIcon />, title: "Paymant Option" },
-  { icon: <UserIcon />, title: "User & Account" },
-  { icon: <StackIcon />, title: "Wishlist & Compare" },
-  { icon: <NotepadIcon />, title: "Shipping & Billing" },
+  { svg: <LockOpenIcon />, title: "Reset Password" },
+  { svg: <CreditCardIcon />, title: "Paymant Option" },
+  { svg: <UserIcon />, title: "User & Account" },
+  { svg: <StackIcon />, title: "Wishlist & Compare" },
+  { svg: <NotepadIcon />, title: "Shipping & Billing" },
   {
-    icon: <CreditCardIcon />,
+    svg: <CreditCardIcon />,
     title: "Shoping Cart & Wallet",
   },
-  { icon: <StorefrontIcon />, title: "Sell on Clicon" },
+  { svg: <StorefrontIcon />, title: "Sell on Clicon" },
 ];

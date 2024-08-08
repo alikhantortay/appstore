@@ -70,6 +70,7 @@ const SignUp = () => {
         />
         <button
           type="button"
+          aria-label="Show/hide Password"
           onClick={() =>
             changePasswordVisibilty(passwordRef)
           }>
@@ -88,6 +89,7 @@ const SignUp = () => {
         />
         <button
           type="button"
+          aria-label="Show/hide Password"
           onClick={() =>
             changePasswordVisibilty(confirmPasswordRef)
           }>
@@ -114,7 +116,7 @@ const SignUp = () => {
         </label>
       </AgreementStyled>
 
-      <LogInBtnStyled type="submit">
+      <LogInBtnStyled type="submit" aria-label="Sign up">
         SIGN UP
         <ArrowRightIcon />
       </LogInBtnStyled>

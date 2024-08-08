@@ -8,8 +8,13 @@ export const DetailsSwiperStyled = styled.div`
   ${mediaQueries("mobile")`width: 100%;`}
 
   img {
+    width: 580px;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
     border: 1px solid var(--disabledSecondary);
     border-radius: 2px;
+
+    ${mediaQueries("mobile")`width: 100%;`}
   }
 
   .thumbs {
@@ -17,6 +22,7 @@ export const DetailsSwiperStyled = styled.div`
 
     .preview {
       img {
+        width: 96px;
         transition: border-width 100ms ease,
           border-color 250ms ease;
       }

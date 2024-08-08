@@ -1,3 +1,5 @@
+import { Helmet } from "react-helmet-async";
+
 import { Hero } from "../../components/HomePage/Hero/Hero";
 import { Benefits } from "../../components/HomePage/Benefits/Benefits";
 import { BestDeals } from "../../components/HomePage/BestDeals/BestDeals";
@@ -12,6 +14,9 @@ import { Subscribtion } from "../../components/HomePage/Subscribe/Subscribtion";
 const Home = () => {
   return (
     <>
+      <Helmet>
+        <title>Clicon - eCommerce Marketplace</title>
+      </Helmet>
       <Hero />
       <Benefits />
       <BestDeals />

@@ -34,9 +34,7 @@ export const XBoxStyled = styled.div`
 
 export const XBoxTextStyled = styled.div`
   > span {
-    font-size: 14px;
     font-weight: 600;
-    line-height: 1.43;
     color: var(--titleSecondary);
 
     &::before {
@@ -129,9 +127,7 @@ export const PhoneSaleStyled = styled.div`
 
 export const PhoneTextStyled = styled.div`
   span {
-    font-size: 14px;
     font-weight: 500;
-    line-height: 1.43;
     color: var(--warning);
   }
 

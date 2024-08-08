@@ -58,7 +58,6 @@ const Specs = lazy(() =>
 const Reviews = lazy(() =>
   import("./components/DetailsPage/Reviews/Reviews"),
 );
-const AboutPage = lazy(() => import("./pages/About/About"));
 const SupportPage = lazy(() =>
   import("./pages/Support/Support"),
 );
@@ -76,6 +75,10 @@ Notify.init({
   showOnlyTheLastOne: true,
   clickToClose: true,
 
+  success: {
+    background: "#f7e99e",
+    textColor: "#2db324",
+  },
   failure: {
     background: "#f7e99e",
     textColor: "#2da5f3",
@@ -148,7 +151,6 @@ const App = () => {
             />
             <Route path="reviews" element={<Reviews />} />
           </Route>
-          <Route path="/about" element={<AboutPage />} />
           <Route
             path="/support"
             element={<SupportPage />}

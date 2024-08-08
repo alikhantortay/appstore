@@ -22,6 +22,9 @@ export const FeaturedArticleStyled = styled.article`
   border-radius: 3px;
   background-color: #f3de6d;
 
+  ${mediaQueries("tablet")`
+  width: 200px;`}
+
   ${mediaQueries("mobile")`
   width: 100%;`}
 
@@ -36,17 +39,22 @@ export const FeaturedArticleStyled = styled.article`
     }
   }
 
+  a {
+    ${mediaQueries("tablet")`padding: 0 16px;`}
+  }
+
   img {
     margin: 0 auto 0 auto;
 
-    ${mediaQueries("tablet")`width: 380px;`}
-    ${mediaQueries("mobile")`width: 100%;`}
+    ${mediaQueries("tablet")`width: 100%;`}
   }
 `;
 
 export const UpperSpanStyled = styled.span`
   font-weight: 600;
   color: #be4646;
+
+  ${mediaQueries("tablet")`font-size: 12px;`}
 `;
 
 export const FeaturedTextStyled = styled.p`
@@ -57,7 +65,6 @@ export const FeaturedTextStyled = styled.p`
 
 export const FeaturedEndsStyled = styled.p`
   margin: 40px 0 48px;
-
   font-weight: 500;
 
   span {
@@ -67,6 +74,10 @@ export const FeaturedEndsStyled = styled.p`
 
     font-weight: 600;
     color: var(--title);
+
+    ${mediaQueries("tablet")`display: block;
+    margin: 8px auto 0;
+    width: 60%;`}
   }
 `;
 

@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectWishlist } from "../../redux/shop/selectors";
 import { removeFromWishlist } from "../../redux/shop/wishlistSlice";
 import { fetch } from "../../API";
+import { Helmet } from "react-helmet-async";
 
 import { Container } from "../../components/Container/Container";
 import { Loader } from "../../components/Loader/Loader";
+import { CartBtn } from "../../components/CartBtn/CartBtn";
 import { ReactComponent as CrossCircleIcon } from "../../icons/XCircle.svg";
 
 import {
@@ -25,7 +27,6 @@ import {
   WishlistStyled,
   WishlistBtnsStyled,
 } from "./Wishlist.styled";
-import { CartBtn } from "../../components/CartBtn/CartBtn";
 
 const Wishlist = () => {
   const dispatch = useDispatch();
@@ -59,6 +60,10 @@ const Wishlist = () => {
 
   return (
     <SectionStyled>
+      <Helmet>
+        <title>Wishlist</title>
+      </Helmet>
+
       <Container>
         <ListWrapper>
           <h2>Wishlist</h2>
@@ -94,10 +99,12 @@ const Wishlist = () => {
                     return (
                       <li key={id}>
                         <WishlistLinkStyled
-                          to={`shop/${category}/${title
+                          to={`/shop/${category}/${title
                             .toLowerCase()
-                            .replaceAll(" ", "-")}`}
-                          state={id}>
+                            .replaceAll(
+                              " ",
+                              "-",
+                            )}?id=${id}`}>
                           <img
                             src={thumbnail}
                             alt={title}
@@ -133,6 +140,7 @@ const Wishlist = () => {
                           />
                           <ListRemoveBtnStyled
                             type="button"
+                            aria-label="Remove from Wishlist"
                             onClick={() => {
                               dispatch(
                                 removeFromWishlist(id),

@@ -13,12 +13,15 @@ export const HotButtonsStyled = styled.div`
 
 export const SideButtonStyled = styled.button`
   display: flex;
-  padding: 12px;
+  width: 48px;
+  height: 48px;
   border: none;
   border-radius: 2px;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 200ms ease, color 250ms ease;
   background-color: #ffe7d6;
   color: var(--title);
-  transition: background-color 200ms ease, color 250ms ease;
 
   &:hover {
     cursor: pointer;

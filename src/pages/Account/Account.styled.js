@@ -20,7 +20,8 @@ export const AccountWrapper = styled.div`
     position: relative;
     width: 50%;
     padding: 16px 0;
-    transition: color 250ms ease;
+    border-bottom: 1px solid var(--disabledSecondary);
+    transition: border-color 500ms ease, color 250ms ease;
 
     text-align: center;
     font-size: 20px;
@@ -32,23 +33,9 @@ export const AccountWrapper = styled.div`
       color: var(--title);
     }
 
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background-color: var(--disabledSecondary);
-    }
-
     &.active {
-      color: var(--title);
-
-      &::after {
-        height: 3px;
-        background-color: var(--primary);
-      }
+      border-width: 3px;
+      border-color: var(--primary);
     }
   }
 `;
@@ -67,9 +54,8 @@ export const GoogleBtnStyled = styled.button`
   gap: 8px;
   border: 1px solid var(--disabledSecondary);
   border-radius: 2px;
-  background-color: #fff;
   transition: border-color 250ms ease, color 250ms ease;
-
+  background-color: #fff;
   color: var(--text);
 
   &:hover {

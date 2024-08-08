@@ -62,12 +62,13 @@ const SignIn = () => {
         />
         <button
           type="button"
+          aria-label="Show/hide Password"
           onClick={changePasswordVisibilty}>
           <EyeIcon />
         </button>
       </AuthLabelStyled>
 
-      <LogInBtnStyled type="submit">
+      <LogInBtnStyled type="submit" aria-label="Sign in">
         SIGN IN
         <ArrowRightIcon />
       </LogInBtnStyled>

@@ -1,21 +1,22 @@
-import { useAuth } from "../../hooks/useAuth";
 import { Suspense } from "react";
 import {
   NavLink,
   Outlet,
   useLocation,
 } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 import { Container } from "../../components/Container/Container";
 import { ReactComponent as GoogleIcon } from "../../icons/Google.svg";
 
+import { AuthSeparator } from "../../styles/authStyles";
 import {
   AccountPageStyled,
   AccountWrapper,
   FormWrapper,
   GoogleBtnStyled,
 } from "./Account.styled";
-import { AuthSeparator } from "../../styles/authStyles";
 
 const Account = () => {
   const { logInGoogle } = useAuth();
@@ -23,6 +24,10 @@ const Account = () => {
 
   return (
     <AccountPageStyled>
+      <Helmet>
+        <title>User Account</title>
+      </Helmet>
+
       <Container>
         <AccountWrapper>
           {pathname !== "/user-account/forget-password" && (
@@ -43,6 +48,7 @@ const Account = () => {
                 </AuthSeparator>
                 <GoogleBtnStyled
                   type="button"
+                  aria-label="Login with Google"
                   onClick={logInGoogle}>
                   <GoogleIcon />
                   Login with Google

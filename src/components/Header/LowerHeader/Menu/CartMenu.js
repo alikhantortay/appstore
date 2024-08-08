@@ -36,6 +36,7 @@ export const CartMenu = () => {
       <button
         name="cart"
         type="button"
+        aria-label="Open Cart Modal"
         onClick={() =>
           setIsCartOpen((prevState) => !prevState)
         }>

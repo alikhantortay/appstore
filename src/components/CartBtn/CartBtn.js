@@ -1,8 +1,6 @@
 import PropTypes from "prop-types";
 import { useShopList } from "../../hooks/useShopList";
-
 import { ReactComponent as CartIcon } from "../../icons/CartSecond.svg";
-
 import { CartBtnStyled } from "./CartBtn.styled";
 
 export const CartBtn = ({
@@ -16,6 +14,11 @@ export const CartBtn = ({
   return (
     <CartBtnStyled
       type="button"
+      aria-label={
+        checkIsInList(id, "cart")
+          ? "Remove from Cart"
+          : "Add to Cart"
+      }
       onClick={() => modifyList(id, "cart", quantity)}
       $inList={checkIsInList(id, "cart")}
       $big={big}

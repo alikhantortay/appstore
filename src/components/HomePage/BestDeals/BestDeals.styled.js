@@ -3,6 +3,7 @@ import { mediaQueries } from "../../../styles/mediaQueries";
 
 export const BestDealsStyled = styled.div`
   padding: 72px 0;
+
   ${mediaQueries("mobile")`padding: 36px 0;`}
 `;
 

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const ForgetPasswordStyled = styled.div`
   padding-top: 8px;
+
   h2 {
     text-align: center;
     font-size: 20px;
@@ -19,9 +20,6 @@ export const ForgetPasswordUpperTextStyled = styled.p`
   margin: 12px 0 24px;
 
   text-align: center;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.43;
   color: #5f6c72;
 `;
 
@@ -30,27 +28,17 @@ export const AuthLinksStyled = styled.ul`
 
   p {
     display: inline;
-
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.43;
     color: #5f6c72;
   }
 
   a {
-    font-size: 14px;
     font-weight: 500;
-    line-height: 1.43;
     color: var(--price);
   }
 `;
 
 export const ForgetPasswordLowerTextStyled = styled.p`
   position: relative;
-
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.43;
   color: var(--text);
 
   a {

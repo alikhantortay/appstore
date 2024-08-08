@@ -7,7 +7,7 @@ export const TagsStyled = styled.div`
   h2 {
     font-size: 16px;
     font-weight: 500;
-    line-height: 24px;
+    line-height: 1.5;
     color: ${(props) =>
       props.$footer
         ? "var(--textSecondary)"
@@ -17,7 +17,6 @@ export const TagsStyled = styled.div`
   ul {
     display: flex;
     margin-top: 18px;
-
     flex-wrap: wrap;
     gap: 8px;
 

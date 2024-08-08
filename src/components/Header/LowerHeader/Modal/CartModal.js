@@ -7,9 +7,9 @@ import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { removeFromCart } from "../../../../redux/shop/cartSlice";
 import { fetch } from "../../../../API";
 
+import { Loader } from "../../../Loader/Loader";
 import { ReactComponent as CrossIcon } from "../../../../icons/header/X.svg";
 import { ReactComponent as ArrowRightIcon } from "../../../../icons/ArrowRight.svg";
-import { Loader } from "../../../Loader/Loader";
 
 import {
   CartModalPriceStyled,

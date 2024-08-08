@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 import { Container } from "../../components/Container/Container";
 import { ReactComponent as ArrowIcon } from "../../icons/ArrowRight.svg";
@@ -16,6 +17,10 @@ const NotFound = () => {
 
   return (
     <NotFoundWrapper>
+      <Helmet>
+        <title>404, Page not founds</title>
+      </Helmet>
+
       <Container>
         <NotFoundStyled>
           <h1>404, Page not founds</h1>

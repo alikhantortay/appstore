@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { selectCart } from "../../redux/shop/selectors";
 import { selectUser } from "../../redux/auth/selectors";
 import { fetch } from "../../API";
+import { Helmet } from "react-helmet-async";
 
 import { Container } from "../../components/Container/Container";
 import { Loader } from "../../components/Loader/Loader";
@@ -68,6 +69,9 @@ const Ckeckout = () => {
 
   return (
     <SectionStyled>
+      <Helmet>
+        <title>Checkout</title>
+      </Helmet>
       <Container>
         <CheckoutStyled>
           <h2>Order Summary</h2>
@@ -97,8 +101,10 @@ const Ckeckout = () => {
                         <Link
                           to={`/shop/${category}/${title
                             .toLowerCase()
-                            .replaceAll(" ", "-")}`}
-                          state={id}>
+                            .replaceAll(
+                              " ",
+                              "-",
+                            )}?id=${id}`}>
                           {title}
                         </Link>
                         <CartModalPriceStyled>

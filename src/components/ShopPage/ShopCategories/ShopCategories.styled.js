@@ -9,7 +9,7 @@ export const ShopCategoriesStyled = styled.div`
 
     font-size: 16px;
     font-weight: 500;
-    line-height: 24px;
+    line-height: 1.5;
     color: var(--title);
   }
 
@@ -27,8 +27,8 @@ export const ShopCategoriesStyled = styled.div`
 
       &:hover,
       &.active {
-        color: var(--title);
         font-weight: 600;
+        color: var(--title);
       }
 
       &.active {

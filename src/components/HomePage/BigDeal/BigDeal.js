@@ -21,7 +21,7 @@ export const BigDeal = () => {
   const { countPrice, countSalePrice } = usePrice();
 
   useEffect(() => {
-    const getItems = async () => {
+    const getItem = async () => {
       try {
         setLoading(true);
         const responce = await fetch("/78");
@@ -32,7 +32,7 @@ export const BigDeal = () => {
         setLoading(false);
       }
     };
-    getItems();
+    getItem();
   }, []);
 
   return (

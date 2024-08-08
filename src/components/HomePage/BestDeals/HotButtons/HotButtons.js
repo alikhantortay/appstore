@@ -17,6 +17,7 @@ export const HotButtons = ({ id }) => {
     <HotButtonsStyled>
       <SideButtonStyled
         type="button"
+        aria-label="Add to Wishlist"
         onClick={() => modifyList(id, "wishlist")}
         $inList={checkIsInList(id, "wishlist")}>
         <HeartIcon />
@@ -24,6 +25,7 @@ export const HotButtons = ({ id }) => {
       <CartBtn id={id} />
       <SideButtonStyled
         type="button"
+        aria-label="Add to Compare"
         onClick={() => modifyList(id, "compare")}
         $inList={checkIsInList(id, "compare")}>
         <EyeIcon />

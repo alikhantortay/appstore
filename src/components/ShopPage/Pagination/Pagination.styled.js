@@ -48,5 +48,7 @@ export const PageLinkStyled = styled(NavLink)`
 
   ${(props) =>
     props.$active &&
-    "border-color: var(--primary);background-color: var(--primary);color: var(--textSecondary);"}
+    `border-color: var(--primary);
+    background - color: var(--primary);
+    color: var(--textSecondary); `}
 `;

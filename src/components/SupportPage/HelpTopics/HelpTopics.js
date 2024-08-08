@@ -16,11 +16,11 @@ export const HelpTopics = () => {
           What can we assist you with today?
         </TitleStyled>
         <TopicsListStyled>
-          {topics.map(({ icon, title }) => {
+          {topics.map(({ svg, title }) => {
             return (
               <li key={title}>
                 <button type="button">
-                  {icon}
+                  {svg}
                   {title}
                 </button>
               </li>

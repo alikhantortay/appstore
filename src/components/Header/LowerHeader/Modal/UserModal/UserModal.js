@@ -80,6 +80,7 @@ export const UserModal = ({ onClick }) => {
               />
               <button
                 type="button"
+                aria-label="Show/hide Password"
                 onClick={changePasswordVisibilty}>
                 <EyeIcon />
               </button>

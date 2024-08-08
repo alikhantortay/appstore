@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectCart } from "../../redux/shop/selectors";
 import { fetch } from "../../API";
+import { Helmet } from "react-helmet-async";
 
 import { Container } from "../../components/Container/Container";
 import { Loader } from "../../components/Loader/Loader";
@@ -46,6 +47,10 @@ const CartPage = () => {
 
   return (
     <SectionStyled>
+      <Helmet>
+        <title>Cart</title>
+      </Helmet>
+
       <Container>
         <CartGridContainer>
           <Cart items={items} setItems={setItems} />

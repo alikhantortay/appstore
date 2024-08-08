@@ -1,3 +1,5 @@
+import { Helmet } from "react-helmet-async";
+
 import { ContactUs } from "../../components/SupportPage/ContactUs/ContactUs";
 import { Help } from "../../components/SupportPage/Help/Help";
 import { HelpTopics } from "../../components/SupportPage/HelpTopics/HelpTopics";
@@ -5,6 +7,9 @@ import { HelpTopics } from "../../components/SupportPage/HelpTopics/HelpTopics";
 const Support = () => {
   return (
     <>
+      <Helmet>
+        <title>Customer Support</title>
+      </Helmet>
       <Help />
       <HelpTopics />
       <ContactUs />

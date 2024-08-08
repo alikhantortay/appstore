@@ -29,7 +29,7 @@ export const ErrorMessageStyled = styled.p`
 
   font-size: 18px;
   font-weight: 600;
-  color: var(--primary);
+  color: var(--danger);
 `;
 
 export const ArticleStyled = styled.article`

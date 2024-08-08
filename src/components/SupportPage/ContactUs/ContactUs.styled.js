@@ -49,7 +49,6 @@ export const ContactLinkWrapper = styled.div`
   p {
     margin: 8px 0 16px;
     width: 352px;
-
     color: var(--text);
 
     ${mediaQueries("tablet")`width: 180px;`}

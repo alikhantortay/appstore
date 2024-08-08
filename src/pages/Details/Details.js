@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { fetch } from "../../API";
+import { Helmet } from "react-helmet-async";
 
 import { Container } from "../../components/Container/Container";
 import { Loader } from "../../components/Loader/Loader";
@@ -23,7 +24,7 @@ const Details = () => {
     const getItem = async () => {
       try {
         setLoading(true);
-        const responce = await fetch(`/${id}6`);
+        const responce = await fetch(`/${id}`);
         setItem(responce.data);
       } catch (error) {
         setError(error);
@@ -34,12 +35,16 @@ const Details = () => {
     getItem();
   }, [id]);
 
-  console.log(error);
   return (
     <div>
       <Container>
         {item && (
           <DetailsWrapper>
+            <Helmet>
+              <title>
+                {item.title || "Product Details"}
+              </title>
+            </Helmet>
             <DetailsSwiper
               title={item.title}
               images={item.images}

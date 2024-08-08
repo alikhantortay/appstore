@@ -23,7 +23,7 @@ export const FooterStyled = styled.footer`
     text-transform: uppercase;
     font-size: 16px;
     font-weight: 500;
-    line-height: 24px;
+    line-height: 1.5;
     color: var(--textSecondary);
   }
 `;
@@ -78,9 +78,7 @@ export const FooterLinksStyled = styled.div`
     transition: color 250ms ease;
 
     text-transform: capitalize;
-    font-size: 14px;
     font-weight: 500;
-    line-height: 1.43;
 
     &:hover,
     &:focus {
@@ -150,40 +148,8 @@ export const FooterAppLinksStyled = styled.div`
   }
 `;
 
-export const FooterTagsStyled = styled.div`
-  ul {
-    display: flex;
-    margin-top: 18px;
-    max-width: 320px;
-    flex-wrap: wrap;
-    gap: 8px;
-
-    a {
-      display: inline-block;
-      padding: 6px 12px;
-      border: 1px solid rgb(48, 54, 57);
-      border-radius: 2px;
-      transition: border-color 250ms ease,
-        background-color 250ms ease;
-
-      font-weight: 500;
-      color: var(--textSecondary);
-
-      &:hover {
-        border-color: #fff;
-        background-color: #303639;
-      }
-    }
-  }
-`;
-
 export const LowerFooterStyled = styled.div`
   padding: 24px 0;
   border-top: 1px solid var(--disabled);
-
-  p {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-  }
+  text-align: center;
 `;
