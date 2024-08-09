@@ -41,7 +41,8 @@ export const MidHeader = () => {
                       <a
                         href={href}
                         target="_blank"
-                        rel="noreferrer">
+                        rel="noreferrer"
+                        aria-label={`Go to ${href}`}>
                         {svg}
                       </a>
                     </li>

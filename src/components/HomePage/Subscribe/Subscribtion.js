@@ -1,13 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { companies } from "./companies";
 
 import { Container } from "../../Container/Container";
 import { ReactComponent as ArrowRight } from "../../../icons/ArrowRight.svg";
-import { ReactComponent as GoogleIcon } from "../../../icons/companies/Google.svg";
-import { ReactComponent as AmazonIcon } from "../../../icons/companies/Amazon.svg";
-import { ReactComponent as PhilipsIcon } from "../../../icons/companies/Philips.svg";
-import { ReactComponent as ToshibaIcon } from "../../../icons/companies/Toshiba.svg";
-import { ReactComponent as SamsungIcon } from "../../../icons/companies/Samsung.svg";
 
 import { TitleStyled } from "../../../styles/common";
 import {
@@ -51,31 +47,15 @@ export const Subscribtion = () => {
           </SubscriptionFormStyled>
         )}
         <CompaniesListStyled>
-          <li>
-            <Link to="shop?q=google">
-              <GoogleIcon />
-            </Link>
-          </li>
-          <li>
-            <Link to="shop?q=amazon">
-              <AmazonIcon />
-            </Link>
-          </li>
-          <li>
-            <Link to="shop?q=philips">
-              <PhilipsIcon />
-            </Link>
-          </li>
-          <li>
-            <Link to="shop?q=toshiba">
-              <ToshibaIcon />
-            </Link>
-          </li>
-          <li>
-            <Link to="shop?q=samsung">
-              <SamsungIcon />
-            </Link>
-          </li>
+          {companies.map(({ href, svg, label }) => {
+            return (
+              <li>
+                <Link to={href} aria-label={label}>
+                  {svg}
+                </Link>
+              </li>
+            );
+          })}
         </CompaniesListStyled>
       </Container>
     </SubscribtionStyled>
