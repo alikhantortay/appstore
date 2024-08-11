@@ -23,7 +23,10 @@ import {
   DetailsStarRatingStyled,
   ProductInfoStyled,
   UpperDetailsStyled,
+  UpperDetailsTextStyled,
 } from "./UpperDetails.styled";
+import { Container } from "../../Container/Container";
+import { DetailsSwiper } from "../DetailsSwiper/DetailsSwiper";
 
 export const UpperDetails = ({ item }) => {
   const { countPrice, countSalePrice } = usePrice();
@@ -34,6 +37,7 @@ export const UpperDetails = ({ item }) => {
     id,
     sku,
     title,
+    images,
     brand,
     category,
     price,
@@ -57,107 +61,116 @@ export const UpperDetails = ({ item }) => {
 
   return (
     <UpperDetailsStyled>
-      <DetailsStarRatingStyled>
-        <Stars rating={rating} />
-        <span>{rating} Star Rating</span>
-        {reviews.length > 0 && (
-          <p>({reviews.length} User feedbacks)</p>
-        )}
-      </DetailsStarRatingStyled>
+      <Container>
+        <DetailsSwiper title={title} images={images} />
 
-      <h1>{title}</h1>
+        <UpperDetailsTextStyled>
+          <DetailsStarRatingStyled>
+            <Stars rating={rating} />
+            <span>{rating} Star Rating</span>
+            {reviews.length > 0 && (
+              <p>({reviews.length} User feedbacks)</p>
+            )}
+          </DetailsStarRatingStyled>
 
-      <ProductInfoStyled $inStock={stock > 10}>
-        <li>
-          <p>
-            Sku: <span>{sku}</span>
-          </p>
-        </li>
-        <li>
-          <p>
-            Brand:{" "}
-            <Link to={`/shop?q=${brand || "clicon"}`}>
-              {brand || "Clicon"}
-            </Link>
-          </p>
-        </li>
-        <li>
-          <p>
-            Availability: <span>{availabilityStatus}</span>
-          </p>
-        </li>
-        <li>
-          <p>
-            Category:{" "}
-            <Link to={`/shop/${category}`}>
-              {category.replaceAll("-", " ")}
-            </Link>
-          </p>
-        </li>
-      </ProductInfoStyled>
+          <h1>{title}</h1>
 
-      <DetailsPriceStyled>
-        {countSalePrice(price, discountPercentage)}
-        {discountPercentage > 10 && (
-          <p>{countPrice(price)}</p>
-        )}
-        {discountPercentage > 10 && (
-          <span>{discountPercentage.toFixed()}% OFF</span>
-        )}
-      </DetailsPriceStyled>
+          <ProductInfoStyled $inStock={stock > 10}>
+            <li>
+              <p>
+                Sku: <span>{sku}</span>
+              </p>
+            </li>
+            <li>
+              <p>
+                Brand:{" "}
+                <Link to={`/shop?q=${brand || "clicon"}`}>
+                  {brand || "Clicon"}
+                </Link>
+              </p>
+            </li>
+            <li>
+              <p>
+                Availability:{" "}
+                <span>{availabilityStatus}</span>
+              </p>
+            </li>
+            <li>
+              <p>
+                Category:{" "}
+                <Link to={`/shop/${category}`}>
+                  {category.replaceAll("-", " ")}
+                </Link>
+              </p>
+            </li>
+          </ProductInfoStyled>
 
-      <DetailsBtnsStyled>
-        <DetailsQuantity
-          id={id}
-          inCart={inCart}
-          quantity={quantity}
-          setQuantity={setQuantity}
-        />
-        <CartBtn id={id} quantity={quantity} big />
-        <DetailsBuyLinkStyled
-          to="/shopping-cart/checkout"
-          onClick={() => {
-            !inCart &&
-              dispatch(
-                addToCart({
-                  id: id,
-                  quantity,
-                }),
-              );
-          }}>
-          BUY NOW
-        </DetailsBuyLinkStyled>
-        <DetailsListBtnsStyled>
-          <button
-            type="button"
-            onClick={() => modifyList(id, "wishlist")}>
-            <HeartIcon />
-            {inWishlist
-              ? "Remove from Wishlist"
-              : "Add to Wishlist"}
-          </button>
-          <button
-            type="button"
-            onClick={() => modifyList(id, "compare")}>
-            <CompareIcon />
-            {inCompare
-              ? "Remove from Compare"
-              : "Add to Compare"}
-          </button>
-        </DetailsListBtnsStyled>
-        <ShareBtns />
-      </DetailsBtnsStyled>
+          <DetailsPriceStyled>
+            {countSalePrice(price, discountPercentage)}
+            {discountPercentage > 10 && (
+              <p>{countPrice(price)}</p>
+            )}
+            {discountPercentage > 10 && (
+              <span>
+                {discountPercentage.toFixed()}% OFF
+              </span>
+            )}
+          </DetailsPriceStyled>
 
-      <DetailsCardsStyled>
-        <p>100% Guarantee Safe Checkout</p>
-        <img
-          src={require("../../../images/payment.png")}
-          alt="Bank cards"
-          width={312}
-          height={18}
-          loading="lazy"
-        />
-      </DetailsCardsStyled>
+          <DetailsBtnsStyled>
+            <DetailsQuantity
+              id={id}
+              inCart={inCart}
+              quantity={quantity}
+              setQuantity={setQuantity}
+            />
+            <CartBtn id={id} quantity={quantity} big />
+            <DetailsBuyLinkStyled
+              to="/shopping-cart/checkout"
+              onClick={() => {
+                !inCart &&
+                  dispatch(
+                    addToCart({
+                      id: id,
+                      quantity,
+                    }),
+                  );
+              }}>
+              BUY NOW
+            </DetailsBuyLinkStyled>
+            <DetailsListBtnsStyled>
+              <button
+                type="button"
+                onClick={() => modifyList(id, "wishlist")}>
+                <HeartIcon />
+                {inWishlist
+                  ? "Remove from Wishlist"
+                  : "Add to Wishlist"}
+              </button>
+              <button
+                type="button"
+                onClick={() => modifyList(id, "compare")}>
+                <CompareIcon />
+                {inCompare
+                  ? "Remove from Compare"
+                  : "Add to Compare"}
+              </button>
+            </DetailsListBtnsStyled>
+            <ShareBtns />
+          </DetailsBtnsStyled>
+
+          <DetailsCardsStyled>
+            <p>100% Guarantee Safe Checkout</p>
+            <img
+              src={require("../../../images/payment.png")}
+              alt="Bank cards"
+              width={312}
+              height={18}
+              loading="lazy"
+            />
+          </DetailsCardsStyled>
+        </UpperDetailsTextStyled>
+      </Container>
     </UpperDetailsStyled>
   );
 };

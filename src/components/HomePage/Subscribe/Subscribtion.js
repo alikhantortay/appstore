@@ -36,7 +36,9 @@ export const Subscribtion = () => {
           <SubscriptionFormStyled
             onSubmit={() => setIsSubscribed(true)}>
             <input
+              name="email"
               type="email"
+              autoComplete="on"
               placeholder="Email address"
               required
             />
@@ -49,7 +51,7 @@ export const Subscribtion = () => {
         <CompaniesListStyled>
           {companies.map(({ href, svg, label }) => {
             return (
-              <li>
+              <li key={label}>
                 <Link to={href} aria-label={label}>
                   {svg}
                 </Link>

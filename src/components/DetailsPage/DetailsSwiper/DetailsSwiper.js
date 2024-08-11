@@ -20,7 +20,6 @@ export const DetailsSwiper = ({ title, images }) => {
                 alt={title}
                 width={580}
                 height={580}
-                loading="lazy"
               />
             </swiper-slide>
           );

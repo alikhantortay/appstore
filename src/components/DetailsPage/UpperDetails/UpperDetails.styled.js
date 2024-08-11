@@ -3,6 +3,17 @@ import { Link } from "react-router-dom";
 import { mediaQueries } from "../../../styles/mediaQueries";
 
 export const UpperDetailsStyled = styled.div`
+  padding: 32px 0 72px;
+
+  > div {
+    display: flex;
+    gap: 56px;
+
+    ${mediaQueries("mobile")`flex-direction: column;`}
+  }
+`;
+
+export const UpperDetailsTextStyled = styled.div`
   h1 {
     margin: 8px 0 16px;
 

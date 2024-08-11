@@ -3,14 +3,12 @@ import { useSearchParams } from "react-router-dom";
 import { fetch } from "../../API";
 import { Helmet } from "react-helmet-async";
 
-import { Container } from "../../components/Container/Container";
 import { Loader } from "../../components/Loader/Loader";
-import { DetailsSwiper } from "../../components/DetailsPage/DetailsSwiper/DetailsSwiper";
 
 import { ErrorMessageStyled } from "../../styles/common";
-import { DetailsWrapper } from "./Details.styled";
 import { LowerDetails } from "../../components/DetailsPage/LowerDetails/LowerDetails";
 import { UpperDetails } from "../../components/DetailsPage/UpperDetails/UpperDetails";
+import { OtherDeals } from "../../components/HomePage/OtherDeals/OtherDeals";
 
 const Details = () => {
   const [searchParams] = useSearchParams();
@@ -36,39 +34,28 @@ const Details = () => {
   }, [id]);
 
   return (
-    <div>
-      <Container>
-        {item && (
-          <DetailsWrapper>
-            <Helmet>
-              <title>
-                {item.title || "Product Details"}
-              </title>
-            </Helmet>
-            <DetailsSwiper
-              title={item.title}
-              images={item.images}
-            />
-            <UpperDetails item={item} />
-          </DetailsWrapper>
-        )}
-
-        {item && (
+    <>
+      {item && (
+        <>
+          <Helmet>
+            <title>{item.title || "Product Details"}</title>
+          </Helmet>
+          <UpperDetails item={item} />
           <LowerDetails
             id={item.id}
             title={item.title}
             category={item.category}
           />
-        )}
-
-        {error && (
-          <ErrorMessageStyled>
-            {error.message}
-          </ErrorMessageStyled>
-        )}
-        {loading && <Loader />}
-      </Container>
-    </div>
+        </>
+      )}
+      {error && (
+        <ErrorMessageStyled>
+          {error.message}
+        </ErrorMessageStyled>
+      )}
+      {loading && <Loader />}
+      <OtherDeals />
+    </>
   );
 };
 

@@ -21,6 +21,7 @@ export const ShareBtns = () => {
         <li>
           <a
             href={`https://t.me/share/url?url=${window.location.href}&text=${title}`}
+            aria-label="Share product via Telegram"
             target="_blank"
             rel="noreferrer">
             <TelegramIcon />
@@ -29,6 +30,7 @@ export const ShareBtns = () => {
         <li>
           <a
             href={`http://www.facebook.com/sharer.php?u=${window.location.href}&p=${title}`}
+            aria-label="Share product via Facebook"
             target="_blank"
             rel="noreferrer">
             <FacebookIcon />
@@ -37,6 +39,7 @@ export const ShareBtns = () => {
         <li>
           <a
             href={`http://twitter.com/share?text=${title}&url=${window.location.href}`}
+            aria-label="Share product via Twitter"
             target="_blank"
             rel="noreferrer">
             <TwitterIcon />
@@ -45,6 +48,7 @@ export const ShareBtns = () => {
         <li>
           <a
             href={`http://pinterest.com/pin/create/button/?url=${window.location.href}&description=${title}`}
+            aria-label="Share product via Pinterest"
             target="_blank"
             rel="noreferrer">
             <PinIcon />

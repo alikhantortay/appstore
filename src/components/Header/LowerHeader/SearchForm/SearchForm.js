@@ -66,7 +66,7 @@ export const SearchForm = () => {
     <SearchFormWrapper>
       <SearchFormStyled onSubmit={handleSubmit}>
         <input
-          name="input"
+          name="search"
           type="text"
           autoComplete="off"
           placeholder="Search for anything..."

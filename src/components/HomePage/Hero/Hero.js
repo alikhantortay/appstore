@@ -68,7 +68,6 @@ export const Hero = () => {
                 alt="XBox console"
                 width={368}
                 height={408}
-                loading="lazy"
               />
               <span>{countPrice(299)}</span>
             </XBoxImgStyled>

@@ -30,10 +30,13 @@ export const OtherDealStyled = styled.div`
 
     a {
       display: flex;
+      width: 314px;
       padding: 12px;
       gap: 12px;
       border: 1px solid var(--disabledSecondary);
       border-radius: 3px;
+
+      ${mediaQueries("mobile")`width: auto;`}
 
       &:hover {
         h3 {
@@ -42,14 +45,11 @@ export const OtherDealStyled = styled.div`
       }
 
       h3 {
-        width: 196px;
         height: 40px;
         margin-bottom: 8px;
         transition: color 250ms ease;
 
         color: var(--title);
-
-        ${mediaQueries("mobile")`width: auto;`}
       }
 
       span {

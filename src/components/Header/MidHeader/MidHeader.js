@@ -61,6 +61,7 @@ export const MidHeader = () => {
         <HeadSelectStyled
           defaultValue={{ value: "USA", label: "Eng (UK)" }}
           isSearchable={false}
+          aria-label="Select language"
           classNamePrefix="Select"
           options={[
             {
@@ -86,6 +87,7 @@ export const MidHeader = () => {
 
         <HeadSelectStyled
           isSearchable={false}
+          aria-label="Select currency"
           classNamePrefix="Select"
           options={[
             {

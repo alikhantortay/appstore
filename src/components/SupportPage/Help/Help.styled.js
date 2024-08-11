@@ -7,7 +7,8 @@ export const HelpStyled = styled.div`
   border-bottom: 1px solid var(--disabledSecondary);
 
   > div {
-    padding: 72px 0;
+    padding-top: 72px;
+    padding-bottom: 72px;
     background: url(${bgImg}) no-repeat center right;
   }
 `;

@@ -63,7 +63,7 @@ export const Footer = () => {
                 })}
             </ul>
             <AllCategoryLinkStyled to="/shop">
-              Browse All Product
+              Browse All Products
               <ArrowRight />
             </AllCategoryLinkStyled>
           </FooterLinksStyled>
@@ -86,7 +86,7 @@ export const Footer = () => {
                 <NavLink to="/compare">Compare</NavLink>
               </li>
               <li>
-                <NavLink to="/about">About Us</NavLink>
+                <NavLink to="/support">Support</NavLink>
               </li>
             </ul>
           </FooterLinksStyled>
