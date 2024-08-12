@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetch } from "../../../API";
-import { BestDealsIds } from "./BestDealsIds";
+import { deals } from "./deals";
 
 import { Container } from "../../Container/Container";
 import { Hot } from "./Hot/Hot";
@@ -24,7 +24,7 @@ export const BestDeals = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    BestDealsIds.forEach((id) => {
+    deals.forEach((id) => {
       const getItem = async () => {
         try {
           setLoading(true);
