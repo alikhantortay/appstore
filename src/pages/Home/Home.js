@@ -9,7 +9,7 @@ import { Specials } from "../../components/HomePage/Specials/Specials";
 import { MobileAccessories } from "../../components/HomePage/MobileAccessories/MobileAccessories";
 import { BigDeal } from "../../components/HomePage/BigDeal/BigDeal";
 import { OtherDeals } from "../../components/HomePage/OtherDeals/OtherDeals";
-import { Subscribtion } from "../../components/HomePage/Subscribe/Subscribtion";
+import { Subscribtion } from "../../components/HomePage/Subscribtion/Subscribtion";
 
 const Home = () => {
   return (
