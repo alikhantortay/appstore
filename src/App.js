@@ -35,8 +35,8 @@ const WishlistPage = lazy(() =>
 const CartPage = lazy(() =>
   import("./pages/Cart/CartPage"),
 );
-const CherckoutPage = lazy(() =>
-  import("./pages/Ckeckout/Ckeckout"),
+const CheckoutPage = lazy(() =>
+  import("./pages/Checkout/Checkout"),
 );
 const DetailsPage = lazy(() =>
   import("./pages/Details/Details"),
@@ -130,7 +130,7 @@ const App = () => {
           />
           <Route
             path="/shopping-cart/checkout"
-            element={<CherckoutPage />}
+            element={<CheckoutPage />}
           />
 
           <Route

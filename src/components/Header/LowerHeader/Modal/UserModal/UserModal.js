@@ -26,7 +26,6 @@ export const UserModal = ({ onClick }) => {
     useSelector(selectUser);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
     const form = e.currentTarget;
     logIn(
       form.elements.email.value,

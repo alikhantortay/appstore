@@ -75,6 +75,7 @@ const Ckeckout = () => {
       <Container>
         <CheckoutStyled>
           <h2>Order Summary</h2>
+          <Link to="/shopping-cart">Edit Cart</Link>
 
           {items.length > 0 ? (
             <CheckoutListStyled>

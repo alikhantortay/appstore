@@ -13,10 +13,23 @@ export const CheckoutStyled = styled.div`
   ${mediaQueries("mobile")`width: 100%;`}
 
   h2 {
+    display: inline;
+
     font-size: 16px;
     font-weight: 600;
     line-height: 1.5;
     color: var(--title);
+  }
+
+  > a {
+    float: right;
+
+    font-weight: 600;
+    color: var(--price);
+
+    &:hover {
+      font-weight: 700;
+    }
   }
 `;
 

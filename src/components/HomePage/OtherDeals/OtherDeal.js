@@ -23,7 +23,7 @@ export const OtherDeal = ({ items, title }) => {
             return (
               <li key={id}>
                 <Link
-                  to={`shop/${category}/${title
+                  to={`/shop/${category}/${title
                     .toLowerCase()
                     .replaceAll(" ", "-")}?id=${id}`}>
                   <img

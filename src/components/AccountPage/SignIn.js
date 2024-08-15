@@ -21,7 +21,6 @@ const SignIn = () => {
   const backLink = useLocation().state;
 
   const handleSubmit = (e) => {
-    e.preventDefault();
     const form = e.currentTarget;
     logIn(
       form.elements.email.value,

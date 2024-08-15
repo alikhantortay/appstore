@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 import { ReactComponent as ArrowRightIcon } from "../../icons/ArrowRight.svg";
@@ -19,7 +19,6 @@ const SignUp = () => {
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
   const navigate = useNavigate();
-  const backLink = useLocation().state;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,8 +29,8 @@ const SignUp = () => {
     if (password.value !== confirmPassword.value) {
       Notify.failure("Your passwords don't match!");
     } else {
-      signUp(name.value, email.value, password.value);
-      backLink && navigate(backLink);
+      signUp(name.value, email.value, password.value) &&
+        navigate("/user-account/sign-in");
     }
   };
 
