@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+An online store application that allows user to buy, sort, see details about products and more.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Desktop Screenshot 2024 08 16 - 15 20 42 75](https://github.com/user-attachments/assets/5d37e060-ce5a-4236-a48d-ac2d4314ab99)
 
-## Available Scripts
+Header section can be used for searching products by title, changing app language or currency, following company socials. Icon on the right allows to see and navigate to cart, wishlist or user menu where user can register or log in to excisting account. Category button allows choose from 20+ categories and go to shop page. Each product card on hover show buttons that can add this product to cart, wishlist or compare list.
 
-In the project directory, you can run:
+![Desktop Screenshot 2024 08 16 - 15 19 27 46](https://github.com/user-attachments/assets/2356d490-ed93-4b4c-b5a8-aa7cf0cf6dda)
 
-### `npm start`
+Compare list can contain up to 3 items that can be compared by star rating, price, brand, dimensions in 2 different units of measurement etc.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![Desktop Screenshot 2024 08 16 - 15 23 03 45](https://github.com/user-attachments/assets/b102947a-ce79-4153-bd30-91d33284ef59)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+On the cart page user can change quantity, see products details or proceed to checkout.
 
-### `npm test`
+![Desktop Screenshot 2024 08 16 - 15 21 29 99](https://github.com/user-attachments/assets/1e6157b5-dec4-4ce7-bef8-0ab35ccff666)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Details page show a lot of information about the product: description, characteristics, user reviews and many more. Interactive swiper allows to control what a picture of the product user want to see by swiping pictures with his mouse or finger.
 
-### `npm run build`
+![Desktop Screenshot 2024 08 16 - 15 24 27 84](https://github.com/user-attachments/assets/91e63cb7-b0a1-43a8-bcf9-f0405d8aaffb)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Desktop Screenshot 2024 08 16 - 15 26 03 92](https://github.com/user-attachments/assets/0b23acab-2d7c-408a-b05a-f52dbf68836a)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+For this app I used [this template](https://www.figma.com/community/file/1271751279140741643/clicon-ecommerce-marketplace-website-figma-template-community). App recieves data from [DummyJSON](https://dummyjson.com/). Registration is possible thanks to [Firebase](https://firebase.google.com/).
