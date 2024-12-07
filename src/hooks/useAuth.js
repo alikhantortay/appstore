@@ -3,91 +3,132 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { makeErrorMessage } from "../makeErrorMessage";
-import { jwtDecode } from "jwt-decode";
 import { addUser, removeUser } from "../redux/auth/slice";
+import { useState } from "react";
 
 export const useAuth = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false); // Состояние загрузки
 
   const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
 
-  // Регистрация
-  const signUp = async (formData) => {
+  // Централизованная обработка ошибок
+  const handleAuthError = (error) => {
+    if (error.response) {
+      console.error("Server responded with an error:", error.response.data);
+      makeErrorMessage(error.response.data.message || "Unknown error");
+    } else if (error.request) {
+      console.error("No response from the server:", error.request);
+      makeErrorMessage("Server not responding. Try again later.");
+    } else {
+      console.error("Error during request setup:", error.message);
+      makeErrorMessage("An unexpected error occurred.");
+    }
+  };
+
+  // Обновление токена
+  const refreshAccessToken = async () => {
     try {
-      const response = await axios.post(`${apiBaseUrl}/auth/register`, formData);
-  
-      // После успешной регистрации сохраняем нового пользователя
-      localStorage.setItem("accessToken", response.data.accessToken);
-      localStorage.setItem("refreshToken", response.data.refreshToken);
-      localStorage.setItem("username", formData.username);
-  
-      // Добавляем нового пользователя в Redux
-      dispatch(addUser({ username: formData.username }));
-  
-      Notify.success("Registration successful");
-      return response.data;
+      const refreshToken = sessionStorage.getItem("refreshToken");
+      if (!refreshToken) throw new Error("No refresh token available");
+
+      const response = await axios.post(`${apiBaseUrl}/auth/refresh`, {
+        refreshToken,
+      });
+
+      sessionStorage.setItem("accessToken", response.data.accessToken);
+      return response.data.accessToken;
     } catch (error) {
-      console.error("Error during registration:", error);
-      makeErrorMessage(error.response?.data?.message || "An error occurred");
+      console.error("Token refresh failed:", error);
+      logOut(); // Выход из системы при неудачном обновлении
       throw error;
     }
   };
-  
-  
 
+  // Интерсепторы Axios для автоматического обновления токена
+  axios.interceptors.response.use(
+    (response) => response,
+    async (error) => {
+      const originalRequest = error.config;
+
+      if (error.response?.status === 401 && !originalRequest._retry) {
+        originalRequest._retry = true;
+        const newAccessToken = await refreshAccessToken();
+        originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
+        return axios(originalRequest);
+      }
+
+      return Promise.reject(error);
+    }
+  );
+
+  // Регистрация
+  const signUp = async (formData) => {
+    setIsLoading(true);
+    try {
+      const response = await axios.post(`${apiBaseUrl}/auth/register`, formData);
+
+      sessionStorage.setItem("accessToken", response.data.accessToken);
+      sessionStorage.setItem("refreshToken", response.data.refreshToken);
+      sessionStorage.setItem("username", formData.username);
+
+      dispatch(addUser({ username: formData.username }));
+
+      Notify.success("Registration successful");
+      return response.data;
+    } catch (error) {
+      handleAuthError(error);
+      throw error;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Вход
   const logIn = async (username, password) => {
+    setIsLoading(true);
     try {
       const response = await axios.post(`${apiBaseUrl}/auth/login`, {
         username,
         password,
       });
-  
-      console.log("Response data:", response.data);
-  
-      // Сохраняем токены
-      localStorage.setItem("accessToken", response.data.accessToken);
-      localStorage.setItem("refreshToken", response.data.refreshToken);
-  
-      // Сохраняем username в localStorage
-      localStorage.setItem("username", username);
-  
+
+      sessionStorage.setItem("accessToken", response.data.accessToken);
+      sessionStorage.setItem("refreshToken", response.data.refreshToken);
+      sessionStorage.setItem("username", username);
+
       dispatch(addUser({ username }));
       Notify.success("Login successful");
       return response.data;
     } catch (error) {
-      console.error("Login failed:", error.message);
-      makeErrorMessage(error.response?.data?.message || "An error occurred");
+      handleAuthError(error);
       throw error;
+    } finally {
+      setIsLoading(false);
     }
   };
-  
 
-  // Выход из системы
+  // Выход
   const logOut = () => {
     try {
-      // Удаляем токены и данные пользователя из localStorage
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("refreshToken");
-      localStorage.removeItem("username");
-  
-      // Удаляем пользователя из Redux
+      sessionStorage.removeItem("accessToken");
+      sessionStorage.removeItem("refreshToken");
+      sessionStorage.removeItem("username");
+
       dispatch(removeUser());
-  
-      // Перенаправляем на главную страницу
       navigate("/");
     } catch (error) {
       console.error("Error during logout:", error);
     }
   };
-  
 
   // Проверка текущего пользователя
   const checkIsUserLoggedIn = () => {
     try {
-      const accessToken = localStorage.getItem("accessToken");
-      const username = localStorage.getItem("username");
-  
+      const accessToken = sessionStorage.getItem("accessToken");
+      const username = sessionStorage.getItem("username");
+
       if (accessToken && username) {
         dispatch(addUser({ username }));
         return true;
@@ -101,13 +142,12 @@ export const useAuth = () => {
       return false;
     }
   };
-  
-  
 
   return {
     signUp,
     logIn,
     logOut,
     checkIsUserLoggedIn,
+    isLoading,
   };
 };
