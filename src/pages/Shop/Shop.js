@@ -81,11 +81,11 @@ const Shop = () => {
           {width > 767 && (
             <>
               <ShopCategories />
-              <Tags />
+              {/* <Tags /> */}
             </>
           )}
 
-          <ShopArticle />
+          {/* <ShopArticle /> */}
         </div>
         <div>
           <ShopTitleStyled>

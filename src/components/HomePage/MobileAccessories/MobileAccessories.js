@@ -112,7 +112,7 @@ export const MobileAccessories = () => {
           <p>
             only for <span>Smartphones</span> product.
           </p>
-          <SalesShopLinkStyled to="shop/smartphones">
+          <SalesShopLinkStyled to="/">  {/* shop/smartphones */}
             SHOP NOW
             <ArrowRightIcon />
           </SalesShopLinkStyled>

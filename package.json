@@ -1,5 +1,5 @@
 {
-  "name": "clicon-store",
+  "name": "AppStore-store",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,8 +8,9 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.6.8",
-    "firebase": "^10.11.1",
+    "axios": "^1.7.8",
+    "firebase": "^11.0.2",
+    "jwt-decode": "^4.0.0",
     "modern-normalize": "^2.0.0",
     "nanoid": "^5.0.7",
     "notiflix": "^3.2.7",
@@ -29,7 +30,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set PORT=5174 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

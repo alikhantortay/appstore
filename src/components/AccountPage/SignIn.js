@@ -1,77 +1,90 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-import {
-  Link,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
 
 import { ReactComponent as ArrowRightIcon } from "../../icons/ArrowRight.svg";
 import { ReactComponent as EyeIcon } from "../../icons/Eye.svg";
 
 import {
   AuthLabelStyled,
+  AuthSeparator,
   LogInBtnStyled,
 } from "../../styles/authStyles";
 
 const SignIn = () => {
-  const { logIn } = useAuth();
-  const passwordRef = useRef();
-  const navigate = useNavigate();
-  const backLink = useLocation().state;
+  const { logIn } = useAuth(); // Подключаем метод логина из useAuth
+  const navigate = useNavigate(); // Для перенаправления после логина
+  const passwordRef = useRef(); // Для управления видимостью пароля
 
-  const handleSubmit = (e) => {
-    const form = e.currentTarget;
-    logIn(
-      form.elements.email.value,
-      form.elements.password.value,
-    );
-    backLink && navigate(backLink);
+  // Локальные состояния для формы
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Отключаем стандартное поведение формы
+    try {
+      // Вызываем logIn с данными пользователя
+      await logIn(username, password);
+      navigate("/"); // Перенаправляем на домашнюю страницу после успешного входа
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
   };
 
-  const changePasswordVisibilty = () => {
+  const changePasswordVisibility = () => {
     passwordRef.current.type === "password"
       ? (passwordRef.current.type = "text")
       : (passwordRef.current.type = "password");
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <AuthLabelStyled htmlFor="email">
-        Email Address
-        <input
-          id="email"
-          name="email"
-          type="email"
-          required
-        />
-      </AuthLabelStyled>
+    <div>
+      <h2>Войдите в свой аккаунт</h2>
+      <form onSubmit={handleSubmit}>
+        {/* Поле ввода имени пользователя */}
+        <AuthLabelStyled htmlFor="username">
+          Имя пользователя
+          <input
+            id="username"
+            name="username"
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </AuthLabelStyled>
 
-      <AuthLabelStyled htmlFor="password">
-        Password
-        <Link to="/user-account/forget-password">
-          Forget Password
-        </Link>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          ref={passwordRef}
-          required
-        />
-        <button
-          type="button"
-          aria-label="Show/hide Password"
-          onClick={changePasswordVisibilty}>
-          <EyeIcon />
-        </button>
-      </AuthLabelStyled>
+        {/* Поле ввода пароля */}
+        <AuthLabelStyled htmlFor="password">
+          Пароль
+          <Link to="/"> {/* user-account/forget-password */}
+            Забыли пароль
+          </Link>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            ref={passwordRef}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button
+            type="button"
+            aria-label="Show/hide Password"
+            onClick={changePasswordVisibility}
+          >
+            <EyeIcon />
+          </button>
+        </AuthLabelStyled>
 
-      <LogInBtnStyled type="submit" aria-label="Sign in">
-        SIGN IN
-        <ArrowRightIcon />
-      </LogInBtnStyled>
-    </form>
+        {/* Кнопка логина */}
+        <LogInBtnStyled type="submit">
+          ВОЙТИ
+          <ArrowRightIcon />
+        </LogInBtnStyled>
+      </form>
+    </div>
   );
 };
 

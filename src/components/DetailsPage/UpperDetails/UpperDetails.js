@@ -84,8 +84,8 @@ export const UpperDetails = ({ item }) => {
             <li>
               <p>
                 Brand:{" "}
-                <Link to={`/shop?q=${brand || "clicon"}`}>
-                  {brand || "Clicon"}
+                <Link to={`/shop?q=${brand || "AppStore"}`}>
+                  {brand || "AppStore"}
                 </Link>
               </p>
             </li>

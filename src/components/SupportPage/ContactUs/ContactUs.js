@@ -32,7 +32,7 @@ export const ContactUs = () => {
                 <br />
                 Talk with us now
               </p>
-              <span>+1-202-555-0126</span>
+              <span>+7-777-777-7777</span>
               <a href="tel:+12025550126">
                 CALL NOW
                 <ArrowRightIcon />
@@ -49,8 +49,8 @@ export const ContactUs = () => {
                 <br />
                 Talk with us now
               </p>
-              <span>Support@clicon.com</span>
-              <a href="mailto:support@clicon.com">
+              <span>Support@AppStore.com</span>
+              <a href="mailto:support@AppStore.com">
                 CONTACT US
                 <ArrowRightIcon />
               </a>

@@ -26,9 +26,7 @@ const ForgetPassword = lazy(() =>
   ),
 );
 const ShopPage = lazy(() => import("./pages/Shop/Shop"));
-const ComparePage = lazy(() =>
-  import("./pages/Compare/Compare"),
-);
+
 const WishlistPage = lazy(() =>
   import("./pages/Wishlist/Wishlist"),
 );
@@ -119,10 +117,6 @@ const App = () => {
           <Route
             path="/shop/:category?"
             element={<ShopPage />}
-          />
-          <Route
-            path="/compare"
-            element={<ComparePage />}
           />
           <Route
             path="/shopping-cart"

@@ -29,7 +29,7 @@ const ForgetPassword = () => {
     <ForgetPasswordStyled>
       <h2>Forget Password</h2>
       <ForgetPasswordUpperTextStyled>
-        Enter the email address associated with your Clicon
+        Enter the email address associated with your AppStore
         account.
       </ForgetPasswordUpperTextStyled>
 
@@ -54,11 +54,11 @@ const ForgetPassword = () => {
       <AuthLinksStyled>
         <li>
           <p>Already have account? </p>
-          <Link to="/user-account/sign-in">Sign In</Link>
+          <Link to="/user-account/sign-in">ВОЙТИ</Link>
         </li>
         <li>
           <p>Don’t have account? </p>
-          <Link to="/user-account/sign-up">Sign Up</Link>
+          <Link to="/user-account/sign-up">ЗАРЕГИСТРИРОВАТЬСЯ</Link>
         </li>
       </AuthLinksStyled>
 

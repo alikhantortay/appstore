@@ -8,7 +8,7 @@ const Support = () => {
   return (
     <>
       <Helmet>
-        <title>Customer Support</title>
+        <title>Служба поддержки</title>
       </Helmet>
       <Help />
       <HelpTopics />

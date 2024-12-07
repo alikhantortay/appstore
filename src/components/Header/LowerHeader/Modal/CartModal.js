@@ -61,7 +61,7 @@ export const CartModal = ({ onClick }) => {
   return (
     <ModalStyled name="cart">
       <ModalTitleStyled>
-        Shopping Cart{" "}
+      Корзина{" "}
         {numberOfItems > 0 && (
           <span>
             (
@@ -131,7 +131,7 @@ export const CartModal = ({ onClick }) => {
         </ModalListStyled>
       ) : (
         <EmptyMessageStyled>
-          Your cart is empty!
+          Ваша корзина пуста!
         </EmptyMessageStyled>
       )}
 
@@ -143,9 +143,9 @@ export const CartModal = ({ onClick }) => {
           </>
         )}
         <ModalLinkStyled
-          to="/shopping-cart"
+          to="/" /* shopping-cart */
           onClick={onClick}>
-          VIEW CART
+         Посмотреть корзину
           <ArrowRightIcon />
         </ModalLinkStyled>
       </ModalLowerStyled>

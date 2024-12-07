@@ -14,87 +14,147 @@ import {
 } from "../../styles/authStyles";
 
 const SignUp = () => {
-  const [isAgree, setIsAgree] = useState(false);
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+    phoneNumber: "",
+    userType: "PHYSICAL",
+    firstName: "",
+    lastName: "",
+    bin: "",
+    companyName: "",
+  });
+
   const { signUp } = useAuth();
-  const passwordRef = useRef();
-  const confirmPasswordRef = useRef();
   const navigate = useNavigate();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const {
-      elements: { name, email, password, confirmPassword },
-    } = e.currentTarget;
-
-    if (password.value !== confirmPassword.value) {
-      Notify.failure("Your passwords don't match!");
-    } else {
-      signUp(name.value, email.value, password.value) &&
-        navigate("/user-account/sign-in");
-    }
+  const [isAgree, setIsAgree] = useState(false);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  const changePasswordVisibilty = (ref) => {
-    ref.current.type === "password"
-      ? (ref.current.type = "text")
-      : (ref.current.type = "password");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await signUp(formData);
+      Notify.success("Registration successful!");
+      navigate("/user-account/sign-in");
+    } catch (error) {
+      console.error("Registration failed:", error);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <AuthLabelStyled htmlFor="name">
-        Name
-        <input id="name" name="name" type="text" required />
+      <AuthLabelStyled htmlFor="userType">
+        <span>Тип пользователя</span>
+        <select
+          id="userType"
+          name="userType"
+          value={formData.userType}
+          onChange={handleInputChange}
+          className="styled-select"
+        >
+          <option value="PHYSICAL">Физическое Лицо</option>
+          <option value="JURIDICAL">Юридическое лицо</option>
+        </select>
       </AuthLabelStyled>
 
-      <AuthLabelStyled htmlFor="email">
-        Email Address
+      <AuthLabelStyled htmlFor="username">
+        Имя пользователя
         <input
-          id="email"
-          name="email"
-          type="email"
+          id="username"
+          name="username"
+          type="text"
+          placeholder="Имя пользователя"
+          value={formData.username}
+          onChange={handleInputChange}
           required
         />
       </AuthLabelStyled>
 
       <AuthLabelStyled htmlFor="password">
-        Password
+        Пароль
         <input
           id="password"
           name="password"
           type="password"
-          ref={passwordRef}
-          placeholder="8+ characters"
+          placeholder="Пароль"
+          value={formData.password}
+          onChange={handleInputChange}
           required
         />
-        <button
-          type="button"
-          aria-label="Show/hide Password"
-          onClick={() =>
-            changePasswordVisibilty(passwordRef)
-          }>
-          <EyeIcon />
-        </button>
       </AuthLabelStyled>
 
-      <AuthLabelStyled htmlFor="confirmPassword">
-        Confirm Password
+      <AuthLabelStyled htmlFor="phoneNumber">
+        Номер
         <input
-          id="confirmPassword"
-          name="confirmPassword"
-          type="confirmPassword"
-          ref={confirmPasswordRef}
+          id="phoneNumber"
+          name="phoneNumber"
+          type="tel"
+          placeholder="Номер"
+          value={formData.phoneNumber}
+          onChange={handleInputChange}
           required
         />
-        <button
-          type="button"
-          aria-label="Show/hide Password"
-          onClick={() =>
-            changePasswordVisibilty(confirmPasswordRef)
-          }>
-          <EyeIcon />
-        </button>
       </AuthLabelStyled>
+
+      <AuthLabelStyled htmlFor="firstName">
+        Имя
+        <input
+          id="firstName"
+          name="firstName"
+          type="text"
+          placeholder="Имя"
+          value={formData.firstName}
+          onChange={handleInputChange}
+          required
+        />
+      </AuthLabelStyled>
+
+      <AuthLabelStyled htmlFor="lastName">
+        Фамилия
+        <input
+          id="lastName"
+          name="lastName"
+          type="text"
+          placeholder="Фамилия"
+          value={formData.lastName}
+          onChange={handleInputChange}
+          required
+        />
+      </AuthLabelStyled>
+
+      {formData.userType === "JURIDICAL" && (
+        <>
+          <AuthLabelStyled htmlFor="username">
+            БИН
+            <input
+              id="bin"
+              name="bin"
+              type="text"
+              placeholder="БИН"
+              value={formData.bin}
+              onChange={handleInputChange}
+              required
+            />
+          </AuthLabelStyled>
+
+          <AuthLabelStyled htmlFor="username">
+            Имя компании
+            <input
+              id="companyName"
+              name="companyName"
+              type="text"
+              placeholder="Имя компании"
+              value={formData.companyName}
+              onChange={handleInputChange}
+              required
+            />
+          </AuthLabelStyled>
+        </>
+      )}
 
       <AgreementStyled>
         <div>
@@ -109,15 +169,15 @@ const SignUp = () => {
           {isAgree && <CheckIcon />}
         </div>
         <label>
-          Are you agree to Clicon{" "}
-          <span>Terms of Condition</span> and{" "}
-          <span>Privacy Policy.</span>
+        Согласны ли вы с{" "}
+          <span>Условиями AppStore</span> и{" "}
+          <span>Политикой конфиденциальности.</span>
         </label>
       </AgreementStyled>
 
+
       <LogInBtnStyled type="submit" aria-label="Sign up">
-        SIGN UP
-        <ArrowRightIcon />
+        ЗАРЕГИСТРИРОВАТЬСЯ
       </LogInBtnStyled>
     </form>
   );

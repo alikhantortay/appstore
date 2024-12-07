@@ -19,7 +19,7 @@ export const UpperHeader = () => {
         <HeadSaleStyled>
           Up to<span>59%</span>OFF
         </HeadSaleStyled>
-        <ShopLinkStyled to="/shop">
+        <ShopLinkStyled to="/"> {/* shop */}
           SHOP NOW
           <ArrowRightIcon />
         </ShopLinkStyled>

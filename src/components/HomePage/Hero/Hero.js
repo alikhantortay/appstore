@@ -49,11 +49,10 @@ export const Hero = () => {
         <HeroGridContainer>
           <XBoxStyled>
             <XBoxTextStyled>
-              <span>THE BEST PLACE TO PLAY</span>
-              <h2>Xbox Consoles</h2>
+              <span>ЛУЧШЕЕ МЕСТО ДЛЯ ИГР</span>
+              <h2>Консоли Xbox</h2>
               <p>
-                Save up to 50% on select Xbox games. Get 3
-                months of PC Game Pass for $2 USD.
+              Сэкономьте до 50 % на некоторых играх для Xbox.. Получите 3-месячную подписку на PC Game Pass за 2 доллара США.
               </p>
               <ShopLink to="/shop/laptops" big />
               <CirclesStyled>
@@ -76,7 +75,7 @@ export const Hero = () => {
           {phone && (
             <PhoneSaleStyled>
               <PhoneTextStyled>
-                <span>SUMMER SALES</span>
+                <span>Зимние распродажи</span>
                 <h2>{phone.title}</h2>
                 <ShopLink
                   to={`/shop/${phone.category}/${phone.title}?id=${phone.id}`}

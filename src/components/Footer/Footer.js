@@ -30,40 +30,38 @@ export const Footer = () => {
         <div>
           <FooterLogoLinkStyled to="/">
             <Logo />
-            <span>CLICON</span>
+            <span>AppStore</span>
           </FooterLogoLinkStyled>
           <FooterAddressStyled>
-            <p>Customer Supports:</p>
-            <a href="tel:6295550129">(629) 555-0129</a>
+            <p>Контакты поддержки:</p>
+            <a href="tel:+77777777">(+7) 777-7777</a>
             <p>
-              4517 Washington Ave.
-              <br />
-              Manchester, Kentucky 39495
+            17 Абая ул., Алматы Казахстан
             </p>
-            <a href="mailto:info@kinbo.com">
-              info@kinbo.com
+            <a href="mailto:appstore@gmail.com">
+            appstore@gmail.com
             </a>
           </FooterAddressStyled>
         </div>
 
         {width > 1023 && (
           <FooterLinksStyled>
-            <h2>Top Category</h2>
+            <h2>Все категории</h2>
             <ul>
               {categories
                 .slice(0, 6)
                 .map(({ slug, name }) => {
                   return (
                     <li key={slug}>
-                      <NavLink to={`/shop/${slug}`}>
+                      <NavLink to={`/`}> {/* shop/${slug} */}
                         {name}
                       </NavLink>
                     </li>
                   );
                 })}
             </ul>
-            <AllCategoryLinkStyled to="/shop">
-              Browse All Products
+            <AllCategoryLinkStyled to="/"> {/* shop */}
+              Показать все продукты
               <ArrowRight />
             </AllCategoryLinkStyled>
           </FooterLinksStyled>
@@ -71,59 +69,26 @@ export const Footer = () => {
 
         {width > 1199 && (
           <FooterLinksStyled>
-            <h2>Quick links</h2>
+            <h2>Быстрые ссылки</h2>
             <ul>
               <li>
-                <NavLink to="/shop">Shop Product</NavLink>
+                <NavLink to="/">Купить сейчас</NavLink> {/*shop */}
               </li>
               <li>
-                <NavLink to="/cart">Shoping Cart</NavLink>
+                <NavLink to="/">Корзина</NavLink> {/* cart*/}
               </li>
               <li>
-                <NavLink to="/wishlist">Wishlist</NavLink>
+                <NavLink to="/">Список желаний</NavLink> {/* wishlist*/}
               </li>
               <li>
-                <NavLink to="/compare">Compare</NavLink>
-              </li>
-              <li>
-                <NavLink to="/support">Support</NavLink>
+                <NavLink to="/">Служба поддержки</NavLink> {/*support */}
               </li>
             </ul>
           </FooterLinksStyled>
         )}
 
-        <FooterAppLinksStyled>
-          <h2>Download App</h2>
-          <a
-            href="https://play.google.com/"
-            rel="noreferrer"
-            target="_blank">
-            <GPlayIcon />
-            <div>
-              <span>Get it now</span>
-              <p>Google Play</p>
-            </div>
-          </a>
-          <a
-            href="https://www.apple.com/app-store/"
-            rel="noreferrer"
-            target="_blank">
-            <AppleIcon />
-            <div>
-              <span>Get it now</span>
-              <p>App Store</p>
-            </div>
-          </a>
-        </FooterAppLinksStyled>
-
-        <Tags footer />
       </Container>
-      <LowerFooterStyled>
-        <p>
-          Kinbo - eCommerce Template © 2021. Design by
-          Templatecookie
-        </p>
-      </LowerFooterStyled>
+      
     </FooterStyled>
   );
 };

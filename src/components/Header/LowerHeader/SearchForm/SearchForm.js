@@ -69,7 +69,7 @@ export const SearchForm = () => {
           name="search"
           type="text"
           autoComplete="off"
-          placeholder="Search for anything..."
+          placeholder="Ищите что-нибудь..."
           onChange={handleChange}
         />
         <button type="submit" aria-label="Search">

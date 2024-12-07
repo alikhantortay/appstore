@@ -42,11 +42,11 @@ export const NavHeader = () => {
           <CategoryBtnStyled
             name="categories"
             type="button"
-            onClick={() =>
+            /* onClick={() =>
               setIsCategoriesOpen((prevState) => !prevState)
-            }
+            } */
             $isOpen={isCategoriesOpen}>
-            All Category
+            Все категории
             <CaretIcon />
           </CategoryBtnStyled>
           {isCategoriesOpen && (
@@ -54,18 +54,14 @@ export const NavHeader = () => {
               onClick={() => setIsCategoriesOpen(false)}
             />
           )}
-          <NavLink to="/compare">
-            <CompareIcon />
-            {width > 424 && "Compare"}
-          </NavLink>
-          <NavLink to="/support">
+          <NavLink to="/"> {/* support */}
             <SupportIcon />
-            {width > 424 && "Customer Support"}
+            {width > 424 && "Служба поддержки"}
           </NavLink>
         </NavStyled>
         <HeaderTelStyled href="tel:+12025550104">
           <PhoneIcon />
-          +1-202-555-0104
+          +7-777-777-7777
         </HeaderTelStyled>
       </Container>
     </NavHeaderStyled>

@@ -1,114 +1,113 @@
 import { useDispatch } from "react-redux";
-
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
-import { initializeApp } from "firebase/app";
 import { makeErrorMessage } from "../makeErrorMessage";
+import { jwtDecode } from "jwt-decode";
 import { addUser, removeUser } from "../redux/auth/slice";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  updateProfile,
-  GoogleAuthProvider,
-  signInWithPopup,
-  sendEmailVerification,
-  onAuthStateChanged,
-  sendPasswordResetEmail,
-} from "firebase/auth";
-
-const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket:
-    process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId:
-    process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  measurementId:
-    process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
-};
 
 export const useAuth = () => {
   const dispatch = useDispatch();
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const provider = new GoogleAuthProvider();
+  const navigate = useNavigate();
 
-  const signUp = async (displayName, email, password) => {
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+
+  // Регистрация
+  const signUp = async (formData) => {
     try {
-      const { user } = await createUserWithEmailAndPassword(
-        auth,
-        email,
+      const response = await axios.post(`${apiBaseUrl}/auth/register`, formData);
+  
+      // После успешной регистрации сохраняем нового пользователя
+      localStorage.setItem("accessToken", response.data.accessToken);
+      localStorage.setItem("refreshToken", response.data.refreshToken);
+      localStorage.setItem("username", formData.username);
+  
+      // Добавляем нового пользователя в Redux
+      dispatch(addUser({ username: formData.username }));
+  
+      Notify.success("Registration successful");
+      return response.data;
+    } catch (error) {
+      console.error("Error during registration:", error);
+      makeErrorMessage(error.response?.data?.message || "An error occurred");
+      throw error;
+    }
+  };
+  
+  
+
+  const logIn = async (username, password) => {
+    try {
+      const response = await axios.post(`${apiBaseUrl}/auth/login`, {
+        username,
         password,
-      );
-      await updateProfile(user, { displayName });
-      await sendEmailVerification(user);
-      Notify.success(
-        "Email verification link sent to your email.",
-      );
+      });
+  
+      console.log("Response data:", response.data);
+  
+      // Сохраняем токены
+      localStorage.setItem("accessToken", response.data.accessToken);
+      localStorage.setItem("refreshToken", response.data.refreshToken);
+  
+      // Сохраняем username в localStorage
+      localStorage.setItem("username", username);
+  
+      dispatch(addUser({ username }));
+      Notify.success("Login successful");
+      return response.data;
     } catch (error) {
-      makeErrorMessage(error.code);
+      console.error("Login failed:", error.message);
+      makeErrorMessage(error.response?.data?.message || "An error occurred");
+      throw error;
     }
   };
+  
 
-  const logIn = async (email, password) => {
+  // Выход из системы
+  const logOut = () => {
     try {
-      const { user } = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password,
-      );
-      !user.emailVerified &&
-        makeErrorMessage("auth/not-verified");
+      // Удаляем токены и данные пользователя из localStorage
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      localStorage.removeItem("username");
+  
+      // Удаляем пользователя из Redux
+      dispatch(removeUser());
+  
+      // Перенаправляем на главную страницу
+      navigate("/");
     } catch (error) {
-      makeErrorMessage(error.code);
+      console.error("Error during logout:", error);
     }
   };
+  
 
-  const logInGoogle = async () => {
+  // Проверка текущего пользователя
+  const checkIsUserLoggedIn = () => {
     try {
-      await signInWithPopup(auth, provider);
-    } catch (error) {
-      makeErrorMessage(error.code);
-    }
-  };
-
-  const checkIsUserLoggedIn = () =>
-    onAuthStateChanged(auth, (user) => {
-      if (user && user.emailVerified) {
-        dispatch(addUser(user));
+      const accessToken = localStorage.getItem("accessToken");
+      const username = localStorage.getItem("username");
+  
+      if (accessToken && username) {
+        dispatch(addUser({ username }));
+        return true;
       } else {
         dispatch(removeUser());
+        return false;
       }
-    });
-
-  const resetPassword = async (email) => {
-    try {
-      await sendPasswordResetEmail(auth, email);
-      Notify.success(
-        "Password reset link sent to your email.",
-      );
     } catch (error) {
-      makeErrorMessage(error.code);
+      dispatch(removeUser());
+      console.error("Error during user check:", error);
+      return false;
     }
   };
-
-  const logOut = async () => {
-    try {
-      await signOut(auth);
-    } catch (error) {
-      makeErrorMessage(error.code);
-    }
-  };
+  
+  
 
   return {
     signUp,
     logIn,
-    logInGoogle,
-    checkIsUserLoggedIn,
-    resetPassword,
     logOut,
+    checkIsUserLoggedIn,
   };
 };

@@ -83,7 +83,7 @@ export const Cart = ({ items, setItems }) => {
 
   return (
     <ListWrapper>
-      <h2>Shopping Cart</h2>
+      <h2>Корзина</h2>
 
       {items.length > 0 ? (
         <>

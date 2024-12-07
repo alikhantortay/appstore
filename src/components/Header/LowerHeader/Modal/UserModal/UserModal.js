@@ -20,55 +20,61 @@ import {
 
 export const UserModal = ({ onClick }) => {
   const { logIn, logOut } = useAuth();
-
   const passwordRef = useRef();
-  const { displayName, isLoggedIn } =
-    useSelector(selectUser);
+  const { username, isLoggedIn } = useSelector(selectUser);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const form = e.currentTarget;
-    logIn(
-      form.elements.email.value,
-      form.elements.password.value,
-    );
+
+    try {
+      await logIn(
+        form.elements.username.value,
+        form.elements.password.value,
+      );
+      onClick(); // Закрываем модальное окно после успешного входа
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
   };
 
-  const changePasswordVisibilty = () => {
-    passwordRef.current.type === "password"
-      ? (passwordRef.current.type = "text")
-      : (passwordRef.current.type = "password");
+  const changePasswordVisibility = () => {
+    if (passwordRef.current) {
+      passwordRef.current.type =
+        passwordRef.current.type === "password" ? "text" : "password";
+    }
   };
 
   return (
     <UserModalStyled name="userMenu">
       <UserModalTitleStyled>
         {isLoggedIn
-          ? `Welcome ${displayName}`
-          : "Sign in to your account"}
+          ? `Привет ${username}`
+          : "Войдите в свой аккаунт"}
       </UserModalTitleStyled>
       {isLoggedIn ? (
         <LogInBtnStyled type="button" onClick={logOut}>
-          LOG OUT
+          ВЫХОД
         </LogInBtnStyled>
       ) : (
         <>
           <form onSubmit={handleSubmit}>
-            <AuthLabelStyled htmlFor="email">
-              Email Address
+            <AuthLabelStyled htmlFor="username">
+            Имя пользователя
               <input
-                id="email"
-                name="email"
-                type="email"
+                id="username"
+                name="username"
+                type="text"
                 required
               />
             </AuthLabelStyled>
 
             <AuthLabelStyled htmlFor="password">
-              Password
+              Пароль
               <Link
-                to="/user-account/forget-password"
+                to="/" /* user-account/forget-password */
                 onClick={onClick}>
-                Forget Password
+                Забыли пароль
               </Link>
               <input
                 id="password"
@@ -80,23 +86,23 @@ export const UserModal = ({ onClick }) => {
               <button
                 type="button"
                 aria-label="Show/hide Password"
-                onClick={changePasswordVisibilty}>
+                onClick={changePasswordVisibility}>
                 <EyeIcon />
               </button>
             </AuthLabelStyled>
 
             <LogInBtnStyled type="submit">
-              LOGIN
+              ВОЙТИ
               <ArrowRightIcon />
             </LogInBtnStyled>
           </form>
           <AuthSeparator>
-            <p>Don't have account</p>
+            <p>ЕЩЕ НЕ ЗАРЕГИСТРИРОВАНЫ?</p>
           </AuthSeparator>
           <ModalLinkStyled
             to="/user-account/sign-up"
             onClick={onClick}>
-            CREATE ACCOUNT
+            СОЗДАТЬ АККАУНТ
           </ModalLinkStyled>
         </>
       )}

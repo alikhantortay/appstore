@@ -54,7 +54,7 @@ export const WishlistModal = ({ onClick }) => {
   return (
     <ModalStyled name="wishlist" $wishlist>
       <ModalTitleStyled>
-        Wishlist
+      Cписок желаний
         {items.length > 0 && (
           <span>
             (
@@ -120,13 +120,13 @@ export const WishlistModal = ({ onClick }) => {
         </ModalListStyled>
       ) : (
         <EmptyMessageStyled>
-          Your wishlist is empty!
+          Ваш список желаний пуст!
         </EmptyMessageStyled>
       )}
 
       <ModalLowerStyled>
-        <ModalLinkStyled to="/wishlist" onClick={onClick}>
-          VIEW WISHLIST
+        <ModalLinkStyled to="/" onClick={onClick}> {/* wishlist */}
+        Посмотреть список желаний
           <ArrowRightIcon />
         </ModalLinkStyled>
       </ModalLowerStyled>

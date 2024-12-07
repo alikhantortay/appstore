@@ -36,6 +36,85 @@ export const AuthLabelStyled = styled.label`
     }
   }
 
+  .styled-select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: inherit;
+  background: #f9f9f9;
+  color: #333;
+  outline: none;
+  appearance: none; /* Убираем стрелку по умолчанию */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23666'%3E%3Cpath d='M7 10l5 5 5-5H7z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px top 50%;
+  background-size: 12px;
+}
+
+.styled-select:focus {
+  border-color: #ffa500;
+  background-color: #fff;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #666;
+  gap: 10px;
+}
+
+.checkbox-container input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkbox-container .checkmark {
+  width: 18px;
+  height: 18px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.checkbox-container .checkmark::after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 4px;
+  top: 1px;
+  width: 6px;
+  height: 12px;
+  border: solid #ffa500;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-container input[type="checkbox"]:checked ~ .checkmark::after {
+  display: block;
+}
+
+.agreement-text {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.agreement-text a {
+  color: #ffa500;
+  text-decoration: none;
+}
+
+.agreement-text a:hover {
+  text-decoration: underline;
+}
+
   button {
     display: flex;
     position: absolute;

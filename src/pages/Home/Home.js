@@ -9,24 +9,18 @@ import { Specials } from "../../components/HomePage/Specials/Specials";
 import { MobileAccessories } from "../../components/HomePage/MobileAccessories/MobileAccessories";
 import { BigDeal } from "../../components/HomePage/BigDeal/BigDeal";
 import { OtherDeals } from "../../components/HomePage/OtherDeals/OtherDeals";
-import { Subscribtion } from "../../components/HomePage/Subscribtion/Subscribtion";
 
 const Home = () => {
   return (
     <>
       <Helmet>
-        <title>Clicon - eCommerce Marketplace</title>
+        <title>AppStore</title>
       </Helmet>
       <Hero />
-      <Benefits />
+      {/* <Benefits />
       <BestDeals />
       <Categories />
-      <Featured />
-      <Specials />
-      <MobileAccessories />
-      <BigDeal />
-      <OtherDeals />
-      <Subscribtion />
+      <Featured /> */}
     </>
   );
 };

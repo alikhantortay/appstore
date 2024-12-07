@@ -22,7 +22,7 @@ export const LowerHeader = () => {
         {width > 767 && (
           <HeadLogoLinkStyled to="/">
             <Logo />
-            CLICON
+            AppStore
           </HeadLogoLinkStyled>
         )}
         <SearchForm />

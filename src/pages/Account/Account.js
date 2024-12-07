@@ -19,7 +19,6 @@ import {
 } from "./Account.styled";
 
 const Account = () => {
-  const { logInGoogle } = useAuth();
   const { pathname } = useLocation();
 
   return (
@@ -32,29 +31,14 @@ const Account = () => {
         <AccountWrapper>
           {pathname !== "/user-account/forget-password" && (
             <>
-              <NavLink to="sign-in">Sign In</NavLink>
-              <NavLink to="sign-up">Sign Up</NavLink>
+              <NavLink to="sign-in">ВОЙТИ</NavLink>
+              <NavLink to="sign-up">ЗАРЕГИСТРИ <span>РОВАТЬСЯ</span></NavLink>
             </>
           )}
           <FormWrapper>
             <Suspense fallback={null}>
               <Outlet />
             </Suspense>
-            {pathname !==
-              "/user-account/forget-password" && (
-              <>
-                <AuthSeparator>
-                  <p>or</p>
-                </AuthSeparator>
-                <GoogleBtnStyled
-                  type="button"
-                  aria-label="Login with Google"
-                  onClick={logInGoogle}>
-                  <GoogleIcon />
-                  Login with Google
-                </GoogleBtnStyled>
-              </>
-            )}
           </FormWrapper>
         </AccountWrapper>
       </Container>

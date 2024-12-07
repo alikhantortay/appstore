@@ -7,9 +7,9 @@ import { ShopLinkStyled } from "./ShopLink.styled";
 export const ShopLink = ({ to, big = false }) => {
   return (
     <ShopLinkStyled
-      to={to.toLowerCase().replaceAll(" ", "-")}
+      to={"/"} /* to.toLowerCase().replaceAll(" ", "-") */
       $big={big}>
-      SHOP NOW
+      КУПИТЬ СЕЙЧАС
       <ArrowRight />
     </ShopLinkStyled>
   );

@@ -19,13 +19,6 @@ export const Benefits = () => {
             </div>
           </li>
           <li>
-            <TrophyIcon />
-            <div>
-              <h2>24 Hours Return</h2>
-              <p>100% money-back guarantee</p>
-            </div>
-          </li>
-          <li>
             <CreditCardIcon />
             <div>
               <h2>Secure Payment</h2>

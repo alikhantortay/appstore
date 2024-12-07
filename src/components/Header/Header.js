@@ -12,8 +12,8 @@ export const Header = () => {
 
   return (
     <header>
-      {width > 767 && pathname === "/" && <UpperHeader />}
-      <MidHeader />
+      {width > 767 && pathname === "/" /* && <UpperHeader /> */}
+      {/* <MidHeader /> */}
       <LowerHeader />
       <NavHeader />
     </header>

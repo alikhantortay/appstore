@@ -20,5 +20,5 @@ export const topics = [
     svg: <CreditCardIcon />,
     title: "Shoping Cart & Wallet",
   },
-  { svg: <StorefrontIcon />, title: "Sell on Clicon" },
+  { svg: <StorefrontIcon />, title: "Sell on AppStore" },
 ];

@@ -39,8 +39,8 @@ const AdditionalInfo = () => {
         <ul>
           <li>
             <p>Brand: </p>
-            <Link to={`/shop?q=${item.brand || "clicon"}`}>
-              {item.brand || "Clicon"}
+            <Link to={`/shop?q=${item.brand || "AppStore"}`}>
+              {item.brand || "AppStore"}
             </Link>
           </li>
           <li>

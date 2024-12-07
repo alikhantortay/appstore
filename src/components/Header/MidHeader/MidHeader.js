@@ -29,7 +29,7 @@ export const MidHeader = () => {
         {width > 767 ? (
           <>
             <WelcomeTextStyled>
-              Welcome to Clicon online eCommerce store.
+              Welcome to AppStore online eCommerce store.
             </WelcomeTextStyled>
 
             <FollowUsStyled>
@@ -54,7 +54,7 @@ export const MidHeader = () => {
         ) : (
           <HeadLogoLinkStyled to="/">
             <Logo />
-            CLICON
+            AppStore
           </HeadLogoLinkStyled>
         )}
 
