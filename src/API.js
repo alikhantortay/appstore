@@ -6,3 +6,4 @@ export const fetch = async (endpoint) => {
   const response = await axios.get(endpoint);
   return response;
 };
+

@@ -125,7 +125,7 @@ export const WishlistModal = ({ onClick }) => {
       )}
 
       <ModalLowerStyled>
-        <ModalLinkStyled to="/" onClick={onClick}> {/* wishlist */}
+        <ModalLinkStyled to="/wishlist" onClick={onClick}> {/* wishlist */}
         Посмотреть список желаний
           <ArrowRightIcon />
         </ModalLinkStyled>

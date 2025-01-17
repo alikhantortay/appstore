@@ -53,14 +53,14 @@ export const Footer = () => {
                 .map(({ slug, name }) => {
                   return (
                     <li key={slug}>
-                      <NavLink to={`/`}> {/* shop/${slug} */}
+                      <NavLink to={`/shop/${slug}`}> {/* shop/${slug} */}
                         {name}
                       </NavLink>
                     </li>
                   );
                 })}
             </ul>
-            <AllCategoryLinkStyled to="/"> {/* shop */}
+            <AllCategoryLinkStyled to="/shop"> {/* shop */}
               Показать все продукты
               <ArrowRight />
             </AllCategoryLinkStyled>
@@ -72,16 +72,16 @@ export const Footer = () => {
             <h2>Быстрые ссылки</h2>
             <ul>
               <li>
-                <NavLink to="/">Купить сейчас</NavLink> {/*shop */}
+                <NavLink to="/shop">Купить сейчас</NavLink> {/*shop */}
               </li>
               <li>
-                <NavLink to="/">Корзина</NavLink> {/* cart*/}
+                <NavLink to="/cart">Корзина</NavLink> {/* cart*/}
               </li>
               <li>
-                <NavLink to="/">Список желаний</NavLink> {/* wishlist*/}
+                <NavLink to="/wishlist">Список желаний</NavLink> {/* wishlist*/}
               </li>
               <li>
-                <NavLink to="/">Служба поддержки</NavLink> {/*support */}
+                <NavLink to="/support">Служба поддержки</NavLink> {/*support */}
               </li>
             </ul>
           </FooterLinksStyled>

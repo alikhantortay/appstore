@@ -143,7 +143,7 @@ export const CartModal = ({ onClick }) => {
           </>
         )}
         <ModalLinkStyled
-          to="/" /* shopping-cart */
+          to="/shopping-cart" /* shopping-cart */
           onClick={onClick}>
          Посмотреть корзину
           <ArrowRightIcon />

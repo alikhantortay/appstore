@@ -10,6 +10,8 @@ import { SharedLayout } from "./components/SharedLayout/SharedLayout";
 import { RestrictedRoute } from "./components/RestrictedRoute";
 import { GlobalStyle } from "./styles/GlobalStyle";
 
+
+
 const HomePage = lazy(() => import("./pages/Home/Home"));
 const AccountPage = lazy(() =>
   import("./pages/Account/Account"),
@@ -63,6 +65,10 @@ const NotFoundPage = lazy(() =>
   import("./pages/NotFound/NotFound"),
 );
 
+
+const AdminPage = lazy(() => import("./pages/Admin/Admin"));
+
+
 Notify.init({
   width: "260px",
   position: "center-top",
@@ -97,60 +103,45 @@ const App = () => {
   return (
     <>
       <Routes>
+        {/* Основное приложение */}
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
           <Route
-            path="/user-account"
-            element={
-              <RestrictedRoute
-                component={<AccountPage />}
-              />
-            }>
+              path="/user-account"
+              element={
+                <RestrictedRoute component={<AccountPage />} />
+              }>
             <Route path="sign-in" element={<SignIn />} />
             <Route path="sign-up" element={<SignUp />} />
             <Route
-              path="forget-password"
-              element={<ForgetPassword />}
+                path="forget-password"
+                element={<ForgetPassword />}
             />
           </Route>
-
+          <Route path="/shop/:category?" element={<ShopPage />} />
+          <Route path="/shopping-cart" element={<CartPage />} />
           <Route
-            path="/shop/:category?"
-            element={<ShopPage />}
+              path="/shopping-cart/checkout"
+              element={<CheckoutPage />}
           />
+          <Route path="/wishlist" element={<WishlistPage />} />
           <Route
-            path="/shopping-cart"
-            element={<CartPage />}
-          />
-          <Route
-            path="/shopping-cart/checkout"
-            element={<CheckoutPage />}
-          />
-
-          <Route
-            path="/wishlist"
-            element={<WishlistPage />}
-          />
-          <Route
-            path="/shop/:category/:title"
-            element={<DetailsPage />}>
+              path="/shop/:category/:title"
+              element={<DetailsPage />}>
             <Route index element={<Description />} />
             <Route
-              path="additional-info"
-              element={<AdditionalInfo />}
+                path="additional-info"
+                element={<AdditionalInfo />}
             />
-            <Route
-              path="specifications"
-              element={<Specs />}
-            />
+            <Route path="specifications" element={<Specs />} />
             <Route path="reviews" element={<Reviews />} />
           </Route>
-          <Route
-            path="/support"
-            element={<SupportPage />}
-          />
+          <Route path="/support" element={<SupportPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
+
+        <Route path="/admin" element={<AdminPage/>}/>
+
       </Routes>
       <GlobalStyle />
     </>

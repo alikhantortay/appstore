@@ -17,10 +17,10 @@ const Home = () => {
         <title>AppStore</title>
       </Helmet>
       <Hero />
-      {/* <Benefits />
+       <Benefits />
       <BestDeals />
       <Categories />
-      <Featured /> */}
+      <Featured />
     </>
   );
 };

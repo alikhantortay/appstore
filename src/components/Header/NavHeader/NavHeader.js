@@ -42,9 +42,9 @@ export const NavHeader = () => {
           <CategoryBtnStyled
             name="categories"
             type="button"
-            /* onClick={() =>
+             onClick={() =>
               setIsCategoriesOpen((prevState) => !prevState)
-            } */
+            }
             $isOpen={isCategoriesOpen}>
             Все категории
             <CaretIcon />
@@ -54,7 +54,7 @@ export const NavHeader = () => {
               onClick={() => setIsCategoriesOpen(false)}
             />
           )}
-          <NavLink to="/"> {/* support */}
+          <NavLink to="/support"> {/* support */}
             <SupportIcon />
             {width > 424 && "Служба поддержки"}
           </NavLink>
