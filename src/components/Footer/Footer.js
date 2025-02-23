@@ -78,7 +78,7 @@ export const Footer = () => {
                 <NavLink to="/cart">Корзина</NavLink> {/* cart*/}
               </li>
               <li>
-                <NavLink to="/wishlist">Список желаний</NavLink> {/* wishlist*/}
+                <NavLink to="/wishlist">Список избранное</NavLink> {/* wishlist*/}
               </li>
               <li>
                 <NavLink to="/support">Служба поддержки</NavLink> {/*support */}

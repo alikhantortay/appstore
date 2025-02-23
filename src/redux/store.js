@@ -9,7 +9,7 @@ import { compareReducer } from "./shop/compareListSlice";
 
 export const store = configureStore({
   reducer: {
-    user: authReducer,
+    auth: authReducer,
     currency: currencyReducer,
     categories: categoriesReducer,
     cart: cartReducer,

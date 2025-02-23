@@ -3,18 +3,23 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchCategories = createAsyncThunk(
-  "categories/fetchAll",
-  async (_, thunkAPI) => {
-    try {
-      const res = await axios.get("/categories");
-      return res.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(
-        e.response.data.message,
-      );
+    "categories/fetchAll",
+    async (_, thunkAPI) => {
+        try {
+            const accessToken = sessionStorage.getItem('accessToken');
+
+            const res = await axios.get("/categories", {
+                headers: { Authorization: `Bearer ${accessToken}` }
+            });
+
+            return res.data;
+        } catch (e) {
+            console.error("Fetch categories error:", e);
+            return thunkAPI.rejectWithValue(e.response?.data?.message || "Unknown error");
+        }
     }
-  },
 );
+
 
 const categoriesSlice = createSlice({
   name: "categories",
@@ -30,10 +35,6 @@ const categoriesSlice = createSlice({
         (state, action) => {
           state.isLoading = false;
           state.error = null;
-          action.payload.map(
-            (item) =>
-              (item.img = require(`../../images/categories/${item.slug}.webp`)),
-          );
           state.items = action.payload;
         },
       )

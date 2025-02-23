@@ -14,22 +14,22 @@ export const Benefits = () => {
           <li>
             <PackageIcon />
             <div>
-              <h2>Fasted Delivery</h2>
-              <p>Delivery in 24/H</p>
+              <h3>Быстрая доставка</h3>
+              <p>Доставка круглосуточно</p>
             </div>
           </li>
           <li>
             <CreditCardIcon />
             <div>
-              <h2>Secure Payment</h2>
-              <p>Your money is safe</p>
+              <h3>Безопасная оплата</h3>
+              <p>Ваши деньги в безопасности</p>
             </div>
           </li>
           <li>
             <HeadphonesIcon />
             <div>
-              <h2>Support 24/7</h2>
-              <p>Live contact/message</p>
+              <h3>Поддержка 24/7</h3>
+              <p>Живой контакт/сообщение</p>
             </div>
           </li>
         </ul>

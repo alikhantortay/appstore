@@ -2,83 +2,66 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { usePrice } from "../../../../hooks/usePrice";
 
-import { Stars } from "../../../Stars/Stars";
-import { HotButtons } from "../HotButtons/HotButtons";
-
 import {
-  HotPriceStyled,
-  HotStyled,
-  HotWarningsStyled,
-  HotStarRatingStyled,
+    HotPriceStyled,
+    HotStyled,
+    HotWarningsStyled,
 } from "./Hot.styled";
 
 export const Hot = ({ hot }) => {
-  const { countPrice, countSalePrice } = usePrice();
+    const { countPrice, countSalePrice } = usePrice();
 
-  const {
-    id,
-    thumbnail,
-    title,
-    description,
-    category,
-    price,
-    discountPercentage,
-    rating,
-    reviews,
-  } = hot;
+    if (!hot) return null; // Если hot не определён, ничего не рендерим
 
-  return (
-    <HotStyled>
-      <HotWarningsStyled>
-        <span>{`${Math.round(
-          discountPercentage,
-        )}% OFF`}</span>
-        <span>HOT</span>
-      </HotWarningsStyled>
-      <Link
-        to={`shop/${category}/${title
-          .toLowerCase()
-          .replaceAll(" ", "-")}?id=${id}`}>
-        <img
-          src={thumbnail}
-          alt={title}
-          width={280}
-          height={280}
-          loading="lazy"
-        />
-      </Link>
-      <HotStarRatingStyled>
-        <Stars rating={rating} bestDeals />
-        {reviews.length && <p>{`(${reviews.length})`}</p>}
-      </HotStarRatingStyled>
-      <Link
-        to={`shop/${category}/${title
-          .toLowerCase()
-          .replaceAll(" ", "-")}?id=${id}`}>
-        {title}
-      </Link>
-      <HotPriceStyled>
-        <span>{countPrice(price)}</span>
-        <span>
-          {countSalePrice(price, discountPercentage)}
-        </span>
-      </HotPriceStyled>
-      <p>{description.slice(0, 150) + "..."}</p>
-      <HotButtons id={id} />
-    </HotStyled>
-  );
+    const {
+        id,
+        imageUrls = [],
+        name = "No Title",
+        categoryName = "uncategorized",
+        price = 0,
+        discountPercentage = 0,
+        description = "",
+    } = hot;
+
+    const imageUrl = imageUrls.length > 0
+        ? `https://appstore.up.railway.app/shop-service/api/public/images/${encodeURIComponent(imageUrls[0])}`
+        : "/placeholder.png";
+
+    return (
+        <HotStyled>
+            <HotWarningsStyled>
+                <span>{`${Math.round(discountPercentage)}% OFF`}</span>
+                <span>HOT</span>
+            </HotWarningsStyled>
+            <Link to={`/shop/${categoryName.toLowerCase().replaceAll(" ", "-")}?id=${id}`}>
+                <img
+                    src={imageUrl}
+                    alt={name}
+                    width={280}
+                    height={280}
+                    loading="lazy"
+                />
+            </Link>
+            <Link to={`/shop/${categoryName.toLowerCase().replaceAll(" ", "-")}?id=${id}`}>
+                {name}
+            </Link>
+            <HotPriceStyled>
+                <span>{countPrice(price)}</span>
+                <span>{countSalePrice(price, discountPercentage)}</span>
+            </HotPriceStyled>
+            <p>{description ? description.slice(0, 150) + "..." : "Описание отсутствует."}</p>
+        </HotStyled>
+    );
 };
 
 Hot.propTypes = {
-  hot: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    thumbnail: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    category: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    discountPercentage: PropTypes.number.isRequired,
-    rating: PropTypes.number.isRequired,
-    reviews: PropTypes.array.isRequired,
-  }).isRequired,
+    hot: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        imageUrls: PropTypes.array,
+        name: PropTypes.string,
+        categoryName: PropTypes.string,
+        price: PropTypes.number,
+        discountPercentage: PropTypes.number,
+        description: PropTypes.string,
+    }),
 };

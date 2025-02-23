@@ -1,128 +1,177 @@
 import { useState, useEffect } from "react";
-import {
-  Link,
-  useParams,
-  useSearchParams,
-} from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
-import { fetch } from "../../API";
+import axios from "axios";
 import { Helmet } from "react-helmet-async";
 
 import { Container } from "../../components/Container/Container";
 import { Loader } from "../../components/Loader/Loader";
 import { ShopCategories } from "../../components/ShopPage/ShopCategories/ShopCategories";
-import { Tags } from "../../components/Tags/Tags";
 import { ItemCard } from "../../components/ItemCard/ItemCard";
 import { Pagination } from "../../components/ShopPage/Pagination/Pagination";
 import { ReactComponent as ArrowIcon } from "../../icons/ArrowRight.svg";
 
-import {
-  ErrorMessageStyled,
-  ItemListStyled,
-} from "../../styles/common";
+import { ErrorMessageStyled, ItemListStyled } from "../../styles/common";
 import { ShopStyled, ShopTitleStyled } from "./Shop.styled";
-import { ShopArticle } from "../../components/ShopPage/ShopArticle/ShopArticle";
 
 const Shop = () => {
   const [items, setItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState([]);
+  const [imageCache, setImageCache] = useState({});
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const width = useWindowWidth();
-  const { category } = useParams();
   const [searchParams] = useSearchParams();
   const q = searchParams.get("q");
   const page = searchParams.get("page");
 
-  let pageTitle = "All Products";
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedPrice, setSelectedPrice] = useState("");
+
+  let pageTitle = "Все продукты";
   if (q) {
-    pageTitle = `You searched "${q}"`;
-  } else if (category) {
-    pageTitle = category.replaceAll("-", " ");
-  } else {
-    pageTitle = "All Products";
+    pageTitle = `Результаты поиска: "${q}"`;
+  } else if (selectedCategory) {
+    pageTitle = selectedCategory;
   }
 
+  const apiBaseUrl = "https://appstore.up.railway.app/shop-service/api/public";
+  const getImageUrl = (fileName) =>
+      fileName ? `${apiBaseUrl}/images/${encodeURIComponent(fileName)}` : "/placeholder.png";
+
+  // 📌 1. Загрузка товаров из API
   useEffect(() => {
     const getItems = async () => {
       try {
-        items.length === 0 && setLoading(true);
-        const responce = await fetch(
-          `${category ? `category/${category}` : ""}${
-            q ? `/search?q=${q}` : ""
-          }${q ? "&" : "?"}limit=20&skip=${
-            page > 1 ? (page - 1) * 20 : 0
-          }`,
-        );
-        setItems(responce.data.products);
-        setTotal(responce.data.total);
-        window.scrollTo(0, 0);
+        setLoading(true);
+        setError(null);
+
+        const endpoint = `${apiBaseUrl}/all-products/get`;
+        const response = await axios.get(endpoint);
+        console.log("API Response:", response.data);
+
+        if (response.data.content && Array.isArray(response.data.content)) {
+          const processedItems = response.data.content.map((item) => ({
+            ...item,
+            photo:
+                item.imageUrls && item.imageUrls.length > 0
+                    ? imageCache[item.imageUrls[0]] || getImageUrl(item.imageUrls[0])
+                    : "/placeholder.png",
+          }));
+
+          setItems(processedItems);
+          setTotal(response.data.content.length);
+        } else {
+          throw new Error("Неверный формат данных: content должен быть массивом");
+        }
       } catch (error) {
+        console.error("Ошибка загрузки товаров:", error);
         setError(error);
       } finally {
         setLoading(false);
       }
     };
+
     getItems();
-  }, [q, category, page, items.length]);
+  }, [q, page]);
+
+  // 📌 2. Загрузка изображений только один раз и обновление кэша
+  useEffect(() => {
+    const fetchImages = async () => {
+      let updatedCache = { ...imageCache };
+
+      const newItems = await Promise.all(
+          items.map(async (item) => {
+            if (item.imageUrls && item.imageUrls.length > 0) {
+              const imageUrl = getImageUrl(item.imageUrls[0]);
+
+              if (!updatedCache[item.imageUrls[0]]) {
+                updatedCache[item.imageUrls[0]] = imageUrl;
+              }
+            }
+
+            return { ...item, photo: updatedCache[item.imageUrls?.[0]] || "/placeholder.png" };
+          })
+      );
+
+      setImageCache(updatedCache);
+      setItems(newItems);
+    };
+
+    if (items.length > 0) {
+      fetchImages();
+    }
+  }, [items]);
+
+  // 📌 3. Фильтрация по категории и диапазону цен
+  useEffect(() => {
+    const allowedCategories = selectedCategory ? [selectedCategory] : null;
+
+    const filtered = items.filter((item) => {
+      const matchesCategory = !allowedCategories || allowedCategories.includes(item.categoryName);
+      const matchesPrice =
+          !selectedPrice ||
+          (item.price >= parseInt(selectedPrice.split("-")[0]) &&
+              item.price <= parseInt(selectedPrice.split("-")[1]));
+
+      return matchesCategory && matchesPrice;
+    });
+
+    setFilteredItems(filtered);
+  }, [items, selectedCategory, selectedPrice]);
 
   return (
-    <ShopStyled>
-      <Helmet>
-        <title>
-          {pageTitle.charAt(0).toUpperCase() +
-            pageTitle.slice(1)}
-        </title>
-      </Helmet>
+      <ShopStyled>
+        <Helmet>
+          <title>{pageTitle}</title>
+        </Helmet>
 
-      <Container>
-        <div>
-          {width > 767 && (
-            <>
-              <ShopCategories />
-              {/* <Tags /> */}
-            </>
-          )}
-
-          {/* <ShopArticle /> */}
-        </div>
-        <div>
-          <ShopTitleStyled>
-            <h2>{pageTitle}</h2>
-            <p>
-              <span>{total}</span> Results found.
-            </p>
-            {(category || q) && (
-              <Link to="/shop">
-                Browse All Products
-                <ArrowIcon />
-              </Link>
+        <Container>
+          <div>
+            {width > 767 && (
+                <ShopCategories
+                    selectedCategory={selectedCategory}
+                    onCategorySelect={setSelectedCategory}
+                    selectedPrice={selectedPrice}
+                    onPriceSelect={setSelectedPrice}
+                />
             )}
-          </ShopTitleStyled>
+          </div>
+          <div>
+            <ShopTitleStyled>
+              <h2>{pageTitle}</h2>
+              <p>
+                <span>{filteredItems.length}</span> товаров найдено.
+              </p>
+              {q && (
+                  <Link to="/shop">
+                    Просмотреть все товары
+                    <ArrowIcon />
+                  </Link>
+              )}
+            </ShopTitleStyled>
 
-          <ItemListStyled>
-            {items.length > 0 &&
-              items.map((item) => {
-                return (
-                  <li key={item.id}>
-                    <ItemCard item={item} />
-                  </li>
-                );
-              })}
-          </ItemListStyled>
+            <ItemListStyled>
+              {filteredItems.length > 0 ? (
+                  filteredItems.map((item) => (
+                      <li key={item.id}>
+                        <ItemCard item={item} />
+                      </li>
+                  ))
+              ) : (
+                  <p>Нет товаров</p>
+              )}
+            </ItemListStyled>
 
-          {error && (
-            <ErrorMessageStyled>
-              {error.message}
-            </ErrorMessageStyled>
-          )}
-          {loading && <Loader />}
+            {error && <ErrorMessageStyled>{error.message || "Произошла ошибка"}</ErrorMessageStyled>}
+            {loading && <Loader />}
 
-          <Pagination total={total} />
-        </div>
-      </Container>
-    </ShopStyled>
+            <Pagination total={filteredItems.length} />
+          </div>
+        </Container>
+      </ShopStyled>
   );
 };
 

@@ -1,11 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { usePrice } from "../../hooks/usePrice";
-import { useSelector } from "react-redux";
-import { selectCart } from "../../redux/shop/selectors";
-import { selectUser } from "../../redux/auth/selectors";
-import { fetch } from "../../API";
 import { Helmet } from "react-helmet-async";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 import { Container } from "../../components/Container/Container";
 import { Loader } from "../../components/Loader/Loader";
@@ -28,176 +26,169 @@ import {
   CheckoutMsgStyled,
 } from "./Checkout.styled";
 
-const Ckeckout = () => {
+const API_CART_URL = "https://appstore.up.railway.app/shop-service/api/user/cart/by-session/get";
+const API_ORDER_URL = "https://appstore.up.railway.app/shop-service/api/order/create";
+const IMAGE_API_URL = "https://appstore.up.railway.app/shop-service/api/public/images/";
+
+const Checkout = () => {
   const navigate = useNavigate();
-  const cartItems = useSelector(selectCart);
-  const { isLoggedIn } = useSelector(selectUser);
-  const {
-    countPrice,
-    countSalePrice,
-    countTotalPrice,
-    countTotalDiscount,
-  } = usePrice();
+  const { countPrice } = usePrice();
 
   const [items, setItems] = useState([]);
+  const [orderTotal, setOrderTotal] = useState(null);
   const [isOrdered, setIsOrdered] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const totalPrice = countTotalPrice(items);
-
+  // Получаем корзину из API
   useEffect(() => {
-    cartItems.forEach((item) => {
-      const getCartItem = async () => {
-        try {
-          const responce = await fetch(`${item.id}`);
-          responce.data.quantity = item.quantity;
-          setItems((prevState) =>
-            prevState.some(({ id }) => id === item.id)
-              ? prevState
-              : [...prevState, responce.data],
-          );
-        } catch (error) {
-          setError(error);
-        } finally {
-          setLoading(false);
+    const fetchCartItems = async () => {
+      try {
+        setLoading(true);
+        const token = sessionStorage.getItem("accessToken");
+        if (!token) {
+          Notify.failure("Ошибка: отсутствует токен авторизации!");
+          return;
         }
+        const response = await axios.get(API_CART_URL, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (response.data && Array.isArray(response.data)) {
+          setItems(response.data);
+        }
+      } catch (error) {
+        console.error("Ошибка загрузки корзины:", error);
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCartItems();
+  }, []);
+
+  // Вычисляем общую сумму заказа
+  const totalPrice = items.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
+
+  // Функция получения URL изображения
+  const getImageUrl = (fileName) => {
+    return fileName ? `${IMAGE_API_URL}${encodeURIComponent(fileName)}` : "/placeholder.png";
+  };
+
+  // Функция оформления заказа
+  const handlePlaceOrder = async () => {
+    try {
+      const token = sessionStorage.getItem("accessToken");
+      if (!token) {
+        Notify.failure("Ошибка: отсутствует токен авторизации!");
+        return;
+      }
+
+      const orderData = {
+        firstname: "John",
+        lastname: "Doe",
+        companyName: "Компания",
+        paymentMethod: "Наличные",
+        phoneNumber: "+7-777-777-7777",
+        country: "Казахстан",
+        city: "Алматы",
+        point: "Пункт выдачи",
+        totalPrice: totalPrice,
+        items: items.map((item) => ({
+          productId: item.id,
+          quantity: item.quantity || 1,
+        })),
       };
-      getCartItem();
-    });
-  }, [cartItems]);
+
+      console.log("Отправка заказа:", orderData);
+
+      const response = await axios.post(API_ORDER_URL, orderData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.status === 200 || response.status === 201) {
+        Notify.success("Заказ успешно оформлен!");
+        // Сохраняем итоговую сумму до очистки корзины
+        setOrderTotal(totalPrice);
+        setIsOrdered(true);
+        setItems([]);
+      }
+    } catch (error) {
+      console.error("Ошибка при оформлении заказа:", error);
+      Notify.failure("Ошибка оформления заказа.");
+    }
+  };
 
   return (
-    <SectionStyled>
-      <Helmet>
-        <title>Checkout</title>
-      </Helmet>
-      <Container>
-        <CheckoutStyled>
-          <h2>Order Summary</h2>
-          <Link to="/shopping-cart">Edit Cart</Link>
+      <SectionStyled>
+        <Helmet>
+          <title>Checkout</title>
+        </Helmet>
+        <Container>
+          <CheckoutStyled>
+            <h2>Order Summary</h2>
+            <Link to="/shopping-cart">Edit Cart</Link>
 
-          {items.length > 0 ? (
-            <CheckoutListStyled>
-              {items.map(
-                ({
-                  id,
-                  thumbnail,
-                  title,
-                  category,
-                  quantity,
-                  price,
-                  discountPercentage,
-                }) => {
-                  return (
-                    <li key={id}>
-                      <img
-                        src={thumbnail}
-                        alt={title}
-                        width="64px"
-                        height="64px"
-                        loading="lazy"
-                      />
-                      <div>
-                        <Link
-                          to={`/shop/${category}/${title
-                            .toLowerCase()
-                            .replaceAll(
-                              " ",
-                              "-",
-                            )}?id=${id}`}>
-                          {title}
-                        </Link>
-                        <CartModalPriceStyled>
-                          {quantity} x{" "}
-                          <span>
-                            {countSalePrice(
-                              price,
-                              discountPercentage,
-                            )}
-                          </span>
-                        </CartModalPriceStyled>
-                      </div>
-                    </li>
-                  );
-                },
-              )}
-            </CheckoutListStyled>
-          ) : (
-            <EmptyMessageStyled>
-              Your cart is empty!
-            </EmptyMessageStyled>
-          )}
-          <CheckoutTotalsListStyled>
-            <li>
-              <p>Sub-total</p>
-              <span>{totalPrice}</span>
-            </li>
-            <li>
-              <p>Shipping</p>
-              <span>
-                {totalPrice.length > 3
-                  ? "Free"
-                  : countPrice(5)}
-              </span>
-            </li>
-            <li>
-              <p>Discount</p>
-              <span>{countTotalDiscount(items)}</span>
-            </li>
-            <li>
-              <p>Tax</p>
-              <span>
-                {countPrice(totalPrice.slice(1) / 5)}
-              </span>
-            </li>
-          </CheckoutTotalsListStyled>
-          <CartTotalStyled>
-            <p>Total</p>
-            <span>
-              {countPrice(
-                Number(totalPrice.slice(1)) +
-                  totalPrice.slice(1) / 5,
-              )}
-            </span>
-          </CartTotalStyled>
+            {items.length > 0 ? (
+                <CheckoutListStyled>
+                  {items.map(({ id, imageUrls, name, categoryName, quantity, price }) => (
+                      <li key={id}>
+                        <img
+                            src={getImageUrl(imageUrls ? imageUrls[0] : "")}
+                            alt={name}
+                            width="64px"
+                            height="64px"
+                            loading="lazy"
+                        />
+                        <div>
+                          <Link to={`/shop/${categoryName}/${name.toLowerCase().replaceAll(" ", "-")}?id=${id}`}>
+                            {name}
+                          </Link>
+                          <CartModalPriceStyled>
+                            {quantity} x <span>{countPrice(price)}</span>
+                          </CartModalPriceStyled>
+                        </div>
+                      </li>
+                  ))}
+                </CheckoutListStyled>
+            ) : (
+                <EmptyMessageStyled>Thanks for your order!</EmptyMessageStyled>
+            )}
 
-          {isOrdered ? (
-            <CheckoutMsgStyled>
-              Your order was placed!
-            </CheckoutMsgStyled>
-          ) : (
-            <>
-              {!isLoggedIn && (
+            <CheckoutTotalsListStyled>
+              <li>
+                <p>Sub-total</p>
+                <span>{countPrice(isOrdered ? orderTotal : totalPrice)}</span>
+              </li>
+            </CheckoutTotalsListStyled>
+
+            <CartTotalStyled>
+              <p>Total</p>
+              <span>{countPrice(isOrdered ? orderTotal : totalPrice)}</span>
+            </CartTotalStyled>
+
+            {isOrdered ? (
                 <CheckoutMsgStyled>
-                  Sign in to proceed.
+                  Your order was placed!<br />
+                  Sub-total: {countPrice(orderTotal)}<br />
+                  Total: {countPrice(orderTotal)}
                 </CheckoutMsgStyled>
-              )}
-              <CheckoutBtnStyled
-                type="button"
-                onClick={() => {
-                  isLoggedIn
-                    ? setIsOrdered(true)
-                    : navigate("/user-account/sign-in", {
-                        state: "/shopping-cart/checkout",
-                      });
-                }}>
-                {isLoggedIn ? "PLACE ORDER" : "SIGN IN"}
-                <ArrowIcon />
-              </CheckoutBtnStyled>
-            </>
-          )}
+            ) : (
+                <CheckoutBtnStyled type="button" onClick={handlePlaceOrder}>
+                  PLACE ORDER
+                  <ArrowIcon />
+                </CheckoutBtnStyled>
+            )}
 
-          {error && (
-            <ErrorMessageStyled>
-              {error.message}
-            </ErrorMessageStyled>
-          )}
-          {loading && <Loader />}
-        </CheckoutStyled>
-      </Container>
-    </SectionStyled>
+            {error && <ErrorMessageStyled>{error.message}</ErrorMessageStyled>}
+            {loading && <Loader />}
+          </CheckoutStyled>
+        </Container>
+      </SectionStyled>
   );
 };
 
-export default Ckeckout;
+export default Checkout;

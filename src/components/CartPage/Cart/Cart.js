@@ -1,242 +1,221 @@
-import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
-import { usePrice } from "../../../hooks/usePrice";
-import { useDispatch } from "react-redux";
-import {
-  changeQuantity,
-  decreaseQuantity,
-  increaseQuantity,
-  removeFromCart,
-} from "../../../redux/shop/cartSlice";
 
 import { ReactComponent as CrossCircleIcon } from "../../../icons/XCircle.svg";
 import { ReactComponent as ArrowIcon } from "../../../icons/ArrowRight.svg";
 
 import {
-  ListPriceStyled,
-  ListRemoveBtnStyled,
-  ListWrapper,
+    ListPriceStyled,
+    ListRemoveBtnStyled,
+    ListWrapper,
 } from "../../../styles/listStyles";
 import {
-  CartBtnstyled,
-  CartHeadingsStyled,
-  CartProductStyled,
-  CartStyled,
-  QuantityStyled,
+    CartBtnstyled,
+    CartHeadingsStyled,
+    CartProductStyled,
+    CartStyled,
+    QuantityStyled,
 } from "./Cart.styled";
 
-export const Cart = ({ items, setItems }) => {
-  const dispatch = useDispatch();
-  const { countPrice, countSalePrice } = usePrice();
+const API_CART = "https://appstore.up.railway.app/shop-service/api/user/cart/by-session/get";
+const API_REMOVE_CART_ITEM = "https://appstore.up.railway.app/shop-service/api/user/cart";
+const API_UPDATE_QUANTITY = "https://appstore.up.railway.app/shop-service/api/user/cart/cart-item"; // API обновления количества
 
-  const minusQuantity = (id) => {
-    dispatch(decreaseQuantity(id));
+export const Cart = () => {
+    const [items, setItems] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    items.map((item) => {
-      item.id === id &&
-        item.quantity !== 1 &&
-        item.quantity--;
-      return item;
-    });
-  };
+    useEffect(() => {
+        const fetchCartItems = async () => {
+            try {
+                setLoading(true);
+                const token = sessionStorage.getItem("accessToken");
+                if (!token) {
+                    Notify.failure("Ошибка: отсутствует токен авторизации!");
+                    return;
+                }
 
-  const plusQuantity = (id) => {
-    dispatch(increaseQuantity(id));
+                const response = await axios.get(API_CART, {
+                    headers: { Authorization: `Bearer ${token}` },
+                });
 
-    items.map((item) => {
-      if (item.id === id) {
-        item.quantity === item.stock
-          ? Notify.failure(
-              "We don't have more items in stock!",
-            )
-          : item.quantity++;
-      }
-      return item;
-    });
-  };
+                if (response.data && Array.isArray(response.data)) {
+                    setItems(response.data.map(item => ({
+                        ...item,
+                        quantity: item.quantity || 1,
+                    })));
+                }
+            } catch (error) {
+                console.error("Ошибка загрузки корзины:", error.response ? error.response.data : error.message);
+                setError(error);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-  const setQuantity = (e, id) => {
-    if (Number(e.target.value) > 0) {
-      dispatch(
-        changeQuantity({
-          id,
-          quantity: Number(e.target.value),
-        }),
-      );
+        fetchCartItems();
+    }, []);
 
-      items.map((item) => {
-        if (item.id === id) {
-          if (Number(e.target.value) > item.stock) {
-            Notify.failure(
-              `We have only ${item.stock} items in stock!`,
-            );
-            item.quantity = item.stock;
-          } else {
-            item.quantity = Number(e.target.value);
-          }
+    // ✅ Получаем изображение товара
+    const getImageUrl = (fileName) => {
+        return fileName
+            ? `https://appstore.up.railway.app/shop-service/api/public/images/${encodeURIComponent(fileName)}`
+            : "/placeholder.png";
+    };
+
+    // ✅ Удаление товара из корзины
+    const removeItem = async (id) => {
+        if (!id) {
+            console.error("Ошибка: передан пустой ID для удаления!");
+            Notify.failure("Ошибка: Не удалось определить товар.");
+            return;
         }
-        return item;
-      });
-    }
-  };
 
-  return (
-    <ListWrapper>
-      <h2>Корзина</h2>
+        try {
+            const token = sessionStorage.getItem("accessToken");
+            if (!token) {
+                Notify.failure("Ошибка: отсутствует токен авторизации!");
+                return;
+            }
 
-      {items.length > 0 ? (
-        <>
-          <CartHeadingsStyled>
-            <li>
-              <p>PRODUCTS</p>
-            </li>
-            <li>
-              <p>PRICE</p>
-            </li>
-            <li>
-              <p>QUANTITY</p>
-            </li>
-            <li>
-              <p>SUB-TOTAL</p>
-            </li>
-          </CartHeadingsStyled>
+            const response = await axios.delete(`${API_REMOVE_CART_ITEM}/cart-item/${id}/delete`, {
+                headers: { Authorization: `Bearer ${token}` },
+            });
 
-          <CartStyled>
-            {items.map(
-              ({
-                id,
-                title,
-                category,
-                thumbnail,
-                price,
-                quantity,
-                discountPercentage,
-              }) => {
-                return (
-                  <li key={id}>
-                    <CartProductStyled>
-                      <ListRemoveBtnStyled
-                        type="button"
-                        aria-label="Remove item from Cart"
-                        onClick={() => {
-                          dispatch(removeFromCart(id));
-                          setItems((prevState) =>
-                            prevState.filter(
-                              (item) => item.id !== id,
-                            ),
-                          );
-                        }}>
-                        <CrossCircleIcon />
-                      </ListRemoveBtnStyled>
-                      <Link
-                        to={`/shop/${category}/${title
-                          .toLowerCase()
-                          .replaceAll(" ", "-")}?id=${id}`}>
-                        <img
-                          src={thumbnail}
-                          alt={title}
-                          width={72}
-                          height={72}
-                          loading="lazy"
-                        />
-                        {title}
-                      </Link>
-                    </CartProductStyled>
+            if (response.status === 200) {
+                setItems((prevState) => prevState.filter((item) => item.id !== id));
+                Notify.success("Товар удален из корзины!");
+            } else {
+                console.error("Ошибка удаления товара:", response);
+                Notify.failure("Ошибка при удалении товара.");
+            }
+        } catch (error) {
+            console.error("Ошибка удаления из корзины:", error);
+            Notify.failure("Не удалось удалить товар.");
+        }
+    };
 
-                    <ListPriceStyled $gray>
-                      {discountPercentage > 10 && (
-                        <span>{countPrice(price)}</span>
-                      )}
-                      {countSalePrice(
-                        price,
-                        discountPercentage,
-                      )}
-                    </ListPriceStyled>
 
-                    <div>
-                      <QuantityStyled>
-                        <button
-                          type="button"
-                          aria-label="Remove one unit from Cart"
-                          onClick={() => minusQuantity(id)}
-                          disabled={quantity < 2}>
-                          -
-                        </button>
 
-                        <input
-                          type="number"
-                          onFocus={(e) =>
-                            (e.target.value = "")
-                          }
-                          onChange={(e) =>
-                            setQuantity(e, id)
-                          }
-                          value={
-                            quantity > 9
-                              ? quantity
-                              : "0" + quantity
-                          }
-                          placeholder={
-                            quantity > 9
-                              ? quantity
-                              : "0" + quantity
-                          }
-                        />
-                        <button
-                          type="button"
-                          aria-label="Add one unit to Cart"
-                          onClick={() => plusQuantity(id)}>
-                          +
-                        </button>
-                      </QuantityStyled>
-                    </div>
+    // ✅ Обновление количества товара
+    const updateQuantity = async (id, newQuantity) => {
+        if (!id) {
+            console.error("Ошибка: передан пустой ID для обновления!");
+            Notify.failure("Ошибка: Не удалось определить товар.");
+            return;
+        }
 
-                    <ListPriceStyled>
-                      {countSalePrice(
-                        price,
-                        discountPercentage,
-                        quantity,
-                      )}
-                    </ListPriceStyled>
-                  </li>
+        if (newQuantity < 1) return;
+
+        try {
+            const token = sessionStorage.getItem("accessToken");
+            if (!token) {
+                Notify.failure("Ошибка: отсутствует токен авторизации!");
+                return;
+            }
+
+            const response = await axios.put(`${API_REMOVE_CART_ITEM}/cart-item/${id}/update`,
+                { quantity: newQuantity },
+                {
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+
+            if (response.status === 200) {
+                setItems((prevItems) =>
+                    prevItems.map((item) =>
+                        item.individualCode === id ? { ...item, quantity: newQuantity } : item
+                    )
                 );
-              },
+                Notify.success("Количество товара обновлено!");
+            } else {
+                console.error("Ошибка обновления количества:", response);
+                Notify.failure("Ошибка при обновлении количества.");
+            }
+        } catch (error) {
+            console.error("Ошибка обновления количества:", error);
+            Notify.failure("Не удалось обновить количество товара.");
+        }
+    };
+
+
+    return (
+        <ListWrapper>
+            <h2>Корзина</h2>
+
+            {loading ? (
+                <p>Загрузка...</p>
+            ) : error ? (
+                <p>Ошибка загрузки корзины</p>
+            ) : items.length > 0 ? (
+                <>
+                    <CartHeadingsStyled>
+                        <li><p>PRODUCTS</p></li>
+                        <li><p>PRICE</p></li>
+                        <li><p>QUANTITY</p></li>
+                        <li><p>SUB-TOTAL</p></li>
+                    </CartHeadingsStyled>
+
+                    <CartStyled>
+                        {items.map(({ id, name, category, imageUrls, price, quantity }) => (
+                            <li key={id}>
+                                <CartProductStyled>
+                                    <ListRemoveBtnStyled
+                                        type="button"
+                                        aria-label="Remove item from Cart"
+                                        onClick={() => removeItem(id)}
+                                    >
+                                        <CrossCircleIcon />
+                                    </ListRemoveBtnStyled>
+                                    <Link to={`/shop/${category}/${name ? name.toLowerCase().replaceAll(" ", "-") : "unknown"}?id=${id}`}>
+                                        <img
+                                            src={getImageUrl(imageUrls ? imageUrls[0] : "")}
+                                            alt={name || "Без названия"}
+                                            width={72}
+                                            height={72}
+                                            loading="lazy"
+                                        />
+                                        {name || "Без названия"}
+                                    </Link>
+                                </CartProductStyled>
+
+                                <ListPriceStyled>{price} $</ListPriceStyled>
+
+                                <div>
+                                    <QuantityStyled>
+                                        <button
+                                            type="button"
+                                            onClick={() => updateQuantity(id, quantity - 1)}
+                                            disabled={quantity < 2}
+                                        >-</button>
+
+                                        <input
+                                            type="number"
+                                            value={quantity}
+                                            onChange={(e) => updateQuantity(id, Number(e.target.value))}
+                                        />
+
+                                        <button
+                                            type="button"
+                                            onClick={() => updateQuantity(id, quantity + 1)}
+                                        >+</button>
+                                    </QuantityStyled>
+                                </div>
+
+                                <ListPriceStyled>{(price * quantity).toFixed(2)} $</ListPriceStyled>
+                            </li>
+                        ))}
+                    </CartStyled>
+                </>
+            ) : (
+                <p>Ваша корзина пуста</p>
             )}
-          </CartStyled>
-        </>
-      ) : (
-        <p>Your cart is empty!</p>
-      )}
 
-      <CartBtnstyled>
-        <Link to="/shop">
-          <ArrowIcon />
-          RETURN TO SHOP
-        </Link>
-        <button
-          type="button"
-          onClick={() =>
-            setItems((prevState) => prevState)
-          }>
-          UPDATE CART
-        </button>
-      </CartBtnstyled>
-    </ListWrapper>
-  );
-};
-
-Cart.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      category: PropTypes.string.isRequired,
-      thumbnail: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
-      quantity: PropTypes.number.isRequired,
-      discountPercentage: PropTypes.number.isRequired,
-      stock: PropTypes.number.isRequired,
-    }).isRequired,
-  ).isRequired,
+            <CartBtnstyled>
+                <Link to="/shop"><ArrowIcon />RETURN TO SHOP</Link>
+            </CartBtnstyled>
+        </ListWrapper>
+    );
 };

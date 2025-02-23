@@ -6,6 +6,7 @@ import { makeErrorMessage } from "../makeErrorMessage";
 import { addUser, removeUser } from "../redux/auth/slice";
 import { useState } from "react";
 
+
 // Функция для декодирования JWT токена
 const decodeToken = (token) => {
   try {
@@ -95,20 +96,26 @@ export const useAuth = () => {
 
       const { accessToken, refreshToken } = response.data;
 
+      // Сохраняем токены в sessionStorage
       sessionStorage.setItem("accessToken", accessToken);
       sessionStorage.setItem("refreshToken", refreshToken);
       sessionStorage.setItem("username", username);
 
+      // Расшифровываем токен
       const decodedToken = decodeToken(accessToken);
+
       if (decodedToken) {
-        dispatch(addUser({
-          username: decodedToken.sub,
-          role: decodedToken.role
-        }));
+        // Сохраняем пользователя и токены в Redux
+        dispatch(
+            addUser({
+              username: decodedToken.sub,
+              role: decodedToken.role,
+              token: accessToken,
+            })
+        );
       }
 
-      console.log(decodedToken.role)
-
+      window.location.reload();
       Notify.success("Login successful");
       return response.data;
     } catch (error) {
@@ -119,6 +126,7 @@ export const useAuth = () => {
     }
   };
 
+
   // Выход
   const logOut = () => {
     try {
@@ -128,6 +136,7 @@ export const useAuth = () => {
 
       dispatch(removeUser());
       navigate("/");
+      window.location.reload();
     } catch (error) {
       console.error("Error during logout:", error);
     }

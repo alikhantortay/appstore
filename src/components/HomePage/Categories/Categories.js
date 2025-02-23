@@ -12,7 +12,14 @@ export const Categories = () => {
   const categories = useSelector(selectCategories);
   const width = useWindowWidth();
 
-  return (
+    console.log('Hey', categories)
+
+    const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+    const getCategoryImageUrl = (imageName) => `${apiBaseUrl}/public/images/${imageName}`;
+
+
+
+    return (
     <CategoriesStyled>
       <Container>
         <TitleStyled>Shop with Categories</TitleStyled>
@@ -22,24 +29,26 @@ export const Categories = () => {
           mousewheel="true"
           keyboard="true"
           slides-per-view="auto">
-          {categories.map(({ slug, name, img }) => {
-            return (
-              <swiper-slide key={slug} lazy="true">
-                <Link to={`/shop/${slug}`}>
-                  <img
-                    src={img}
-                    alt={name}
-                    width={148}
-                    height={148}
-                    loading="lazy"
-                  />
-                  <h3>{name}</h3>
-                </Link>
-              </swiper-slide>
-            );
-          })}
+            {categories.map(({ slug, name, imageName }) => (
+                <swiper-slide key={slug} lazy="true">
+                    <Link to={`/shop/${slug}`}>
+                        <img
+                            src={getCategoryImageUrl(imageName)}
+                            alt={name}
+                            loading="lazy"
+                            style={{
+                                width: "148px",
+                                height: "148px",
+                                objectFit: "cover"
+                            }}
+                        />
+
+                        <h3 style={{fontSize: "1.1rem"}}>{name}</h3>
+                    </Link>
+                </swiper-slide>
+            ))}
         </swiper-container>
       </Container>
     </CategoriesStyled>
-  );
+    );
 };

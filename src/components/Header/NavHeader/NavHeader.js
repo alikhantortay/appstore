@@ -6,7 +6,6 @@ import { Categories } from "./Categories/Categories";
 import { Container } from "../../Container/Container";
 import { ReactComponent as PhoneIcon } from "../../../icons/PhoneCall.svg";
 import { ReactComponent as CaretIcon } from "../../../icons/CaretDown.svg";
-import { ReactComponent as CompareIcon } from "../../../icons//Compare.svg";
 import { ReactComponent as SupportIcon } from "../../../icons/Headphones.svg";
 
 import {
@@ -18,52 +17,55 @@ import {
 
 export const NavHeader = () => {
   const width = useWindowWidth();
-  const [isCategoriesOpen, setIsCategoriesOpen] =
-    useState(false);
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
 
   useEffect(() => {
-    document.addEventListener("mousedown", (e) => {
-      !e.target.closest('[name="categories"]') &&
+    const handleClickOutside = (e) => {
+      if (!e.target.closest('[name="categories"]')) {
         setIsCategoriesOpen(false);
-    });
-
-    return () => {
-      document.removeEventListener("mousedown", (e) => {
-        !e.target.closest('[name="categories"]') &&
-          setIsCategoriesOpen(false);
-      });
+      }
     };
-  });
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  // 📌 Функция обработки клика
+  const handleCategoryClick = () => {
+    console.log("🟠 Кнопка 'Все категории' нажата");
+    setIsCategoriesOpen((prevState) => !prevState);
+  };
 
   return (
-    <NavHeaderStyled>
-      <Container>
-        <NavStyled>
-          <CategoryBtnStyled
-            name="categories"
-            type="button"
-             onClick={() =>
-              setIsCategoriesOpen((prevState) => !prevState)
-            }
-            $isOpen={isCategoriesOpen}>
-            Все категории
-            <CaretIcon />
-          </CategoryBtnStyled>
-          {isCategoriesOpen && (
-            <Categories
-              onClick={() => setIsCategoriesOpen(false)}
-            />
-          )}
-          <NavLink to="/support"> {/* support */}
-            <SupportIcon />
-            {width > 424 && "Служба поддержки"}
-          </NavLink>
-        </NavStyled>
-        <HeaderTelStyled href="tel:+12025550104">
-          <PhoneIcon />
-          +7-777-777-7777
-        </HeaderTelStyled>
-      </Container>
-    </NavHeaderStyled>
+      <NavHeaderStyled>
+        <Container>
+          <NavStyled>
+            {/* 🔥 Добавлен console.log() */}
+            <CategoryBtnStyled
+                name="categories"
+                type="button"
+                onClick={handleCategoryClick}
+                $isOpen={isCategoriesOpen}
+            >
+              Все категории
+              <CaretIcon />
+            </CategoryBtnStyled>
+
+            {isCategoriesOpen && <Categories onClick={() => setIsCategoriesOpen(false)} />}
+
+            <NavLink to="/support">
+              <SupportIcon />
+              {width > 424 && "Служба поддержки"}
+            </NavLink>
+          </NavStyled>
+
+          <HeaderTelStyled href="tel:+12025550104">
+            <PhoneIcon />
+            +7-777-777-7777
+          </HeaderTelStyled>
+        </Container>
+      </NavHeaderStyled>
   );
 };

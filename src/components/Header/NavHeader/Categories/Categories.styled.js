@@ -1,31 +1,64 @@
 import styled from "styled-components";
 
 export const CategoriesStyled = styled.div`
-  position: absolute;
-  z-index: 1;
-  top: 60px;
-  left: 0;
-  padding: 12px 0;
-  border-radius: 3px;
-  box-shadow: 0px 8px 40px 0px rgba(0, 0, 0, 0.12);
-  background-color: #fff;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background: white;
+    border: 1px solid #ddd;
+    width: 250px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
 
-  a {
-    display: block;
-    width: 240px;
-    padding: 8px 16px;
-    transition: color 200ms ease,
-      background-color 200ms ease, font-weight 100ms ease;
-
-    text-transform: capitalize;
-    color: var(--text);
-
-    &:hover,
-    &:focus {
-      color: var(--title);
-      background-color: #f2f4f5;
-
-      font-weight: 500;
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
     }
-  }
+
+    li {
+        padding: 10px 15px;
+        position: relative;
+        cursor: pointer;
+
+        &:hover {
+            background: #f5f5f5;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+    }
+`;
+
+export const SubCategoriesStyled = styled.div`
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background: white;
+    border: 1px solid #ddd;
+    width: 220px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: block;
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    li {
+        padding: 8px 12px;
+
+        &:hover {
+            background: #eaeaea;
+        }
+
+        a {
+            text-decoration: none;
+            color: #555;
+        }
+    }
 `;

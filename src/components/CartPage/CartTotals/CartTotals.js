@@ -1,71 +1,86 @@
-import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { usePrice } from "../../../hooks/usePrice";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 import { ReactComponent as ArrowIcon } from "../../../icons/ArrowRight.svg";
 
 import {
-  CartTotalStyled,
-  CartTotalsListStyled,
-  CartTotalsStyled,
-  OrderLinkStyled,
+    CartTotalStyled,
+    CartTotalsListStyled,
+    CartTotalsStyled,
+    OrderLinkStyled,
 } from "./CartTotals.styled";
 
-export const CartTotals = ({ items }) => {
-  const {
-    countPrice,
-    countTotalPrice,
-    countTotalDiscount,
-  } = usePrice();
+const API_URL = "https://appstore.up.railway.app/shop-service/api/user/cart/by-session/get";
 
-  const totalPrice = countTotalPrice(items);
+export const CartTotals = () => {
+    const { countPrice } = usePrice();
+    const [cartItems, setCartItems] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-  return (
-    <CartTotalsStyled>
-      <h2>Cart Totals</h2>
-      <CartTotalsListStyled>
-        <li>
-          <p>Sub-total</p>
-          <span>{totalPrice}</span>
-        </li>
-        <li>
-          <p>Shipping</p>
-          <span>
-            {totalPrice.length > 3 ? "Free" : countPrice(5)}
-          </span>
-        </li>
-        <li>
-          <p>Discount</p>
-          <span>{countTotalDiscount(items)}</span>
-        </li>
-        <li>
-          <p>Tax</p>
-          <span>{countPrice(totalPrice.slice(1) / 5)}</span>
-        </li>
-      </CartTotalsListStyled>
-      <CartTotalStyled>
-        <p>Total</p>
-        <span>
-          {countPrice(
-            Number(totalPrice.slice(1)) +
-              totalPrice.slice(1) / 5,
-          )}
-        </span>
-      </CartTotalStyled>
-      <OrderLinkStyled to="/shopping-cart/checkout" $big>
-        PROCEED TO CHECKOUT
-        <ArrowIcon />
-      </OrderLinkStyled>
-    </CartTotalsStyled>
-  );
-};
+    // ✅ Загружаем корзину из API
+    useEffect(() => {
+        const fetchCartItems = async () => {
+            try {
+                setLoading(true);
+                const token = sessionStorage.getItem("accessToken");
 
-CartTotals.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      price: PropTypes.number.isRequired,
-      quantity: PropTypes.number.isRequired,
-      discountPercentage: PropTypes.number.isRequired,
-    }).isRequired,
-  ).isRequired,
+                if (!token) {
+                    Notify.failure("Ошибка: отсутствует токен авторизации!");
+                    return;
+                }
+
+                const response = await axios.get(API_URL, {
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+
+                if (response.data && Array.isArray(response.data)) {
+                    setCartItems(response.data);
+                }
+            } catch (error) {
+                console.error("Ошибка загрузки корзины:", error);
+                setError(error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchCartItems();
+    }, []);
+
+    // ✅ Считаем `Sub-total` (цена * количество)
+    const totalPrice = cartItems.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
+
+    // ✅ Итоговая сумма (на данный момент просто `Sub-total`, можно добавить налоги/доставку)
+    const grandTotal = totalPrice;
+
+    return (
+        <CartTotalsStyled>
+            <h2>Cart Totals</h2>
+            {loading ? (
+                <p>Загрузка...</p>
+            ) : error ? (
+                <p>Ошибка загрузки корзины</p>
+            ) : (
+                <>
+                    <CartTotalsListStyled>
+                        <li>
+                            <p>Sub-total</p>
+                            <span>{countPrice(totalPrice)}</span>
+                        </li>
+                    </CartTotalsListStyled>
+                    <CartTotalStyled>
+                        <p>Total</p>
+                        <span>{countPrice(grandTotal)}</span>
+                    </CartTotalStyled>
+                    <OrderLinkStyled to="/shopping-cart/checkout" $big>
+                        PROCEED TO CHECKOUT
+                        <ArrowIcon />
+                    </OrderLinkStyled>
+                </>
+            )}
+        </CartTotalsStyled>
+    );
 };

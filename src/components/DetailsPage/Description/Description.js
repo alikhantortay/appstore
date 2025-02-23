@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+{/*import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { fetch } from "../../../API";
 
@@ -28,7 +28,7 @@ const Description = () => {
     const getItem = async () => {
       try {
         setLoading(true);
-        const responce = await fetch(`/${id}`);
+        const responce = await fetch(`catalogs/${catalogId}/products/${id}`);
         setItem(responce.data);
       } catch (error) {
         setError(error);
@@ -113,3 +113,4 @@ const Description = () => {
 };
 
 export default Description;
+*/}

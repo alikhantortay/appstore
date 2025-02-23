@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { fetch } from "../../../API";
-import { deals } from "./deals";
+import axios from "axios";
 
 import { Container } from "../../Container/Container";
 import { Hot } from "./Hot/Hot";
@@ -17,6 +16,9 @@ import {
   BestDealsTitlesStyled,
 } from "./BestDeals.styled";
 
+const API_URL = "https://appstore.up.railway.app/shop-service/api/public/all-products/get";
+const API_IMAGE_BASE = "https://appstore.up.railway.app/shop-service/api/public/images/";
+
 export const BestDeals = () => {
   const [hot, setHot] = useState(null);
   const [items, setItems] = useState([]);
@@ -24,56 +26,64 @@ export const BestDeals = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    deals.forEach((id) => {
-      const getItem = async () => {
-        try {
-          setLoading(true);
-          const responce = await fetch(`/${id}`);
-          responce.data.id === 80
-            ? setHot(responce.data)
-            : setItems((prevState) => [
-                ...prevState,
-                responce.data,
-              ]);
-        } catch (error) {
-          setError(error);
-        } finally {
-          setLoading(false);
+    const getHotProducts = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const response = await axios.get(API_URL);
+        console.log("🔥 Hot Products Response:", response.data);
+
+        if (response.data?.content && Array.isArray(response.data.content)) {
+          // Фильтруем только товары с `isHotProduct: true`
+          const hotItems = response.data.content.filter(item => item.isHotProduct);
+
+          if (hotItems.length > 0) {
+            const firstHotItem = hotItems[0]; // Первый товар - как "горячая сделка"
+            setHot(firstHotItem);
+            setItems(hotItems.slice(1)); // Остальные - в общий список
+          }
+        } else {
+          throw new Error("Неверный формат данных: `content` должен быть массивом");
         }
-      };
-      getItem();
-    });
+      } catch (error) {
+        console.error("❌ Ошибка загрузки горячих предложений:", error);
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getHotProducts();
   }, []);
 
   return (
-    <BestDealsStyled>
-      <Container>
-        <BestDealsTitlesStyled>
-          <h2>Best Deals</h2>
-          <p>Deals ends in</p>
-          <BestDealsTimer />
-          <Link to="/shop">
-            Browse All Products
-            <ArrowRightIcon />
-          </Link>
-        </BestDealsTitlesStyled>
+      <BestDealsStyled>
+        <Container>
+          <BestDealsTitlesStyled>
+            <h2>🔥 Лучшие предложения</h2>
+            <Link to="/shop">
+              Посмотреть все продукты
+              <ArrowRightIcon />
+            </Link>
+          </BestDealsTitlesStyled>
 
-        <BestDealsGridContainer>
-          {hot && <Hot hot={hot} />}
-          {items.length > 0 &&
-            items.map((item) => (
-              <li key={item.id}>
-                <ItemCard item={item} bestDeals />
-              </li>
-            ))}
-        </BestDealsGridContainer>
-        {error && (
-          <ErrorMessageStyled>
-            {error.message}
-          </ErrorMessageStyled>
-        )}
-        {loading && <Loader />}
-      </Container>
-    </BestDealsStyled>
+          <BestDealsGridContainer>
+            {/* Показываем первый товар как "горячую сделку" */}
+            {hot && <Hot hot={hot} />}
+
+            {/* Остальные горячие товары */}
+            {items.length > 0 &&
+                items.map((item) => (
+                    <li key={item.id}>
+                      <ItemCard item={item} bestDeals />
+                    </li>
+                ))}
+          </BestDealsGridContainer>
+
+          {error && <ErrorMessageStyled>{error.message}</ErrorMessageStyled>}
+          {loading && <Loader />}
+        </Container>
+      </BestDealsStyled>
   );
 };

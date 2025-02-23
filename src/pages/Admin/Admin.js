@@ -5,6 +5,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import Categories from "./components/Categories";
 import Employees from "./components/Employees";
 import Products from "./components/Products";
+import CreateOrder from "./components/Getorder"; // Импорт нового компонента
 
 const decodeToken = (token) => {
     try {
@@ -106,7 +107,6 @@ const Admin = () => {
 
     useEffect(() => {
         const accessToken = sessionStorage.getItem('accessToken');
-
         const decodedToken = decodeToken(accessToken);
         if (!decodedToken || decodedToken.role !== 'ROLE_ADMIN') {
             Notify.failure('Доступ запрещен! Только админы могут зайти.', {
@@ -125,6 +125,8 @@ const Admin = () => {
                 return <Employees />;
             case 'products':
                 return <Products />;
+            case 'createOrder':
+                return <CreateOrder />;
             default:
                 return <div>Выбирай</div>;
         }
@@ -132,6 +134,7 @@ const Admin = () => {
 
     const handleLogout = () => {
         navigate('/');
+        window.location.reload();
     };
 
     return (
@@ -156,13 +159,22 @@ const Admin = () => {
                 >
                     Продукты
                 </NavItem>
-                <LogoutButton style={{backgroundColor:"red"}} onClick={handleLogout}>Выйти</LogoutButton>
+                <NavItem
+                    $active={activeTab === 'createOrder'}
+                    onClick={() => setActiveTab('createOrder')}
+                >
+                    Список заказов
+                </NavItem>
+                <LogoutButton style={{ backgroundColor: "red" }} onClick={handleLogout}>
+                    Выйти
+                </LogoutButton>
             </Sidebar>
             <Content>
                 <Header>
                     {activeTab === 'categories' ? 'Каталог продуктов' :
                         activeTab === 'employees' ? 'Сотрудники' :
-                            activeTab === 'products' ? 'Продукты' : 'Выбирай'}
+                            activeTab === 'products' ? 'Продукты' :
+                                activeTab === 'createOrder' ? 'Список заказов' : 'Выбирай'}
                 </Header>
                 <ContentCard>
                     {renderContent()}
@@ -173,4 +185,3 @@ const Admin = () => {
 };
 
 export default Admin;
-
